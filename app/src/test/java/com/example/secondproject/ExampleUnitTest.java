@@ -1,4 +1,4 @@
-package com.example.secondactivity;
+package com.example.secondproject;
 
 import org.junit.Test;
 
