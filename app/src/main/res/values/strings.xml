@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SecondActivity</string>
+    <string name="hums_page_headline_text">Help Your Friends</string>
 </resources>
