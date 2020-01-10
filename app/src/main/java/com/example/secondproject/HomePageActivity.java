@@ -1,6 +1,7 @@
 package com.example.secondproject;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -122,6 +123,12 @@ public class HomePageActivity extends AppCompatActivity {
         catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void AuthPage(View view) {
+
+        Intent AuthIntent = new Intent(this, AuthActivity.class);
+        startActivity(AuthIntent);
     }
 }
 
