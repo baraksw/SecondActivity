@@ -87,12 +87,8 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void SignUpPage(View view) {
-
         Intent SignUpIntent = new Intent(this, SignUp.class);
         startActivity(SignUpIntent);
     }
 
-    public void signOut(View view) {
-        mAuth.signOut();
-    }
 }
