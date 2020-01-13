@@ -78,7 +78,7 @@
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/xp_points_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Xp points"
@@ -90,6 +90,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@id/xp_points_textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
