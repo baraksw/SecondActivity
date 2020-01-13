@@ -39,8 +39,10 @@ public class SignUp extends AppCompatActivity {
     private EditText mNameField;
     private EditText mEmailField;
     private EditText mPasswordField;
+    private EditText mUser_NameField;
     private Button mRegisterBtn;
     private Button mAuthBtn;
+    public User first_user;
 
     private DatabaseReference mDataBase;
     private FirebaseAuth mAuth;
@@ -55,11 +57,13 @@ public class SignUp extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mProgress = new ProgressDialog(this);
 
+        mUser_NameField = findViewById(R.id.user_nameField);
         mNameField = findViewById(R.id.nameField);
         mEmailField = findViewById(R.id.emailField);
         mPasswordField = findViewById(R.id.passwordField);
         mRegisterBtn = findViewById(R.id.registerBtn);
         mAuthBtn =findViewById(R.id.AuthBtn);
+        first_user = new User();
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +75,17 @@ public class SignUp extends AppCompatActivity {
     }
         private void startRegister(){
             final String name = mNameField.getText().toString().trim();
+            final String user_name = mUser_NameField.getText().toString().trim();
             String email = mEmailField.getText().toString().trim();
             String password = mPasswordField.getText().toString().trim();
 
-            if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+
+            if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(user_name)) {
                 mProgress.setMessage("Signing Up...");
                 mProgress.show();
+                first_user.set_full_name(name);
+                first_user.set_user_name(user_name);
+
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -84,7 +93,7 @@ public class SignUp extends AppCompatActivity {
                         {
                             String user_id = mAuth.getCurrentUser().getUid();
                             DatabaseReference current_user_db = mDataBase.child(user_id);
-                            current_user_db.child("name").setValue(name);
+                            current_user_db.child("USER").setValue(first_user);
                             mProgress.dismiss();
                             Intent AuthIntent = new Intent(SignUp.this,AuthActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
