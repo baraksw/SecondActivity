@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AccountActivity extends AppCompatActivity {
 
     String helloName = "Hey ";
     String name;
+    private FirebaseAuth mAuth;
     private TextView mUserName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +22,9 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
         mUserName=(TextView) findViewById(R.id.helloTextView);
+        mAuth = FirebaseAuth.getInstance();
 
-        Intent intent = new Intent();
+        Intent intent = getIntent();
         name=intent.getStringExtra(AuthActivity.UserNameString);
         helloName=helloName+name;
         mUserName.setText(helloName);
@@ -30,4 +34,11 @@ public class AccountActivity extends AppCompatActivity {
         Intent HomePageIntent = new Intent(AccountActivity.this,HomePageActivity.class);
         startActivity(HomePageIntent);
     }
+
+    public void LogOut(View view){
+       mAuth.signOut();
+       Intent HomePageIntent = new Intent(AccountActivity.this,HomePageActivity.class);
+       startActivity(HomePageIntent);
+    }
+
 }
