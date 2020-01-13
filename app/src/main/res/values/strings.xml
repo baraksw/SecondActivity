@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SecondActivity</string>
     <string name="hums_page_headline_text">Help Your Friends</string>
+    <string name="user_name_string">Atara Haimi</string>
 </resources>
