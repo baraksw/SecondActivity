@@ -31,7 +31,5 @@ public class User {
         return _published_hums[index];
     }
 
-    /*private int how_many_hums(){
-        return _published_hums.length();
-    }*/
+
 }

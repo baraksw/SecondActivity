@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".MyProfileActivity">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/left_arrow_width"
+        android:layout_height="@dimen/left_arrow_height"
+        android:layout_marginLeft="@dimen/global_left_margin"
+        android:layout_marginTop="@dimen/global_top_margin_type2"
+        android:minWidth="14.5dp"
+        android:minHeight="24dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/left_arrow_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/my_friend_button"
+        android:layout_width="@dimen/my_friends_button_width"
+        android:layout_height="@dimen/my_friends_button_height"
+        android:layout_marginTop="@dimen/global_top_margin_type2"
+        android:layout_marginRight="@dimen/global_right_margin"
+        android:scaleType="centerCrop"
+        android:src="@drawable/friends_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name_textView"
+        style="@style/headline_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:text="@string/user_name_string"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_width"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
+        tools:layout_editor_absoluteX="24dp" />
+
+
+    <com.alexzh.circleimageview.CircleImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/sample_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
+        app:view_borderColor="@color/gunmetal"
+        app:view_borderWidth="2dp"
+        app:view_shadowColor="@color/gunmetal"
+        app:view_shadowDx="10dp"
+        app:view_shadowDy="0dp"
+        app:view_shadowRadius="4dp" />
+
+    <ImageView
+        android:id="@+id/xp_star_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture"
+        android:src="@drawable/star_image"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xp points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xp_star_icon" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
