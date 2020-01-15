@@ -10,4 +10,6 @@
     <dimen name="my_friends_button_width">50dp</dimen>
     <dimen name="my_friends_button_height">50dp</dimen>
     <dimen name="line_width">2dp</dimen>
+    <dimen name="friends_page_icon_width">50dp</dimen>
+    <dimen name="friends_page_icon_height">25dp</dimen>
 </resources>

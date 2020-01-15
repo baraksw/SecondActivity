@@ -36,4 +36,11 @@
         <item name="android:fontFamily">@font/heebo_medium</item>
     </style>
 
+    <style name="NumOfFriendsTextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/heebo_extra_bold</item>
+    </style>
+
 </resources>
