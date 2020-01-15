@@ -10,7 +10,7 @@ public class User {
     //int _xp_cnt = 0, _level = 1;
     //Hum _published_hums[];
 
-    public User(){
+    public User() {
 
     }
 
@@ -18,18 +18,18 @@ public class User {
         return _full_name;
     }
 
-    public void set_full_name(String full_name){
-        _full_name=full_name;
+    public void set_full_name(String full_name) {
+        _full_name = full_name;
     }
 
     public String get_user_name() {
         return _user_name;
     }
 
-    public void set_user_name(String user_name){
-        _user_name=user_name;
+    public void set_user_name(String user_name) {
+        _user_name = user_name;
     }
-
+}
 
     /*
     private Hum[] get_published_hums() {
@@ -42,3 +42,4 @@ public class User {
 
 
 }
+*/

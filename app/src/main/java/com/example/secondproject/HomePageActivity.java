@@ -12,8 +12,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -33,6 +40,13 @@ public class HomePageActivity extends AppCompatActivity {
     private ProgressDialog mProgress;
 
 
+    private FirebaseAuth mAuth;
+    private Firebase mRef;
+    private TextView mValue;
+    private User firt_user;
+    private String user_path;
+    private String db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +60,8 @@ public class HomePageActivity extends AppCompatActivity {
         mRecordBtn = (Button) findViewById(R.id.recordBtn);
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/recorded_audio.3gp";
+
+
 
         mStorage = FirebaseStorage.getInstance().getReference();
 
