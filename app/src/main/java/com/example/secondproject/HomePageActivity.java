@@ -1,5 +1,7 @@
 package com.example.secondproject;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -25,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
 
@@ -36,6 +39,7 @@ public class HomePageActivity extends AppCompatActivity {
     private String mFileName = null;
     private static final String LOG_TAG = "Record_log";
     private String audio_path;
+    private String audio_file_random_name;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
 
@@ -82,46 +86,48 @@ public class HomePageActivity extends AppCompatActivity {
 
 
     }
-        private void startRecording () {
-            mRecorder = new MediaRecorder();
-            mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            mRecorder.setOutputFile(mFileName);
-            mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
-            try {
-                mRecorder.prepare();
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "prepare() failed");
+    private void startRecording() {
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mFileName);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        }
+
+        mRecorder.start();
+    }
+
+    private void stopRecording() {
+        mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
+        uploadAudio();
+    }
+
+
+    private void uploadAudio() {
+
+        mProgress.setMessage("Uploading Audio...");
+        mProgress.show();
+
+        audio_file_random_name = UUID.randomUUID().toString();
+        final StorageReference filepath = mStorage.child("Audio").child(audio_file_random_name);
+        Uri uri = Uri.fromFile(new File(mFileName));
+        audio_path = uri.getPath();
+        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mProgress.dismiss();
+                mRecordLabel.setText("Uploading Finished");
             }
-
-            mRecorder.start();
-        }
-
-        private void stopRecording () {
-            mRecorder.stop();
-            mRecorder.release();
-            mRecorder = null;
-            uploadAudio();
-        }
-
-
-        private void uploadAudio() {
-
-           mProgress.setMessage("Uploading Audio...");
-           mProgress.show();
-
-            final StorageReference filepath = mStorage.child("Audio").child("new_audio.3gp");
-            Uri uri = Uri.fromFile(new File(mFileName));
-            audio_path = uri.getPath();
-            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    mProgress.dismiss();
-                    mRecordLabel.setText("Uploading Finished");
-                }
-            });
-        }
+        });
+    }
 
     public void play_Audio(View v) {
         MediaPlayer mediaPlayer = new MediaPlayer();
@@ -135,8 +141,7 @@ public class HomePageActivity extends AppCompatActivity {
             });
 
             mediaPlayer.prepare();
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
