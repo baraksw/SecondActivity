@@ -18,7 +18,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/transparent"/>
 
     <ImageButton
         android:id="@+id/my_friend_button"
