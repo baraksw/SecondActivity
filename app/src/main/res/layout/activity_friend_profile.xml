@@ -13,8 +13,6 @@
         android:layout_height="@dimen/left_arrow_height"
         android:layout_marginLeft="@dimen/global_left_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
-        android:minWidth="14.5dp"
-        android:minHeight="24dp"
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
