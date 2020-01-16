@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/speaker_icon" />
+        app:srcCompat="@drawable/speaker_circled_icon" />
 
     <TextView
         android:id="@+id/shazamzams_textView"
