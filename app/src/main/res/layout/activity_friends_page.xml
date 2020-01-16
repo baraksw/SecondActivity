@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FriendsPageActivity"
+    android:background="@drawable/gradient_background">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/left_arrow_width"
+        android:layout_height="@dimen/left_arrow_height"
+        android:layout_marginStart="@dimen/global_left_margin"
+        android:layout_marginTop="@dimen/global_top_margin_type2"
+        android:background="@color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/left_arrow_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/friends_page_icon_View"
+        android:layout_width="@dimen/friends_page_icon_width"
+        android:layout_height="@dimen/friends_page_icon_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/global_top_margin"
+        app:srcCompat="@drawable/friends_image" />
+
+    <TextView
+        android:id="@+id/friends_headline"
+        android:textAppearance="@style/headline_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/friends_page_headline_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/friends_page_icon_View" />
+
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_width"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/num_of_friends"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friends_headline" />
+
+    <TextView
+        android:id="@+id/num_of_friends"
+        android:textAppearance="@style/NumOfFriendsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/num_of_friends_shape"
+        android:text="158"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/friends_headline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

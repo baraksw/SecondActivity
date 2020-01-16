@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    tools:context=".MyProfileActivity">
+    tools:context=".FriendProfileActivity"
+    android:background="@drawable/gradient_background">
 
     <ImageButton
         android:id="@+id/back_button"
@@ -13,50 +13,27 @@
         android:layout_height="@dimen/left_arrow_height"
         android:layout_marginLeft="@dimen/global_left_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
-        android:minWidth="14.5dp"
-        android:minHeight="24dp"
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/transparent"/>
 
-    <ImageButton
-        android:id="@+id/my_friend_button"
-        android:layout_width="@dimen/my_friends_button_width"
-        android:layout_height="@dimen/my_friends_button_height"
-        android:layout_marginTop="@dimen/global_top_margin_type2"
-        android:layout_marginRight="@dimen/global_right_margin"
-        android:scaleType="centerCrop"
-        android:src="@drawable/friends_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/user_name_textView"
         android:textAppearance="@style/headline_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/global_top_margin"
+        android:layout_marginTop="@dimen/friend_name_top_margin"
         android:text="@string/user_name_string"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/horizontal_line"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_width"
-        android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@id/user_name_textView"
-        tools:layout_editor_absoluteX="24dp" />
-
-
     <com.alexzh.circleimageview.CircleImageView
         android:id="@+id/profile_picture"
-        android:layout_width="@dimen/my_profile_pic_diameter"
-        android:layout_height="@dimen/my_profile_pic_diameter"
+        android:layout_width="@dimen/friend_profile_pic_diameter"
+        android:layout_height="@dimen/friend_profile_pic_diameter"
         android:src="@drawable/sample_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +47,8 @@
 
     <ImageView
         android:id="@+id/xp_star_icon"
-        android:layout_width="@dimen/my_profile_star_dimense"
-        android:layout_height="@dimen/my_profile_star_dimense"
+        android:layout_width="@dimen/friend_profile_star_dimense"
+        android:layout_height="@dimen/friend_profile_star_dimense"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture"
@@ -88,10 +65,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@id/xp_points_textView" />
+    <ImageView
+        android:id="@+id/speaker_imageView"
+        android:layout_width="@dimen/speaker_icon_dimense"
+        android:layout_height="@dimen/speaker_icon_dimense"
+        app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/speaker_icon" />
+
+    <TextView
+        android:id="@+id/shazamzams_textView"
+        android:layout_width="@dimens/shazamzams_textView_width"
+        android:layout_height="@dimens/shazamzams_textView_height"
+        android:text="@string/shazamzams_text"
+        android:textAppearance="@style/TextStyle"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
