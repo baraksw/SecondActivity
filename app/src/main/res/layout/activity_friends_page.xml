@@ -40,7 +40,6 @@
         app:layout_constraintTop_toBottomOf="@id/friends_page_icon_View" />
 
 
-
     <View
         android:id="@+id/horizontal_line"
         android:layout_width="match_parent"
