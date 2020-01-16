@@ -20,4 +20,7 @@
     <dimen name="friend_profile_star_dimense">70dp</dimen>
     <dimen name="speaker_icon_dimense">70dp</dimen>
     <dimen name="shazamzams_textView_bottom_margin">80dp</dimen>
+    <dimen name="num_of_friends_rect_width">55dp</dimen>
+    <dimen name="num_of_friends_rect_height">22dp</dimen>
+    <dimen name="num_of_friends_rect_radius">20dp</dimen>
 </resources>
