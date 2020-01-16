@@ -23,4 +23,6 @@
     <dimen name="num_of_friends_rect_width">55dp</dimen>
     <dimen name="num_of_friends_rect_height">22dp</dimen>
     <dimen name="num_of_friends_rect_radius">20dp</dimen>
+    <dimen name="shazamzams_textView_width">70dp</dimen>
+    <dimen name="shazamzams_textView_height">22dp</dimen>
 </resources>
