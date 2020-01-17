@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip">
+
+
+    <ImageButton
+        android:id="@+id/play_record_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="30dp"
+        android:elevation="6dp"
+        app:srcCompat="@drawable/play_button_layout" />
+
+    <TextView
+        android:id="@+id/record_time_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/play_record_button"
+        android:text="TextView"
+        android:textAppearance="@style/record_time_textStyle"/>
+
+    <ImageView
+        android:id="@+id/listeners_imageView"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:paddingLeft="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/record_time_textView"
+        app:srcCompat="@drawable/friends_image" />
+
+    <TextView
+        android:id="@+id/num_of_listeners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/listeners_imageView"
+        android:layout_below="@id/listeners_imageView"
+        android:text="5 Listeners"
+        android:textAppearance="@style/num_of_listeners_textStyle"/>
+
+    <ImageButton
+        android:id="@+id/youtube_logo_view"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/transparent"
+        app:srcCompat="@drawable/youtube_logo" />
+
+    <TextView
+        android:id="@+id/youtube_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/youtube_logo_view"
+        android:layout_alignParentRight="true"
+        android:text="@string/open_in_youtube_text"
+        android:textAppearance="@style/num_of_listeners_textStyle"/>
+
+
+</RelativeLayout>
