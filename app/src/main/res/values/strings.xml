@@ -5,4 +5,6 @@
     <string name="friends_page_headline_text">Friends</string>
     <string name="shazamzams_text">Shazamzams</string>
     <string name="open_in_youtube_text">Open in YouTube</string>
+    <string name="num_of_listeners_text">5 Listeners</string>
+    <string name="hum_length_text">TextView</string>
 </resources>

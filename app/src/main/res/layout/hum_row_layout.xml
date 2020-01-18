@@ -18,12 +18,12 @@
         app:srcCompat="@drawable/play_button_layout" />
 
     <TextView
-        android:id="@+id/record_time_textView"
+        android:id="@+id/hum_length_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/play_record_button"
-        android:text="TextView"
+        android:text="@string/hum_length_text"
         android:textAppearance="@style/record_time_textStyle"/>
 
     <ImageView
@@ -32,16 +32,16 @@
         android:layout_height="20dp"
         android:paddingLeft="5dp"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/record_time_textView"
+        android:layout_toRightOf="@id/hum_length_textView"
         app:srcCompat="@drawable/friends_image" />
 
     <TextView
-        android:id="@+id/num_of_listeners"
+        android:id="@+id/num_of_listeners_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/listeners_imageView"
         android:layout_below="@id/listeners_imageView"
-        android:text="5 Listeners"
+        android:text="@string/num_of_listeners_text"
         android:textAppearance="@style/num_of_listeners_textStyle"/>
 
     <ImageButton
