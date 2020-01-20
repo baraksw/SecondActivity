@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AccountActivity extends AppCompatActivity {
 
     String helloName = "Hey ";
-    String name = "NULL";
+    String name = "TRY";
     private FirebaseAuth mAuth;
     private TextView mUserName;
     private Firebase mRef;
@@ -26,8 +26,6 @@ public class AccountActivity extends AppCompatActivity {
     private User current_user;
     private String user_path;
     private String db_path;
-
-
 
 
     @Override
@@ -40,18 +38,17 @@ public class AccountActivity extends AppCompatActivity {
         mUserName = findViewById(R.id.helloField);
         mUserName.setText(name);
         mAuth=FirebaseAuth.getInstance();
-        //user_path = mAuth.getCurrentUser().getDisplayName().toString();
-        //db_path = db_path + "/" + user_path;
-        //db_path = "tom";
-        mRef = new Firebase("https://secondproject-a6fe3.firebaseio.com");
+        mRef = new Firebase("https://secondproject-a6fe3.firebaseio.com/DB/users_db");
 
+/*
+        user_path = mAuth.getCurrentUser().getDisplayName().toString();
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //current_user = dataSnapshot.getValue(User.class);
                 //mUserName.setText("Hey " +  current_user.get_full_name());
                //mUserName.setText("Hey "+ user_path);
-                mUserName.setText("HEYYY");
+                mUserName.setText("HEYYY" + user_path);
             }
 
             @Override
@@ -59,7 +56,7 @@ public class AccountActivity extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     public void GoToHomePage(View view) {

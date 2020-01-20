@@ -102,7 +102,7 @@ public class SignUp extends AppCompatActivity {
                             current_user.set_full_name(name);
                             current_user.set_user_name(user_name);
                             add_user_to_db(current_user);
-                            //userProfile(current_user.get_full_name());
+                            userProfile(current_user.get_full_name());
                             mProgress.dismiss();
 
                             Intent AuthIntent = new Intent(SignUp.this,AuthActivity.class);
