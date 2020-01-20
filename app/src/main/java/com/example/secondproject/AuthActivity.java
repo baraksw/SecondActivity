@@ -9,16 +9,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -36,8 +32,8 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         mAuth = FirebaseAuth.getInstance();
-        mEmailField=(EditText)findViewById(R.id.emailField);
-        mPasswordField = (EditText)findViewById(R.id.passwordField);
+        mEmailField=(EditText)findViewById(R.id.email_editText);
+        mPasswordField = (EditText)findViewById(R.id.password_editText);
         mLoginBtn=(Button)findViewById(R.id.loginBtn);
 
         mAuthListener=new FirebaseAuth.AuthStateListener() {
