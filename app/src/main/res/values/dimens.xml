@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="side_margin">16dp</dimen>
+    <dimen name="profile_name_top_margin">8dp</dimen>
+    <dimen name="global_left_margin">16dp</dimen>
+    <dimen name="global_right_margin">16dp</dimen>
+    <dimen name="global_top_margin">16dp</dimen>
+    <dimen name="global_top_margin_type2">48dp</dimen>
+    <dimen name="left_arrow_height">35dp</dimen>
+    <dimen name="left_arrow_width">35dp</dimen>
+    <dimen name="my_friends_button_width">50dp</dimen>
+    <dimen name="my_friends_button_height">50dp</dimen>
+    <dimen name="line_width">2dp</dimen>
+    <dimen name="page_icon_width">50dp</dimen>
+    <dimen name="page_icon_height">25dp</dimen>
+    <dimen name="friend_name_top_margin">60dp</dimen>
+    <dimen name="profile_pic_border_width">2dp</dimen>
+    <dimen name="friend_profile_pic_diameter">200dp</dimen>
+    <dimen name="my_profile_pic_diameter">170dp</dimen>
+    <dimen name="my_profile_star_dimense">50dp</dimen>
+    <dimen name="friend_profile_star_dimense">70dp</dimen>
+    <dimen name="speaker_icon_dimense">70dp</dimen>
+    <dimen name="shazamzams_textView_bottom_margin">80dp</dimen>
+    <dimen name="num_of_friends_rect_width">55dp</dimen>
+    <dimen name="num_of_friends_rect_height">22dp</dimen>
+    <dimen name="num_of_friends_rect_radius">20dp</dimen>
+    <dimen name="shazamzams_textView_width">70dp</dimen>
+    <dimen name="shazamzams_textView_height">22dp</dimen>
 </resources>
-
-

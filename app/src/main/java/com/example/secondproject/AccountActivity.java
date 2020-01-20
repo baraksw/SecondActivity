@@ -7,27 +7,56 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AccountActivity extends AppCompatActivity {
 
     String helloName = "Hey ";
-    String name;
+    String name = "NULL";
     private FirebaseAuth mAuth;
     private TextView mUserName;
+    private Firebase mRef;
+    private TextView mValue;
+    private User firt_user;
+    private String user_path;
+    private String db_path;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        mUserName=(TextView) findViewById(R.id.helloTextView);
-        mAuth = FirebaseAuth.getInstance();
 
-        Intent intent = getIntent();
-        name=intent.getStringExtra(AuthActivity.UserNameString);
-        helloName=helloName+name;
-        mUserName.setText(helloName);
+        db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
+        mUserName = findViewById(R.id.helloField);
+        mUserName.setText(name);
+
+        mAuth=FirebaseAuth.getInstance();
+
+        user_path = mAuth.getCurrentUser().getUid();
+        db_path = db_path + user_path + "/USER";
+        mRef = new Firebase(db_path);
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                firt_user = dataSnapshot.getValue(User.class);
+                mUserName.setText("Hey " + firt_user.getFull_name());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
     }
 
     public void GoToHomePage(View view) {

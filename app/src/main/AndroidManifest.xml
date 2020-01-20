@@ -17,6 +17,10 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomePage" />
+        <activity android:name=".FriendShazamzamsActivity"></activity>
+        <activity android:name=".FriendProfileActivity" />
+        <activity android:name=".FriendsPageActivity" />
+        <activity android:name=".MyProfileActivity" ></activity>
         <activity android:name=".SignUp" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".AuthActivity" />
