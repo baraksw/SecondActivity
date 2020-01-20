@@ -19,7 +19,7 @@ public class UsersMap {
     }
 
     public void add_user(User user){
-        users_db.put(user.get_full_name(),user);
+        users_db.put(user.getFull_name(),user);
     }
 
     public void clear(){
