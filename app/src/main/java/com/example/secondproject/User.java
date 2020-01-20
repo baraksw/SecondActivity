@@ -70,6 +70,6 @@ public class User {
         this.xp_cnt += 5;
         updateLevel();
 
-        published_hums[].add(new_hum);
+        //published_hums[].add(new_hum);
     }
 }
