@@ -42,17 +42,19 @@ public class SignUp extends AppCompatActivity {
     private EditText mUser_NameField;
     private Button mRegisterBtn;
     private Button mAuthBtn;
-    public User first_user;
-
     private DatabaseReference mDataBase;
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
+
+    public User first_user;
+    public UsersMap users_map;
+    public DatabaseReference users_DB_ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        users_DB_ref = FirebaseDatabase.getInstance().getReference();
         mDataBase = FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth=FirebaseAuth.getInstance();
         mProgress = new ProgressDialog(this);
@@ -64,6 +66,7 @@ public class SignUp extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.registerBtn);
         mAuthBtn =findViewById(R.id.AuthBtn);
         first_user = new User();
+        users_map = new UsersMap();
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +94,8 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+                            users_map.add_user(first_user);
+                            users_DB_ref.child("DB").setValue(users_map);
                             String user_id = mAuth.getCurrentUser().getUid();
                             DatabaseReference current_user_db = mDataBase.child(user_id);
                             current_user_db.child("USER").setValue(first_user);
