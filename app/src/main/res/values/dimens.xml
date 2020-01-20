@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="side_margin">16dp</dimen>
     <dimen name="profile_name_top_margin">8dp</dimen>
     <dimen name="global_left_margin">16dp</dimen>
     <dimen name="global_right_margin">16dp</dimen>
