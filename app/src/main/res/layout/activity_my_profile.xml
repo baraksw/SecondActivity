@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".MyProfileActivity">
+    tools:context=".MyProfileActivity"
+    android:layoutDirection="ltr" >
 
     <ImageButton
         android:id="@+id/back_button"
@@ -18,7 +19,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/transparent"/>
 
     <ImageButton
         android:id="@+id/my_friend_button"
@@ -26,14 +28,15 @@
         android:layout_height="@dimen/my_friends_button_height"
         android:layout_marginTop="@dimen/global_top_margin_type2"
         android:layout_marginRight="@dimen/global_right_margin"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
+        android:background="@color/transparent"
         android:src="@drawable/friends_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/user_name_textView"
-        style="@style/headline_font"
+        android:textAppearance="@style/headline_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/global_top_margin"
@@ -43,25 +46,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/horizontal_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_width"
         android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
+        app:layout_constraintBottom_toBottomOf="@id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@id/user_name_textView"
         tools:layout_editor_absoluteX="24dp" />
-
 
     <com.alexzh.circleimageview.CircleImageView
         android:id="@+id/profile_picture"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="@dimen/my_profile_pic_diameter"
+        android:layout_height="@dimen/my_profile_pic_diameter"
         android:src="@drawable/sample_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
         app:view_borderColor="@color/gunmetal"
-        app:view_borderWidth="2dp"
+        app:view_borderWidth="@dimen/profile_pic_border_width"
         app:view_shadowColor="@color/gunmetal"
         app:view_shadowDx="10dp"
         app:view_shadowDy="0dp"
@@ -69,8 +71,8 @@
 
     <ImageView
         android:id="@+id/xp_star_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/my_profile_star_dimense"
+        android:layout_height="@dimen/my_profile_star_dimense"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture"
@@ -82,14 +84,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Xp points"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xp_star_icon" />
+        app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <Space
+        android:id="@+id/space"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@id/xp_points_textView" />
+        android:layout_height="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xp_points_textView" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:background="#2DFFFFFF"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/space">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_shazamzams_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

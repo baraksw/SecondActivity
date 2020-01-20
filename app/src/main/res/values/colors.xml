@@ -13,4 +13,5 @@
     <color name="ice_blue">#def7ff</color>
     <color name="silver">#b9c4c2</color>
     <color name="pale_teal">#9db7b9</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
