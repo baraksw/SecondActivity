@@ -29,8 +29,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
 
     @Override
     public void onBindViewHolder(@NonNull HumViewHolder holder, final int position) {
-        int numOfListeners = hums[position].num_of_listeners;
-        int humRecLen = hums[position].hum_rec_len;
 
         holder.numOfListeners.setText(hums[position]._user_viewed_list.length);
         holder.humRecLen.setText(hums[position].hum_rec_len);
