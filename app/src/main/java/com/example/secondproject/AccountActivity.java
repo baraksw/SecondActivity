@@ -48,7 +48,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 firt_user = dataSnapshot.getValue(User.class);
-                mUserName.setText("Hey " + firt_user.get_full_name());
+                mUserName.setText("Hey " + firt_user.getFull_name());
             }
 
             @Override
