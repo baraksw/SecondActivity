@@ -53,4 +53,14 @@
         app:layout_constraintVertical_bias="0.479"
         android:onClick="SignUpPage"/>
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn"></com.google.android.gms.common.SignInButton>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
