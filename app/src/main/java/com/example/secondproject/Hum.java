@@ -5,10 +5,14 @@ import java.util.ArrayList;
 public class Hum {
 
     //Add a reference to the Recorded file at the DB.
-    User _user_viewed_list[], _owner;
+    User _owner;
+    int _id,_time;
+    String _answer="no answer yet";
+
 
     public Hum(User owner){
         //TODO: Saving the record file.
+        //TODO: Set an חח"ע id for the hum.
         _owner = owner;
     }
 
@@ -16,8 +20,6 @@ public class Hum {
         //TODO: Implement the playing of the hum function.
     }
 
-    private void add_user(User new_user){
-        //TODO: Implement this method after Asaf will learn how to use firebase.
-    }
+
 
 }
