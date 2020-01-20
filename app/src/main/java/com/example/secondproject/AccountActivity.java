@@ -23,9 +23,11 @@ public class AccountActivity extends AppCompatActivity {
     private TextView mUserName;
     private Firebase mRef;
     private TextView mValue;
-    private User firt_user;
+    private User current_user;
     private String user_path;
     private String db_path;
+
+
 
 
     @Override
@@ -34,21 +36,22 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
 
-        db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
+        db_path = "https://secondproject-a6fe3.firebaseio.com/DB/users_db";
         mUserName = findViewById(R.id.helloField);
         mUserName.setText(name);
-
         mAuth=FirebaseAuth.getInstance();
-
-        user_path = mAuth.getCurrentUser().getUid();
-        db_path = db_path + user_path + "/USER";
-        mRef = new Firebase(db_path);
+        //user_path = mAuth.getCurrentUser().getDisplayName().toString();
+        //db_path = db_path + "/" + user_path;
+        //db_path = "tom";
+        mRef = new Firebase("https://secondproject-a6fe3.firebaseio.com");
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                firt_user = dataSnapshot.getValue(User.class);
-                mUserName.setText("Hey " + firt_user.get_full_name());
+                //current_user = dataSnapshot.getValue(User.class);
+                //mUserName.setText("Hey " +  current_user.get_full_name());
+               //mUserName.setText("Hey "+ user_path);
+                mUserName.setText("HEYYY");
             }
 
             @Override
