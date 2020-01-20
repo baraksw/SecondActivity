@@ -76,8 +76,8 @@
 
     <TextView
         android:id="@+id/shazamzams_textView"
-        android:layout_width="@dimens/shazamzams_textView_width"
-        android:layout_height="@dimens/shazamzams_textView_height"
+        android:layout_width="@dimen/shazamzams_textView_width"
+        android:layout_height="@dimen/shazamzams_textView_height"
         android:text="@string/shazamzams_text"
         android:textAppearance="@style/TextStyle"
         android:gravity="center"

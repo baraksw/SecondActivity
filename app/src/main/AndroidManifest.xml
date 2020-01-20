@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".FriendProfileActivity"></activity>
         <activity android:name=".FriendsPageActivity" />
-        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".MyProfileActivity" ></activity>
         <activity android:name=".SignUp" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".AuthActivity" />

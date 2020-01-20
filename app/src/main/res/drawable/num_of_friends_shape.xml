@@ -9,7 +9,7 @@
         android:color="@color/gunmetal"/>
 
     <size
-        android:width="@dimens/num_of_friends_rect_width"
+        android:width="@dimen/num_of_friends_rect_width"
         android:height="@dimen/num_of_friends_rect_height" />
 
 </shape>
