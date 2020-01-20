@@ -3,7 +3,7 @@ package com.example.secondproject;
 import android.content.Intent;
 import android.net.Uri;
 
-import java.awt.*;
+//import java.awt.*;
 
 import java.net.URL;
 import java.util.ArrayList;
