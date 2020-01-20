@@ -13,8 +13,6 @@
         android:layout_height="@dimen/left_arrow_height"
         android:layout_marginLeft="@dimen/global_left_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
-        android:minWidth="14.5dp"
-        android:minHeight="24dp"
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +76,8 @@
 
     <TextView
         android:id="@+id/shazamzams_textView"
-        android:layout_width="69dp"
-        android:layout_height="21dp"
+        android:layout_width="@dimen/shazamzams_textView_width"
+        android:layout_height="@dimen/shazamzams_textView_height"
         android:text="@string/shazamzams_text"
         android:textAppearance="@style/TextStyle"
         android:gravity="center"

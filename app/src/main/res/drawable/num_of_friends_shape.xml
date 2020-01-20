@@ -3,13 +3,13 @@
     android:shape="rectangle">
 
     <corners
-        android:radius="20dp" />
+        android:radius="@dimen/num_of_friends_rect_radius" />
 
     <solid
         android:color="@color/gunmetal"/>
 
     <size
-        android:width="55dp"
-        android:height="22dp" />
+        android:width="@dimen/num_of_friends_rect_width"
+        android:height="@dimen/num_of_friends_rect_height" />
 
 </shape>
