@@ -1,5 +1,6 @@
 package com.example.secondproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -14,22 +15,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Iterator;
 import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
+
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -47,9 +52,11 @@ public class HomePageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Firebase mRef;
     private TextView mValue;
-    private User firt_user;
+    private User current_user;
+    private UsersMap users_map;
     private String user_path;
     private String db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
+    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +71,10 @@ public class HomePageActivity extends AppCompatActivity {
         mRecordBtn = (Button) findViewById(R.id.recordBtn);
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/recorded_audio.3gp";
-
-
-
+        mDataBase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
+        users_map = new UsersMap();
+        current_user = new User();
 
         mRecordBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -151,7 +158,32 @@ public class HomePageActivity extends AppCompatActivity {
         Intent AuthIntent = new Intent(this, AuthActivity.class);
         startActivity(AuthIntent);
     }
+
+/*
+    public void register(View view) {
+        mDataBase.child("DB/users_db").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                current_user.set_user_name("Test_user");
+                current_user.set_full_name("New Test");
+                users_map.add_user(current_user);
+                mDataBase.child("NEW_DB").setValue(users_map);
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+ */
+
+    public void register(View view) {
+        current_user.set_user_name("Test_user3");
+        current_user.set_full_name("New Test3");
+        //add_user_to_db(current_user);
+    }
+
 }
-
-
-
