@@ -59,7 +59,7 @@ public class SignUp extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
         mUser_NameField = findViewById(R.id.user_nameField);
-        mNameField = findViewById(R.id.nameField);
+        mNameField = findViewById(R.id.userName_editText);
         mEmailField = findViewById(R.id.email_editText);
         mPasswordField = findViewById(R.id.password_editText);
         mRegisterBtn = findViewById(R.id.registerBtn);
