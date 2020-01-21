@@ -13,6 +13,9 @@
         <item name="android:lineSpacingExtra">14sp</item>
         <item name="android:textColor">@color/charcoal</item>
         <item name="android:fontFamily">@font/heebo_thin</item>
+        <item name="android:shadowColor">@color/gunmetal</item>
+        <item name="android:shadowDx">1.2</item>
+        <item name="android:shadowDy">1.2</item>
     </style>
 
     <style name="user_name_font">
