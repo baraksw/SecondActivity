@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/signUp_imageView2"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/narrow_login_headline_image" />
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signUp_imageView2"
+        app:layout_constraintTop_toTopOf="@+id/signUp_imageView2" />
+
+    <View
+        android:id="@+id/horizontal_line2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/signUp_imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signUp_imageView2" />
+
+    <EditText
+        android:id="@+id/email_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Email..."
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_imageView2" />
+
+    <EditText
+        android:id="@+id/password_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Password..."
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_editText" />
+
+    <ImageButton
+        android:id="@+id/letsGo_imageButton"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="200dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_editText"
+        app:srcCompat="@drawable/lets_go_button"
+        android:onClick="launchHomePageActivity"/>
+
+    <ImageButton
+        android:id="@+id/signUp_imageButton"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/letsGo_imageButton"
+        app:srcCompat="@drawable/sign_up_image"
+        android:onClick="launchSignUpActivity" />
+
+    <ImageView
+        android:id="@+id/decoration_background"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/decorations_button" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

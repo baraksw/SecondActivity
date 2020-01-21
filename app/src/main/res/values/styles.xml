@@ -13,6 +13,9 @@
         <item name="android:lineSpacingExtra">14sp</item>
         <item name="android:textColor">@color/charcoal</item>
         <item name="android:fontFamily">@font/heebo_thin</item>
+        <item name="android:shadowColor">@color/gunmetal</item>
+        <item name="android:shadowDx">1.2</item>
+        <item name="android:shadowDy">1.2</item>
     </style>
 
     <style name="user_name_font">
@@ -29,11 +32,32 @@
         <item name="android:fontFamily">@font/heebo_light</item>
     </style>
 
+    <style name="record_time_textStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:textColor">@color/gunmetal</item>
+        <item name="android:fontFamily">@font/heebo_light</item>
+    </style>
+
+    <style name="num_of_listeners_textStyle">
+        <item name="android:textSize">11sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/gunmetal</item>
+        <item name="android:fontFamily">@font/heebo_medium</item>
+    </style>
+
     <style name="TextStyle">
         <item name="android:textSize">15sp</item>
         <item name="android:lineSpacingExtra">7sp</item>
         <item name="android:textColor">@color/charcoal</item>
         <item name="android:fontFamily">@font/heebo_medium</item>
+    </style>
+
+    <style name="num_of_friends_textStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/heebo_extra_bold</item>
     </style>
 
 </resources>
