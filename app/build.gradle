@@ -40,3 +40,4 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 apply plugin: 'com.android.application'
+
