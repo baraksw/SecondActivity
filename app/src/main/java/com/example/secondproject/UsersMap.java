@@ -22,6 +22,8 @@ public class UsersMap {
         users_db.put(user.getFull_name(),user);
     }
 
+    public void remove_user(User user){users_db.remove(user.get_full_name());}
+
     public void clear(){
         users_db.clear();
     }
