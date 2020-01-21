@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.secondproject.User;
+
 
 import org.w3c.dom.Text;
 import com.firebase.client.Firebase;
@@ -91,10 +93,10 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            current_user.set_full_name(name);
-                            current_user.set_user_name(user_name);
+                            current_user.setFull_name(name);
+                            current_user.setUser_name(user_name);
                             add_user_to_db(current_user);
-                            userProfile(current_user.get_full_name());
+                            userProfile(current_user.getFull_name());
                             mProgress.dismiss();
 
                             Intent AuthIntent = new Intent(SignUp.this,AuthActivity.class);
