@@ -213,8 +213,8 @@ public class HomePageActivity extends AppCompatActivity {
  */
 
     public void register(View view) {
-        current_user.set_user_name("Test_user3");
-        current_user.set_full_name("New Test3");
+        current_user.setUser_name("Test_user3");
+        current_user.setFull_name("New Test3");
         //add_user_to_db(current_user);
     }
 
