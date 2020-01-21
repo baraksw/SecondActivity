@@ -62,8 +62,8 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         mAuth = FirebaseAuth.getInstance();
-        mEmailField = (EditText) findViewById(R.id.emailField);
-        mPasswordField = (EditText) findViewById(R.id.passwordField);
+        mEmailField = (EditText) findViewById(R.id.email_editText);
+        mPasswordField = (EditText) findViewById(R.id.password_editText);
         mLoginBtn = (Button) findViewById(R.id.loginBtn);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -157,8 +157,8 @@ public class AuthActivity extends AppCompatActivity {
             String email = account.getEmail();
 
             User new_user = new User();
-            new_user.set_full_name(full_name);
-            new_user.set_user_name(user_name);
+            new_user.setFull_name(full_name);
+            new_user.setUser_name(user_name);
             add_user_to_db(new_user);
 
             Toast.makeText(AuthActivity.this, user_name, Toast.LENGTH_SHORT).show();
