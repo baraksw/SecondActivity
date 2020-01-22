@@ -48,6 +48,7 @@ public class AuthActivity extends AppCompatActivity {
     private String userName = "John";
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     UsersMap users_map;
+    private int try_1;
 
     private SignInButton mGoogleBtn;
     GoogleSignInClient mGoogleSignInClient;
