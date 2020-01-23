@@ -20,7 +20,8 @@
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/transparent"/>
+        android:background="@color/transparent"
+        android:onClick="launchHomePage"/>
 
     <ImageButton
         android:id="@+id/my_friend_button"
@@ -32,7 +33,8 @@
         android:background="@color/transparent"
         android:src="@drawable/friends_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="launchMyFriendsPage"/>
 
     <TextView
         android:id="@+id/user_name_textView"

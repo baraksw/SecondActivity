@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendsPageActivity"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    android:layoutDirection="ltr" >
 
     <ImageButton
         android:id="@+id/back_button"

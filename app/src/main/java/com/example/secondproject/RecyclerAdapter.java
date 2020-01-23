@@ -30,8 +30,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
     @Override
     public void onBindViewHolder(@NonNull HumViewHolder holder, final int position) {
 
-        holder.numOfListeners.setText(hums[position]._user_viewed_list.length);
-        holder.humRecLen.setText(hums[position].hum_rec_len);
+        int num_of_listener = hums[position].countNumOfListeners();
+
+        String num_of_listeners_str = String.valueOf(num_of_listener);
+        String hum_len_str = String.valueOf(hums[position].hum_rec_len);
+
+        holder.numOfListeners.setText(num_of_listeners_str);
+        holder.humRecLen.setText(hum_len_str);
         holder.humPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

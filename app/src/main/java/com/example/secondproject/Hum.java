@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Hum {
 
     //Add a reference to the Recorded file at the DB.
-    User _user_viewed_list[], _owner;
+    User user_viewed_list[], owner;
     int num_of_listeners, hum_rec_len;
     String song_name, youtube_url;
 
@@ -24,7 +24,7 @@ public class Hum {
     /*public Hum(User owner){
         //TODO: Saving the record file.
         //TODO: Set an חח"ע id for the hum.
-        _owner = owner;
+        this.owner = owner;
     }*/
 
     private void play_hum(){
@@ -39,5 +39,14 @@ public class Hum {
 
     public static void OpenYoutubeOnWeb(String urlString) {
         //TODO: Iplementing the recyclerview
+    }
+
+    public int countNumOfListeners(){
+        if(user_viewed_list == null){
+            this.num_of_listeners = 0;
+        } else {
+            this.num_of_listeners = user_viewed_list.length;
+        }
+        return this.num_of_listeners;
     }
 }
