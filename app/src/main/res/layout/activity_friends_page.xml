@@ -18,7 +18,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="launchMyProfilePage"/>
 
     <ImageView
         android:id="@+id/friends_page_icon_View"
