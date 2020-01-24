@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MyProfileActivity extends AppCompatActivity {
 
@@ -32,5 +35,15 @@ public class MyProfileActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerAdapter(temp_hums);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void launchHomePage(View view) {
+        Intent homePageIntent = new Intent(this, HomePageActivity.class);
+        startActivity(homePageIntent);
+    }
+
+    public void launchMyFriendsPage(View view) {
+        Intent myFriendsIntent = new Intent(this, FriendsPageActivity.class);
+        startActivity(myFriendsIntent);
     }
 }

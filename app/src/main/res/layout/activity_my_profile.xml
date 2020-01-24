@@ -8,7 +8,7 @@
     tools:context=".MyProfileActivity"
     android:layoutDirection="ltr" >
 
-    <ImageButton
+    r<ImageButton
         android:id="@+id/back_button"
         android:layout_width="@dimen/left_arrow_width"
         android:layout_height="@dimen/left_arrow_height"
@@ -20,7 +20,8 @@
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/transparent"/>
+        android:background="@color/transparent"
+        android:onClick="launchHomePage"/>
 
     <ImageButton
         android:id="@+id/my_friend_button"
@@ -32,7 +33,8 @@
         android:background="@color/transparent"
         android:src="@drawable/friends_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="launchMyFriendsPage"/>
 
     <TextView
         android:id="@+id/user_name_textView"
@@ -63,11 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
         app:view_borderColor="@color/gunmetal"
-        app:view_borderWidth="@dimen/profile_pic_border_width"
-        app:view_shadowColor="@color/gunmetal"
-        app:view_shadowDx="10dp"
-        app:view_shadowDy="0dp"
-        app:view_shadowRadius="4dp" />
+        app:view_borderWidth="@dimen/profile_pic_border_width" />
 
     <ImageView
         android:id="@+id/xp_star_icon"
