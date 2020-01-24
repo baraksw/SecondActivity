@@ -18,12 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AccountActivity extends AppCompatActivity {
 
     String helloName = "Hey ";
-    String name = "NULL";
+    String name = "TRY";
     private FirebaseAuth mAuth;
     private TextView mUserName;
     private Firebase mRef;
     private TextView mValue;
-    private User firt_user;
+    private User current_user;
     private String user_path;
     private String db_path;
 
@@ -34,21 +34,21 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
 
-        db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
+        db_path = "https://secondproject-a6fe3.firebaseio.com/DB/users_db";
         mUserName = findViewById(R.id.helloField);
         mUserName.setText(name);
-
         mAuth=FirebaseAuth.getInstance();
+        mRef = new Firebase("https://secondproject-a6fe3.firebaseio.com/DB/users_db");
 
-        user_path = mAuth.getCurrentUser().getUid();
-        db_path = db_path + user_path + "/USER";
-        mRef = new Firebase(db_path);
-
+/*
+        user_path = mAuth.getCurrentUser().getDisplayName().toString();
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                firt_user = dataSnapshot.getValue(User.class);
-                mUserName.setText("Hey " + firt_user.getFull_name());
+                //current_user = dataSnapshot.getValue(User.class);
+                //mUserName.setText("Hey " +  current_user.get_full_name());
+               //mUserName.setText("Hey "+ user_path);
+                mUserName.setText("HEYYY" + user_path);
             }
 
             @Override
@@ -56,7 +56,7 @@ public class AccountActivity extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     public void GoToHomePage(View view) {

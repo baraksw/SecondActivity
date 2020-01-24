@@ -10,15 +10,18 @@ import java.util.ArrayList;
 
 public class Hum {
 
-    //Add a reference to the Recorded file at the DB.
-    User user_viewed_list[], owner;
-    int num_of_listeners, hum_rec_len;
+
+    User _user_viewed_list[];
+    String _owner, _hum_id;
+    int num_of_listeners, hum_len;
     String song_name, youtube_url;
 
-    public Hum(int num){
-        this.hum_rec_len = num;
+    public Hum(String owner, String hum_id, int hum_len){
+        this.hum_len = hum_len;
+        this._hum_id = hum_id;
+        this._owner = owner;
         this.num_of_listeners = 0;
-        this.song_name = "abc" + num ;
+        this.song_name = "" ;
     }
 
     /*public Hum(User owner){
@@ -27,6 +30,13 @@ public class Hum {
         this.owner = owner;
     }*/
 
+    public String getOwner(){
+        return _owner;
+    }
+
+    public String get_hum_id(){
+        return _hum_id;
+    }
     private void play_hum(){
         //TODO: Implement the playing of the hum function.
     }

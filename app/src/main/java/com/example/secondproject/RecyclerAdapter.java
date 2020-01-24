@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.secondproject.Hum;
+
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumViewHolder> {
     private Hum[] hums;
@@ -37,6 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
 
         holder.numOfListeners.setText(num_of_listeners_str);
         holder.humRecLen.setText(hum_len_str);
+
         holder.humPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
