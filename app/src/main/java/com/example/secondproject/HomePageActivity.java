@@ -187,7 +187,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void AuthPage(View view) {
 
-        Intent AuthIntent = new Intent(this, AuthActivity.class);
+        Intent AuthIntent = new Intent(this, LoginActivity.class);
         startActivity(AuthIntent);
     }
 

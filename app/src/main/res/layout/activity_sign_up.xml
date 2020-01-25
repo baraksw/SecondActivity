@@ -4,7 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp">
+    android:background="@drawable/gradient_background"
+    tools:context=".SignUpActivity">
+
+    <ImageButton
+        android:id="@+id/previos_imageButton"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_marginStart="@dimen/side_margin"
+        android:layout_marginTop="@dimen/side_margin"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/previous_button"
+        android:onClick="launchLoginActivity"/>
+
+    <ImageView
+        android:id="@+id/signUp_imageView"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/narrow_singup_headline_image" />
+
+    <View
+        android:id="@+id/horizontal_line1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView"
+        app:layout_constraintEnd_toStartOf="@+id/signUp_imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signUp_imageView" />
+
+    <View
+        android:id="@+id/horizontal_line2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/gunmetal"
+        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signUp_imageView"
+        app:layout_constraintTop_toTopOf="@+id/signUp_imageView" />
 
 
     <EditText
@@ -12,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/global_top_margin"
         android:ems="10"
         android:hint="Email..."
         android:inputType="textEmailAddress"
@@ -38,23 +82,36 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:layout_marginTop="@dimen/global_top_margin"
         android:ems="10"
         android:hint="User Name..."
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signUp_imageView" />
 
-    <Button
+    <ImageButton
         android:id="@+id/registerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        app:layout_constraintBottom_toTopOf="@+id/AuthBtn"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="200dp"
+        android:background="@android:color/transparent"
+        android:onClick="launchLoginActivity"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_editText"
-        app:layout_constraintVertical_bias="0.502" />
+        app:srcCompat="@drawable/lets_go_button" />
+
+    <ImageView
+        android:id="@+id/decoration_background"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/decorations_button" />
 
     <Button
         android:id="@+id/AuthBtn"
