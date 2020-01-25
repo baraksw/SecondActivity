@@ -9,11 +9,12 @@
 
     <ImageButton
         android:id="@+id/play_record_button"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
         android:elevation="6dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
@@ -49,24 +50,24 @@
         android:gravity="center"
         android:textAppearance="@style/num_of_listeners_textStyle"/>
 
-    <ImageButton
-        android:id="@+id/youtube_logo_view"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <ImageView
+        android:id="@+id/hum_answered_imageView"
+        android:layout_width="@dimen/hum_answered_dimen"
+        android:layout_height="@dimen/hum_answered_dimen"
         android:scaleType="centerInside"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/hum_answered_right_margin"
+        android:layout_marginTop="@dimen/hum_answered_top_margin"
         android:background="@color/transparent"
-        app:srcCompat="@drawable/youtube_logo" />
+        app:srcCompat="@drawable/answered_hum_image" />
 
     <TextView
-        android:id="@+id/youtube_textView"
+        android:id="@+id/hum_answered_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/youtube_logo_view"
+        android:layout_below="@id/hum_answered_imageView"
         android:layout_alignParentRight="true"
-        android:text="@string/open_in_youtube_text"
+        android:text="@string/hum_answered_text"
         android:textAppearance="@style/num_of_listeners_textStyle"/>
 
     <TextView
