@@ -47,8 +47,8 @@
 
     <ImageView
         android:id="@+id/xp_star_icon"
-        android:layout_width="@dimen/friend_profile_star_dimense"
-        android:layout_height="@dimen/friend_profile_star_dimense"
+        android:layout_width="@dimen/friend_profile_star_dimen"
+        android:layout_height="@dimen/friend_profile_star_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture"
@@ -67,8 +67,8 @@
 
     <ImageView
         android:id="@+id/speaker_imageView"
-        android:layout_width="@dimen/speaker_icon_dimense"
-        android:layout_height="@dimen/speaker_icon_dimense"
+        android:layout_width="@dimen/speaker_icon_dimen"
+        android:layout_height="@dimen/speaker_icon_dimen"
         app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

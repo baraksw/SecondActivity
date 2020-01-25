@@ -154,7 +154,7 @@ public class HomePageDemo extends AppCompatActivity {
     public void play_Audio(Hum hum) {
 
         final MediaPlayer mediaPlayer = new MediaPlayer();
-        final StorageReference filepath = mStorage.child("Audio").child(hum.getOwner()).child(hum.get_hum_id());
+        final StorageReference filepath = mStorage.child("Audio").child(hum.getOwner()).child(hum.getHum_id());
         filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

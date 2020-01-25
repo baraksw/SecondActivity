@@ -5,16 +5,15 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.crypto.interfaces.DHPrivateKey;
+
 public class User {
 
-    public String full_name, user_name;
-    int xp_cnt = 0, level = 1;
-    Hum published_hums[];
+    private String full_name = "anonymous", user_name = "anonymous user";
+    private int xp_cnt = 0, level = 1;
+    private Hum published_hums[];
 
-    public User() {
-        this.full_name = "annonymous";
-        this.user_name = "annonymous_user";
-    }
+    public User() { }
 
     public String getFull_name() {
         return this.full_name;

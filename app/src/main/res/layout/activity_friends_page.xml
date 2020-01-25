@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendsPageActivity"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    android:layoutDirection="ltr" >
 
     <ImageButton
         android:id="@+id/back_button"
@@ -17,7 +18,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="launchMyProfilePage"/>
 
     <ImageView
         android:id="@+id/friends_page_icon_View"
@@ -48,11 +50,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/login_headline"
+        app:layout_constraintBottom_toBottomOf="@id/num_of_friends_textView"
         app:layout_constraintTop_toBottomOf="@id/friends_headline" />
 
     <TextView
-        android:id="@+id/login_headline"
+        android:id="@+id/num_of_friends_textView"
         android:textAppearance="@style/num_of_friends_textStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,5 +64,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/friends_headline" />
+
+    <Space
+        android:id="@+id/my_friends_page_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/num_of_friends_textView" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/friends_relative_layout_height"
+        android:background="#2DFFFFFF"
+        android:paddingBottom="@dimen/relative_layout_bottom_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_friends_page_space">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_friends_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
