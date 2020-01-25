@@ -1,9 +1,17 @@
 package com.example.secondproject;
 
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.View;
 
-public class Hum {
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.UploadTask;
+
+
+public class Hum implements HumToDB {
 
     User user_viewed_list[];
     String owner, hum_id;
@@ -28,7 +36,7 @@ public class Hum {
 
 
     public void playHum(){
-        //TODO: Implement the playing og the Hum from the firebase
+        playAudio(this);
     }
 
     public static void OpenYoutubeOnWeb(String urlString) {
@@ -59,4 +67,7 @@ public class Hum {
         this.song_name = song_name;
         this.hum_answered = View.VISIBLE;
     }
+
+    public void PlayAudio(Hum hum){}
 }
+
