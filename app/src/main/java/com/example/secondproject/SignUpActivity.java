@@ -37,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
 
-
     public User current_user;
     public UsersMap users_map;
     public DatabaseReference users_DB_ref;
@@ -48,15 +47,12 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         mAuth=FirebaseAuth.getInstance();
         mProgress = new ProgressDialog(this);
-
         mUser_NameField = findViewById(R.id.user_nameField);
         mEmailField = findViewById(R.id.email_editText);
         mPasswordField = findViewById(R.id.password_editText);
         mRegisterBtn = findViewById(R.id.registerBtn);
-        mAuthBtn =findViewById(R.id.AuthBtn);
         current_user = new User();
         users_map = new UsersMap();
-
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,13 +66,11 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
         private void startRegister(){
             final String name = mNameField.getText().toString().trim();
             final String user_name = mUser_NameField.getText().toString().trim();
             String email = mEmailField.getText().toString().trim();
             String password = mPasswordField.getText().toString().trim();
-
 
             if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(user_name)) {
                 mProgress.setMessage("Signing Up...");

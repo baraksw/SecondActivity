@@ -41,7 +41,7 @@
 
 
     <View
-        android:id="@+id/horizontal_line"
+        android:id="@+id/right_horizontal_line_sign_up"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_width"
         android:background="@color/gunmetal"

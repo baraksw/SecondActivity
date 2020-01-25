@@ -5,14 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AccountActivity extends AppCompatActivity {
@@ -60,13 +55,13 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     public void GoToHomePage(View view) {
-        Intent HomePageIntent = new Intent(AccountActivity.this,HomePageActivity.class);
+        Intent HomePageIntent = new Intent(AccountActivity.this, HomePageDemo.class);
         startActivity(HomePageIntent);
     }
 
     public void LogOut(View view){
        mAuth.signOut();
-       Intent HomePageIntent = new Intent(AccountActivity.this,HomePageActivity.class);
+       Intent HomePageIntent = new Intent(AccountActivity.this, HomePageDemo.class);
        startActivity(HomePageIntent);
     }
 

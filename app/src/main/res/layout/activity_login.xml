@@ -8,37 +8,78 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/signUp_imageView2"
-        android:layout_width="120dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
+        android:id="@+id/login_headline"
+        android:layout_width="@dimen/page_headline_width"
+        android:layout_height="@dimen/page_headline_height"
+        android:layout_marginTop="@dimen/headline_top_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/narrow_login_headline_image" />
 
     <View
-        android:id="@+id/horizontal_line"
+        android:id="@+id/right_horizontal_line_login"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/line_height"
         android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/login_headline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signUp_imageView2"
-        app:layout_constraintTop_toTopOf="@+id/signUp_imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/login_headline"
+        app:layout_constraintTop_toTopOf="@+id/login_headline" />
 
     <View
-        android:id="@+id/horizontal_line2"
+        android:id="@+id/left_horizontal_line_login"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/line_height"
         android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/signUp_imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/login_headline"
+        app:layout_constraintEnd_toStartOf="@+id/login_headline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/signUp_imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/login_headline" />
+
+    <EditText
+        android:id="@+id/email_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/global_side_margin"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:ems="10"
+        android:hint="@string/email_hint"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_headline" />
+
+    <EditText
+        android:id="@+id/password_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/global_side_margin"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:ems="10"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_editText" />
 
     <ImageButton
         android:id="@+id/loginBtn"
+        android:layout_width="@dimen/letsgo_button_width"
+        android:layout_height="@dimen/letsgo_button_height"
+        android:layout_marginBottom="@dimen/letsgo_bottom_margin"
+        android:background="@android:color/transparent"
+        android:onClick="launchHomePageActivity"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_editText"
+        app:srcCompat="@drawable/lets_go_button"
+        android:layoutDirection="ltr" />
+
+    <ImageButton
+        android:id="@+id/loginBtn2"
         android:layout_width="110dp"
         android:layout_height="55dp"
         android:layout_marginBottom="250dp"
@@ -47,14 +88,22 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_editText"
-        app:srcCompat="@drawable/lets_go_button" />
+        app:srcCompat="@drawable/headline_shape" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/global_top_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn"></com.google.android.gms.common.SignInButton>
 
     <ImageButton
-        android:id="@+id/signUp_imageButton"
-        android:layout_width="110dp"
-        android:layout_height="55dp"
+        android:id="@+id/sign_up_imageButton"
+        android:layout_width="@dimen/sign_up_buttom_width"
+        android:layout_height="@dimen/sign_up_buttom_height"
         android:layout_marginTop="17dp"
         android:background="@android:color/transparent"
         android:onClick="launchSignUpActivity"
@@ -67,46 +116,12 @@
     <ImageView
         android:id="@+id/decoration_background"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/decotation_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
 
-
-    <EditText
-        android:id="@+id/email_editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="@dimen/global_top_margin"
-        android:ems="10"
-        android:hint="Email..."
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_imageView2" />
-
-    <EditText
-        android:id="@+id/password_editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:ems="10"
-        android:hint="Password..."
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_editText" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/global_top_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn"></com.google.android.gms.common.SignInButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

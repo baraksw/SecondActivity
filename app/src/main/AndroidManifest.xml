@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomePage" />
-        <activity android:name=".FriendShazamzamsActivity"></activity>
+        <activity android:name=".HomePageActivity">
+        </activity>
+        <activity android:name=".FriendShazamzamsActivity">
+        </activity>
         <activity android:name=".FriendProfileActivity" />
         <activity android:name=".FriendsPageActivity" />
         <activity android:name=".MyProfileActivity" ></activity>
@@ -27,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomePageActivity"></activity>
+        <activity android:name=".HomePageDemo"></activity>
     </application>
 
 </manifest>

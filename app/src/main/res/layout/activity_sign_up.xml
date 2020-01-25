@@ -5,60 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:layoutDirection="ltr" >
 
     <ImageButton
         android:id="@+id/previos_imageButton"
         android:layout_width="@android:dimen/app_icon_size"
         android:layout_height="@android:dimen/app_icon_size"
-        android:layout_marginStart="@dimen/side_margin"
-        android:layout_marginTop="@dimen/side_margin"
+        android:layout_marginStart="@dimen/global_left_margin"
+        android:layout_marginTop="@dimen/global_top_margin"
         android:background="@android:color/transparent"
+        android:onClick="launchLoginActivity"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/previous_button"
-        android:onClick="launchLoginActivity"/>
+        app:srcCompat="@drawable/previous_button" />
 
     <ImageView
-        android:id="@+id/signUp_imageView"
-        android:layout_width="130dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
+        android:id="@+id/login_headline"
+        android:layout_width="@dimen/page_headline_width"
+        android:layout_height="@dimen/page_headline_height"
+        android:layout_marginTop="@dimen/headline_top_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/narrow_singup_headline_image" />
 
     <View
-        android:id="@+id/horizontal_line1"
+        android:id="@+id/right_horizontal_line_sign_up"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/line_height"
         android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView"
-        app:layout_constraintEnd_toStartOf="@+id/signUp_imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/signUp_imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/login_headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/login_headline"
+        app:layout_constraintTop_toTopOf="@+id/login_headline" />
 
     <View
-        android:id="@+id/horizontal_line2"
+        android:id="@+id/left_horizontal_line_sign_up"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/line_height"
         android:background="@color/gunmetal"
-        app:layout_constraintBottom_toBottomOf="@+id/signUp_imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signUp_imageView"
-        app:layout_constraintTop_toTopOf="@+id/signUp_imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/login_headline"
+        app:layout_constraintEnd_toStartOf="@+id/login_headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/login_headline" />
 
+
+    <EditText
+        android:id="@+id/user_nameField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/global_side_margin"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:ems="10"
+        android:hint="@string/user_name_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_headline" />
 
     <EditText
         android:id="@+id/email_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/global_side_margin"
         android:layout_marginTop="@dimen/global_top_margin"
         android:ems="10"
-        android:hint="Email..."
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,33 +82,20 @@
         android:id="@+id/password_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/global_side_margin"
         android:layout_marginTop="@dimen/global_top_margin"
         android:ems="10"
-        android:hint="Password..."
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_editText" />
 
-    <EditText
-        android:id="@+id/user_nameField"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="@dimen/global_top_margin"
-        android:ems="10"
-        android:hint="User Name..."
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_imageView" />
-
     <ImageButton
         android:id="@+id/registerBtn"
-        android:layout_width="110dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="@dimen/letsgo_button_width"
+        android:layout_height="@dimen/letsgo_button_height"
+        android:layout_marginBottom="@dimen/letsgo_bottom_margin_type2"
         android:background="@android:color/transparent"
         android:onClick="launchLoginActivity"
         android:scaleType="centerCrop"
@@ -107,20 +108,10 @@
     <ImageView
         android:id="@+id/decoration_background"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/decotation_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
-
-    <Button
-        android:id="@+id/AuthBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="AuthPage"
-        android:text="Back to Sign In Page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
