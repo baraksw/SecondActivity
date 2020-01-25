@@ -148,10 +148,10 @@ public class HomePageDemo extends AppCompatActivity {
     }
 
     public void playBtn_OnClick(View view) {
-        play_Audio(hum);
+        playAudio(hum);
     }
 
-    public void play_Audio(Hum hum) {
+    public void playAudio(Hum hum) {
 
         final MediaPlayer mediaPlayer = new MediaPlayer();
         final StorageReference filepath = mStorage.child("Audio").child(hum.getOwner()).child(hum.getHum_id());

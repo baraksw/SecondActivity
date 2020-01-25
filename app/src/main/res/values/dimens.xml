@@ -44,4 +44,7 @@
     <dimen name="friends_relative_layout_height">600dp</dimen>
     <dimen name="friend_row_star_dimen">30dp</dimen>
     <dimen name="friend_row_name_width">200dp</dimen>
+    <dimen name="hum_answered_dimen">30dp</dimen>
+    <dimen name="hum_answered_right_margin">25dp</dimen>
+    <dimen name="hum_answered_top_margin">5dp</dimen>
 </resources>
