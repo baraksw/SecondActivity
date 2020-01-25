@@ -2,6 +2,8 @@ package com.example.secondproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -34,5 +36,10 @@ public class HomePageActivity extends AppCompatActivity {
     }
     public void hum_2_clicked(View view) {
         answer2EditText.setVisibility(View.VISIBLE);
+    }
+
+    public void launchMyProfilePage(View view) {
+        Intent intent = new Intent(this, MyProfileActivity.class);
+        startActivity(intent);
     }
 }

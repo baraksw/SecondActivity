@@ -13,10 +13,10 @@
         android:layout_width="@android:dimen/app_icon_size"
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginStart="@dimen/global_left_margin"
-        android:layout_marginTop="@dimen/global_top_margin"
         android:background="@android:color/transparent"
         android:onClick="launchLoginActivity"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/left_horizontal_line_sign_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/previous_button" />

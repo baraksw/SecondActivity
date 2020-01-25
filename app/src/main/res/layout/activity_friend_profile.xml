@@ -5,19 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendProfileActivity"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    android:layoutDirection="ltr" >
+
+    <TextView
+        android:id="@+id/xp_points_textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Xp points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="@dimen/left_arrow_width"
-        android:layout_height="@dimen/left_arrow_height"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginLeft="@dimen/global_left_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
+        android:background="@color/transparent"
+        android:onClick="launchFriendsPageActivity"
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/transparent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/user_name_textView"
@@ -65,26 +77,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
-    <ImageView
-        android:id="@+id/speaker_imageView"
-        android:layout_width="@dimen/speaker_icon_dimen"
-        android:layout_height="@dimen/speaker_icon_dimen"
-        app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/speaker_circled_icon" />
-
     <TextView
-        android:id="@+id/shazamzams_textView"
-        android:layout_width="@dimen/shazamzams_textView_width"
-        android:layout_height="@dimen/shazamzams_textView_height"
-        android:text="@string/shazamzams_text"
-        android:textAppearance="@style/TextStyle"
+        android:id="@+id/xp_points_textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"
         android:gravity="center"
+        android:text="@string/shazamzams_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/speaker_imageView"
+        android:layout_width="64dp"
+        android:layout_height="58dp"
+        android:background="@color/transparent"
+        android:onClick="launchFriendShazamzamsActivity"
+        android:scaleType="fitCenter"
+        android:src="@drawable/speaker_circled_icon"
+        app:layout_constraintBottom_toTopOf="@+id/xp_points_textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

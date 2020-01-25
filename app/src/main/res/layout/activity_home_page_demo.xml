@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context="com.example.secondproject.HomePageDemo">
+    tools:context="com.example.secondproject.HomePageDemo"
+    android:layoutDirection="ltr">
 
     <TextView
         android:id="@+id/recordLabel"

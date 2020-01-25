@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:layoutDirection="ltr">
 
     <ImageView
         android:id="@+id/login_headline"
@@ -78,19 +79,6 @@
         app:srcCompat="@drawable/lets_go_button"
         android:layoutDirection="ltr" />
 
-    <ImageButton
-        android:id="@+id/loginBtn2"
-        android:layout_width="110dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="250dp"
-        android:background="@android:color/transparent"
-        android:onClick="launchHomePageActivity"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_editText"
-        app:srcCompat="@drawable/headline_shape" />
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleBtn"
         android:layout_width="wrap_content"
@@ -122,6 +110,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="launchHomePageActivity"
+        android:text="כפתור זמני-לעמוד הראשי"
+        app:layout_constraintBottom_toBottomOf="@+id/loginBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toEndOf="@+id/loginBtn"
+        app:layout_constraintTop_toTopOf="@+id/loginBtn"
+        app:layout_constraintVertical_bias="0.285" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

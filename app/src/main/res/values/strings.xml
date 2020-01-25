@@ -12,5 +12,8 @@
     <string name="user_name_hint">User Name...</string>
     <string name="num_of_listeners_text">5 Listeners</string>
     <string name="hum_row_length">0:37</string>
+    <string name="xp_points_text">Xp points</string>
+    <string name="friends_text">Friends</string>
+    <string name="my_profile_text">my profile</string>
     <string name="hum_answered_text">Hum answered!</string>
 </resources>
