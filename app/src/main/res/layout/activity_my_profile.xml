@@ -59,20 +59,17 @@
         android:layout_width="@dimen/my_profile_pic_diameter"
         android:layout_height="@dimen/my_profile_pic_diameter"
         android:src="@drawable/sample_avatar"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
         app:view_borderColor="@color/gunmetal"
-        app:view_borderWidth="@dimen/profile_pic_border_width"
-        app:view_shadowColor="@color/gunmetal"
-        app:view_shadowDx="10dp"
-        app:view_shadowDy="0dp"
-        app:view_shadowRadius="4dp" />
+        app:view_borderWidth="@dimen/profile_pic_border_width" />
 
     <ImageView
         android:id="@+id/xp_star_icon"
-        android:layout_width="@dimen/my_profile_star_dimense"
-        android:layout_height="@dimen/my_profile_star_dimense"
+        android:layout_width="@dimen/my_profile_star_dimen"
+        android:layout_height="@dimen/my_profile_star_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture"
@@ -90,20 +87,20 @@
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <Space
-        android:id="@+id/space"
+        android:id="@+id/my_profile_page_space"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="@dimen/space_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xp_points_textView" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="@dimen/profile_relative_layout_height"
         android:background="#2DFFFFFF"
-        android:paddingBottom="10dp"
+        android:paddingBottom="@dimen/relative_layout_bottom_padding"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/space">
+        app:layout_constraintTop_toBottomOf="@id/my_profile_page_space">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_shazamzams_recyclerView"

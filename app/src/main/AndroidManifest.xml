@@ -19,17 +19,17 @@
         <activity android:name=".HomePage" />
         <activity android:name=".FriendShazamzamsActivity"></activity>
         <activity android:name=".FriendProfileActivity" />
-        <activity android:name=".FriendsPageActivity" />
-        <activity android:name=".MyProfileActivity" ></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".AuthActivity" />
-        <activity android:name=".HomePageActivity">
+        <activity android:name=".FriendsPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MyProfileActivity" ></activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".AuthActivity" />
+        <activity android:name=".HomePageActivity"></activity>
     </application>
 
 </manifest>

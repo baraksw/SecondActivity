@@ -73,7 +73,7 @@
         android:id="@+id/hum_length_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hum_length_text"
+        android:text="@string/hum_row_length"
         android:textAppearance="@style/record_time_textStyle"
         android:layout_alignStart="@id/hum_name_textView"
         android:layout_below="@id/hum_name_textView"/>

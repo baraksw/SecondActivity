@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip">
+
+    <com.alexzh.circleimageview.CircleImageView
+        android:id="@+id/friend_profile_picture"
+        android:layout_width="192dp"
+        android:layout_height="192dp"
+        android:clickable="false"
+        android:src="@drawable/sample_avatar"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        app:view_backgroundColor="@color/transparent"
+        app:view_borderWidth="@dimen/profile_pic_border_width"
+        app:view_borderColor="@color/gunmetal"/>
+
+    <TextView
+        android:id="@+id/friend_row_full_name"
+        android:layout_width="@dimen/friend_row_name_width"
+        android:layout_height="wrap_content"
+        android:text="Tuval Ben-Ami AKA T.M."
+        android:textAppearance="@style/friend_row_name_textStyle"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/friend_profile_picture"
+        android:layout_marginLeft="@dimen/global_left_margin" />
+
+    <ImageView
+        android:id="@+id/friend_xp_star_icon"
+        android:layout_width="@dimen/friend_row_star_dimen"
+        android:layout_height="@dimen/friend_row_star_dimen"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/global_right_margin"
+        android:scaleType="centerCrop"
+        android:src="@drawable/star_image" />
+
+    <TextView
+        android:id="@+id/friend_row_xp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/friend_xp_star_icon"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/global_right_margin"
+        android:text="168 xp"
+        android:textAppearance="@style/friend_xp_textStyle" />
+
+</RelativeLayout>

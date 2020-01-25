@@ -49,4 +49,20 @@ public class Hum {
     public static void OpenYoutubeOnWeb(String urlString) {
         //TODO: Iplementing the recyclerview
     }
+
+    public int getNum_of_listeners(){
+        if(this._user_viewed_list == null){
+            this.num_of_listeners = 0;
+        } else {
+            this.num_of_listeners = this._user_viewed_list.length;
+        }
+
+        return this.num_of_listeners;
+    }
+
+    public int getHum_len(){
+        //TODO: updating this function;
+        this.hum_len = 0;
+        return this.hum_len;
+    }
 }
