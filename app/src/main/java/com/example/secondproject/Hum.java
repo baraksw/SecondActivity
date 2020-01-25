@@ -1,29 +1,22 @@
 package com.example.secondproject;
 
-//import java.awt.*;
 
+import android.view.View;
 
 public class Hum {
 
-
     User user_viewed_list[];
     String owner, hum_id;
-    int num_of_listeners, hum_len;
-    String song_name, youtube_url;
+    int num_of_listeners, hum_len, hum_answered = View.INVISIBLE;
+    String song_name;
 
     public Hum(String owner, String hum_id, int hum_len){
         this.hum_len = hum_len;
         this.hum_id = hum_id;
         this.owner = owner;
         this.num_of_listeners = 0;
-        this.song_name = "" ;
+        this.song_name = null ;
     }
-
-    /*public Hum(User owner){
-        //TODO: Saving the record file.
-        //TODO: Set an חח"ע id for the hum.
-        this.owner = owner;
-    }*/
 
     public String getOwner(){
         return owner;
@@ -33,13 +26,8 @@ public class Hum {
         return hum_id;
     }
 
-    private void play_hum(){
-        //TODO: Implement the playing of the hum function.
-    }
 
-
-
-    public void PlayHum(){
+    public void playHum(){
         //TODO: Implement the playing og the Hum from the firebase
     }
 
@@ -60,5 +48,15 @@ public class Hum {
         //TODO: updating this function;
         this.hum_len = 0;
         return this.hum_len;
+    }
+
+    public int getHum_answered(){
+        return this.hum_answered;
+    }
+
+    //TODO: Create a function that set the answere of the hum.
+    public void answereHum(String song_name){
+        this.song_name = song_name;
+        this.hum_answered = View.VISIBLE;
     }
 }
