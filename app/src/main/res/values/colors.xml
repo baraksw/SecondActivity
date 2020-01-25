@@ -14,4 +14,7 @@
     <color name="silver">#b9c4c2</color>
     <color name="pale_teal">#9db7b9</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="dull_red">#a84343</color>
+    <color name="black_63">#a0000000</color>
+    <color name="dark">#1e3332</color>
 </resources>

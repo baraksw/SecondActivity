@@ -6,8 +6,8 @@
     <string name="shazamzams_text">Shazamzams</string>
     <string name="friends_shazamzams_headline_text">Shazamzams</string>
     <string name="open_in_youtube_text">Open in YouTube</string>
-    <string name="num_of_listeners_text">5 Listeners</string>
-    <string name="hum_length_text">TextView</string>
     <string name="hum_name_text">Song name</string>
+    <string name="num_of_listeners_text">5 Listeners</string>
+    <string name="hum_row_length">0:37</string>
 
 </resources>

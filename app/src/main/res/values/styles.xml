@@ -60,4 +60,18 @@
         <item name="android:fontFamily">@font/heebo_extra_bold</item>
     </style>
 
+    <style name="friend_row_name_textStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:textColor">@color/dark</item>
+        <item name="android:fontFamily">@font/heebo_medium</item>
+    </style>
+
+    <style name="friend_xp_textStyle">
+        <item name="android:textSize">10sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/dark</item>
+        <item name="android:fontFamily">@font/heebo_extra_bold</item>
+    </style>
+
 </resources>

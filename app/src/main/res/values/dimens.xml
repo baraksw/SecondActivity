@@ -17,13 +17,19 @@
     <dimen name="profile_pic_border_width">2dp</dimen>
     <dimen name="friend_profile_pic_diameter">200dp</dimen>
     <dimen name="my_profile_pic_diameter">170dp</dimen>
-    <dimen name="my_profile_star_dimense">50dp</dimen>
-    <dimen name="friend_profile_star_dimense">70dp</dimen>
-    <dimen name="speaker_icon_dimense">70dp</dimen>
+    <dimen name="my_profile_star_dimen">50dp</dimen>
+    <dimen name="friend_profile_star_dimen">70dp</dimen>
+    <dimen name="speaker_icon_dimen">70dp</dimen>
     <dimen name="shazamzams_textView_bottom_margin">80dp</dimen>
     <dimen name="num_of_friends_rect_width">55dp</dimen>
     <dimen name="num_of_friends_rect_height">22dp</dimen>
     <dimen name="num_of_friends_rect_radius">20dp</dimen>
     <dimen name="shazamzams_textView_width">70dp</dimen>
     <dimen name="shazamzams_textView_height">22dp</dimen>
+    <dimen name="space_height">15dp</dimen>
+    <dimen name="profile_relative_layout_height">430dp</dimen>
+    <dimen name="relative_layout_bottom_padding">10dp</dimen>
+    <dimen name="friends_relative_layout_height">600dp</dimen>
+    <dimen name="friend_row_star_dimen">30dp</dimen>
+    <dimen name="friend_row_name_width">200dp</dimen>
 </resources>

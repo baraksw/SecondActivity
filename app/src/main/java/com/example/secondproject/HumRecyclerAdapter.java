@@ -10,13 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.secondproject.Hum;
 
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumViewHolder> {
+public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.HumViewHolder> {
     private Hum[] hums;
 
-    public RecyclerAdapter(Hum[] hums){
+    public HumRecyclerAdapter(Hum[] hums){
         this.hums = hums;
     }
 
@@ -32,14 +31,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
     @Override
     public void onBindViewHolder(@NonNull HumViewHolder holder, final int position) {
 
-        int num_of_listener = hums[position].countNumOfListeners();
+        int num_of_listeners = hums[position].countNumOfListeners();
+        int hum_row_len = hums[position].getHum_len();
 
-        String num_of_listeners_str = String.valueOf(num_of_listener);
-        String hum_len_str = String.valueOf(hums[position].hum_rec_len);
-
-        holder.numOfListeners.setText(num_of_listeners_str);
-        holder.humRecLen.setText(hum_len_str);
-
+        holder.numOfListeners.setText(num_of_listeners + " Listeners"); //TODO: Update this to the latest version of hum.
+        holder.humRecLen.setText(String.valueOf(hum_row_len));
         holder.humPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +48,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
                 Uri uriUrl = Uri.parse(hums[position].youtube_url);
                 Intent WebView = new Intent(Intent.ACTION_VIEW, uriUrl);
                 //startActivity(WebView);
-            }
-        });
-
-        holder.humPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Add a call to the function that play the record of the hum.
             }
         });
     }
@@ -78,7 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HumVie
         public HumViewHolder(@NonNull View itemView) {
             super(itemView);
             numOfListeners = itemView.findViewById(R.id.num_of_listeners_textView);
-            humRecLen = itemView.findViewById(R.id.hum_name_textView);
+            humRecLen = itemView.findViewById(R.id.hum_length_textView);
             humPlay = itemView.findViewById(R.id.play_record_button);
             youtubeUrl = itemView.findViewById(R.id.youtube_logo_view);
         }

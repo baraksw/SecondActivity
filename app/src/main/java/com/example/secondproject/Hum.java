@@ -1,25 +1,20 @@
 package com.example.secondproject;
 
-import android.content.Intent;
-import android.net.Uri;
-
 //import java.awt.*;
 
-import java.net.URL;
-import java.util.ArrayList;
 
 public class Hum {
 
 
-    User _user_viewed_list[];
-    String _owner, _hum_id;
+    User user_viewed_list[];
+    String owner, humId;
     int num_of_listeners, hum_len;
     String song_name, youtube_url;
 
     public Hum(String owner, String hum_id, int hum_len){
         this.hum_len = hum_len;
-        this._hum_id = hum_id;
-        this._owner = owner;
+        this.humId = hum_id;
+        this.owner = owner;
         this.num_of_listeners = 0;
         this.song_name = "" ;
     }
@@ -31,11 +26,11 @@ public class Hum {
     }*/
 
     public String getOwner(){
-        return _owner;
+        return owner;
     }
 
-    public String get_hum_id(){
-        return _hum_id;
+    public String getHumId(){
+        return humId;
     }
     private void play_hum(){
         //TODO: Implement the playing of the hum function.
@@ -58,5 +53,11 @@ public class Hum {
             this.num_of_listeners = user_viewed_list.length;
         }
         return this.num_of_listeners;
+    }
+
+    public int getHum_len(){
+        //TODO: updating this function;
+        this.hum_len = 0;
+        return this.hum_len;
     }
 }

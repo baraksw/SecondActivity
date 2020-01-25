@@ -1,9 +1,6 @@
 package com.example.secondproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.secondproject.Hum;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,26 +15,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.Iterator;
 import java.util.UUID;
 import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -164,7 +154,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void play_Audio(Hum hum) {
 
         final MediaPlayer mediaPlayer = new MediaPlayer();
-        final StorageReference filepath = mStorage.child("Audio").child(hum.getOwner()).child(hum.get_hum_id());
+        final StorageReference filepath = mStorage.child("Audio").child(hum.getOwner()).child(hum.getHumId());
         filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
