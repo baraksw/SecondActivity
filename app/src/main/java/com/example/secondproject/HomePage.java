@@ -23,7 +23,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page2);
         answer1EditText = (EditText) findViewById(R.id.answer1_editText);
         answer1EditText.setVisibility(View.GONE);
-        storyScrollView.setVisibility(View.GONE);
+        //storyScrollView.setVisibility(View.GONE);
     }
 
     public void launchPianoActivity(View view) {
