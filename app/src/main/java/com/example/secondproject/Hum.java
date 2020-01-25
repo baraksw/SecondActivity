@@ -7,13 +7,13 @@ public class Hum {
 
 
     User user_viewed_list[];
-    String owner, humId;
+    String owner, hum_id;
     int num_of_listeners, hum_len;
     String song_name, youtube_url;
 
     public Hum(String owner, String hum_id, int hum_len){
         this.hum_len = hum_len;
-        this.humId = hum_id;
+        this.hum_id = hum_id;
         this.owner = owner;
         this.num_of_listeners = 0;
         this.song_name = "" ;
@@ -29,9 +29,10 @@ public class Hum {
         return owner;
     }
 
-    public String getHumId(){
-        return humId;
+    public String getHum_id(){
+        return hum_id;
     }
+
     private void play_hum(){
         //TODO: Implement the playing of the hum function.
     }
