@@ -8,55 +8,54 @@
     tools:context=".HomePageActivity"
     android:layoutDirection="ltr">
 
-    <ImageButton
-        android:id="@+id/piano_imageButton"
+    <TextView
+        android:id="@+id/xp_points_textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mic_imageButton"
-        app:srcCompat="@drawable/piano_image" />
+        android:gravity="center"
+        android:text="@string/my_profile_text"
+        app:layout_constraintEnd_toEndOf="@+id/profile_link_imageButton"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="@+id/profile_link_imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/profile_link_imageButton" />
 
     <ImageButton
         android:id="@+id/mic_imageButton"
         android:layout_width="260dp"
         android:layout_height="260dp"
+        android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mic_image"
-        android:background="@android:color/transparent"/>
+        app:srcCompat="@drawable/mic_image" />
 
     <ImageButton
         android:id="@+id/profile_link_imageButton"
-        android:layout_width="@android:dimen/notification_large_icon_width"
-        android:layout_height="@android:dimen/notification_large_icon_height"
-        android:layout_marginTop="@dimen/side_margin"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_marginTop="@dimen/global_top_margin_type2"
         android:layout_marginEnd="@dimen/side_margin"
+        android:background="@android:color/transparent"
+        android:onClick="launchMyProfilePage"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_link_image"
-        android:background="@android:color/transparent"/>
+        app:srcCompat="@drawable/profile_link_image" />
 
     <ImageButton
         android:id="@+id/story_imageButton"
-        android:layout_width="@android:dimen/notification_large_icon_width"
-        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginStart="@dimen/side_margin"
-        android:layout_marginTop="@dimen/side_margin"
+        android:layout_marginTop="@dimen/global_top_margin_type2"
         android:background="@android:color/transparent"
+        android:onClick="openStory"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/atara_image"
-        android:onClick="openStory"
-        />
+        app:srcCompat="@drawable/atara_image" />
 
     <ScrollView
         android:id="@+id/story_scrollView"
