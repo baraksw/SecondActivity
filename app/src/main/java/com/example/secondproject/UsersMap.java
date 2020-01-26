@@ -39,6 +39,11 @@ public class UsersMap {
         users_db.clear();
     }
 
+    public User getUser(String name)
+    {
+        return users_db.get(name);
+    }
+
     public void add_friends(User user) {
 
         DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference("DB");
