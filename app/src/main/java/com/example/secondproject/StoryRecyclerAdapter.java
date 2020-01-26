@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoryViewHolder> {
     private Context context;
     private ArrayList<Hum> story_hums;
+    private boolean answerWindowVisible = false;
 
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
@@ -49,8 +50,15 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.confirmAnswer.setVisibility(View.VISIBLE);
-                holder.answerEditText.setVisibility(View.VISIBLE);
+                if(answerWindowVisible == false){
+                    holder.confirmAnswer.setVisibility(View.VISIBLE);
+                    holder.answerEditText.setVisibility(View.VISIBLE);
+                    answerWindowVisible = true;
+                }else {
+                    holder.confirmAnswer.setVisibility(View.GONE);
+                    holder.answerEditText.setVisibility(View.GONE);
+                    answerWindowVisible = false;
+                }
             }
         });
 

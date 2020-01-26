@@ -73,7 +73,7 @@ public class HomePageActivity extends AppCompatActivity {
             story_recyclerView.setVisibility(View.VISIBLE);
             storyVisible = true;
         }else {
-            story_recyclerView.setVisibility(View.VISIBLE);
+            story_recyclerView.setVisibility(View.GONE);
             storyVisible = false;
         }
     }
