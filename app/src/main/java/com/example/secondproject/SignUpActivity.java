@@ -51,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         mEmailField = findViewById(R.id.email_editText);
         mPasswordField = findViewById(R.id.password_editText);
         mRegisterBtn = findViewById(R.id.registerBtn);
+        mNameField = findViewById(R.id.full_nameField);
         current_user = new User();
         users_map = new UsersMap();
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
