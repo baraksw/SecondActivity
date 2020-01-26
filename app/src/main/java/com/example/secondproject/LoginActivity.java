@@ -186,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                 users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
                 users_map.add_user(new_user);
                 mDataBase.child("DB").setValue(users_map);
+                mDataBase.child("NEWFRIEND").setValue("TOMER");
             }
 
             @Override

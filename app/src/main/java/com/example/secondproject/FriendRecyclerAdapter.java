@@ -1,5 +1,6 @@
 package com.example.secondproject;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
-    private User[] my_friends;
+import java.util.ArrayList;
 
-    public FriendRecyclerAdapter(User[] my_friends){
+public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
+    private ArrayList<User> my_friends;
+    Context context;
+
+    public FriendRecyclerAdapter(Context context, ArrayList<User> my_friends){
         this.my_friends = my_friends;
+        this.context = context;
     }
 
     @NonNull
@@ -27,14 +32,14 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
 
-        holder.friendName.setText(my_friends[position].getFull_name());
-        holder.xpTextView.setText(my_friends[position].getXp_cnt() + " XP");
+        holder.friendName.setText(my_friends.get(position).getFull_name());
+        holder.xpTextView.setText(my_friends.get(position).getXp_cnt() + " XP");
 
     }
 
     @Override
     public int getItemCount() {
-        return my_friends.length;
+        return my_friends.size();
     }
 
     public static class FriendViewHolder extends RecyclerView.ViewHolder {

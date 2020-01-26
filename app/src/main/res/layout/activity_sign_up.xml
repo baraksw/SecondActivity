@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".SignUpActivity"
-    android:layoutDirection="ltr" >
+    android:layoutDirection="ltr"
+    tools:context=".SignUpActivity">
 
     <ImageButton
         android:id="@+id/previos_imageButton"
@@ -66,6 +66,20 @@
         app:layout_constraintTop_toBottomOf="@+id/login_headline" />
 
     <EditText
+        android:id="@+id/full_nameField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/global_side_margin"
+        android:layout_marginTop="@dimen/global_top_margin"
+        android:ems="10"
+        android:hint="Full Name..."
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_editText" />
+
+    <EditText
         android:id="@+id/email_editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -101,8 +115,10 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_editText"
+        app:layout_constraintVertical_bias="0.621"
         app:srcCompat="@drawable/lets_go_button" />
 
     <ImageView
@@ -111,7 +127,19 @@
         android:layout_height="@dimen/decotation_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
+
+    <Button
+        android:id="@+id/restartDB_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart DB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/decoration_background"
+        app:layout_constraintTop_toTopOf="@+id/decoration_background"
+        android:onClick="Restart_DB"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
