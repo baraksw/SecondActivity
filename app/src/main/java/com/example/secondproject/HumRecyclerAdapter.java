@@ -1,5 +1,6 @@
 package com.example.secondproject;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 
 public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.HumViewHolder> {
-    private Hum[] hums;
+    private ArrayList<Hum> hums;
+    android.content.Context context;
 
-    public HumRecyclerAdapter(Hum[] hums){
+    public HumRecyclerAdapter(Context context, ArrayList<Hum> hums){
         this.hums = hums;
+        this.context = context;
     }
 
     @NonNull
@@ -29,16 +34,16 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
     @Override
     public void onBindViewHolder(@NonNull HumViewHolder holder, final int position) {
 
-        int num_of_listeners = hums[position].countNumOfListeners();
-        int hum_row_len = hums[position].getHum_len();
-        int hum_visibility = hums[position].getHum_answered();
+        int num_of_listeners = hums.get(position).countNumOfListeners();
+        int hum_row_len = hums.get(position).getHum_len();
+        int hum_visibility = hums.get(position).getHum_answered();
 
         holder.numOfListeners.setText(num_of_listeners + " Listeners"); //TODO: Update this to the latest version of hum.
         holder.humRecLen.setText(String.valueOf(hum_row_len));
         holder.humPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hums[position].playHum();
+                hums.get(position).playHum();
             }
         });
         holder.humAnsweredImage.setVisibility(hum_visibility);
@@ -47,7 +52,7 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
 
     @Override
     public int getItemCount() {
-        return hums.length;
+        return hums.size();
     }
 
     public static class HumViewHolder extends RecyclerView.ViewHolder {
