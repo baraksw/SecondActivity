@@ -18,33 +18,44 @@ public class Hum implements HumToDB {
     int num_of_listeners, hum_len, hum_answered = View.INVISIBLE;
     String song_name;
 
-    public Hum(String owner, String hum_id, int hum_len){
+    public Hum(String owner, String hum_id, int hum_len) {
         this.hum_len = hum_len;
         this.hum_id = hum_id;
         this.owner = owner;
         this.num_of_listeners = 0;
-        this.song_name = null ;
+        this.song_name = null;
     }
 
-    public String getOwner(){
+    public Hum()
+    {
+        this.owner = "nobody";
+        this.hum_id = "45tts";
+
+
+    }
+    public String getOwner() {
         return owner;
     }
 
-    public String getHum_id(){
+    public String getHum_id() {
         return hum_id;
     }
 
 
-    public void playHum(){
+    public void playHum() {
         playAudio(this);
     }
 
-    public static void OpenYoutubeOnWeb(String urlString) {
-        //TODO: Iplementing the recyclerview
+    public void add_hum_to_db() {
+        //add_hum_to_db(this);
     }
 
-    public int countNumOfListeners(){
-        if(user_viewed_list == null){
+    public static void OpenYoutubeOnWeb(String urlString) {
+        //TODO: Implementing the recyclerview
+    }
+
+    public int countNumOfListeners() {
+        if (user_viewed_list == null) {
             this.num_of_listeners = 0;
         } else {
             this.num_of_listeners = user_viewed_list.length;
@@ -52,22 +63,25 @@ public class Hum implements HumToDB {
         return this.num_of_listeners;
     }
 
-    public int getHum_len(){
+    public int getHum_len() {
         //TODO: updating this function;
-        this.hum_len = 0;
         return this.hum_len;
     }
 
-    public int getHum_answered(){
+    public void print()
+    {
+        System.out.print("this id is: " + this.hum_id);
+    }
+
+    public int getHum_answered() {
         return this.hum_answered;
     }
 
     //TODO: Create a function that set the answere of the hum.
-    public void answereHum(String song_name){
+    public void answereHum(String song_name) {
         this.song_name = song_name;
         this.hum_answered = View.VISIBLE;
     }
 
-    public void PlayAudio(Hum hum){}
 }
 
