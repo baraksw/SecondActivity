@@ -36,8 +36,8 @@ public class FriendsPageActivity extends AppCompatActivity {
         friend_recyclerView.setHasFixedSize(true);
         friend_recyclerView.setLayoutManager(friend_layoutManager);
 
-        db_reference = FirebaseDatabase.getInstance().getReference().child("users_db");
-        my_friends_temp = new ArrayList<>();
+        db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
+        my_friends_temp = new ArrayList<User>();
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
