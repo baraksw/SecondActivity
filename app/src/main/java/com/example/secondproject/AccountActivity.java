@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AccountActivity extends AppCompatActivity {
@@ -16,6 +19,7 @@ public class AccountActivity extends AppCompatActivity {
     String name = "TRY";
     private FirebaseAuth mAuth;
     private TextView mUserName;
+    private TextView mFriendView;
     private Firebase mRef;
     private TextView mValue;
     private User current_user;
@@ -31,9 +35,28 @@ public class AccountActivity extends AppCompatActivity {
 
         db_path = "https://secondproject-a6fe3.firebaseio.com/DB/users_db";
         mUserName = findViewById(R.id.helloField);
+        mFriendView = findViewById(R.id.friend_view);
         mUserName.setText(name);
         mAuth=FirebaseAuth.getInstance();
         mRef = new Firebase("https://secondproject-a6fe3.firebaseio.com/DB/users_db");
+
+        //user_path = mAuth.getCurrentUser().getDisplayName().toString();
+
+        /*
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                current_user = dataSnapshot.getValue(User.class);
+                //mFriendView.setText(current_user.getFull_name());
+                 mFriendView.setText(user_path);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
 
 /*
         user_path = mAuth.getCurrentUser().getDisplayName().toString();
