@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="140dp">
+
+    <EditText
+        android:id="@+id/answer_editText"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_answer_imageButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/confirm_answer_imageButton"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/v_image_button" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/story_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.alexzh.circleimageview.CircleImageView
+            android:id="@+id/friend_profile_picture_circleImageView"
+            android:layout_width="@android:dimen/notification_large_icon_width"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:clickable="false"
+            android:src="@drawable/sample_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:view_backgroundColor="@color/transparent"
+            app:view_borderColor="@color/gunmetal"
+            app:view_borderWidth="@dimen/profile_pic_border_width" />
+
+        <TextView
+            android:id="@+id/friend_row_full_name_textView"
+            android:layout_width="@android:dimen/notification_large_icon_width"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Tuval190"
+            android:textAppearance="@style/friend_row_name_textStyle"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/friend_profile_picture_circleImageView"
+            app:layout_constraintStart_toStartOf="@+id/friend_profile_picture_circleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/friend_profile_picture_circleImageView" />
+
+        <ImageButton
+            android:id="@+id/play_story_hum_imageButton"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="@android:dimen/app_icon_size"
+            android:layout_marginStart="@dimen/global_left_margin"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/friend_row_full_name_textView"
+            app:layout_constraintStart_toEndOf="@+id/friend_profile_picture_circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/friend_profile_picture_circleImageView"
+            app:srcCompat="@drawable/play_button_icon" />
+
+        <TextView
+            android:id="@+id/hum_length_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="00:12"
+            android:textAppearance="@style/friend_row_name_textStyle"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/play_story_hum_imageButton"
+            app:layout_constraintStart_toEndOf="@+id/play_story_hum_imageButton"
+            app:layout_constraintTop_toTopOf="@+id/play_story_hum_imageButton" />
+
+        <ImageButton
+            android:id="@+id/answer_imageButton"
+            android:layout_width="@android:dimen/notification_large_icon_width"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/global_left_margin"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hum_length_textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/answer_image" />
+
+        <TextView
+            android:id="@+id/answer_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answer_imageButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="answer"
+            android:textAppearance="@style/friend_xp_textStyle"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/answer_imageButton"
+            app:layout_constraintStart_toStartOf="@+id/answer_imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/answer_imageButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
