@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
     private ImageButton mRegisterBtn;
     private Button mAuthBtn;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference friends_db = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
     private Firebase mRef;
@@ -86,10 +90,9 @@ public class SignUpActivity extends AppCompatActivity {
                         {
                             current_user.setFull_name(name);
                             current_user.setUser_name(user_name);
-                            current_user.add_friend("TUVAL RAT");
+                            addFriends(current_user);
                             add_user_to_db(current_user);
                             userProfile(current_user.getFull_name());
-                           // current_user.add_friends();
                             mProgress.dismiss();
 
                             Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
@@ -145,6 +148,26 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
     }
+    private void addFriends(User new_user) {
+
+        friends_db = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
+        friends_db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    User friend = dataSnapshot1.getValue(User.class);
+                    new_user.add_friend(friend.getFull_name());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 
     public void Restart_DB(View view) {
         users_map = new UsersMap();
