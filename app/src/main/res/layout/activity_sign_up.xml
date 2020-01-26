@@ -127,7 +127,19 @@
         android:layout_height="@dimen/decotation_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
+
+    <Button
+        android:id="@+id/restartDB_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart DB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/decoration_background"
+        app:layout_constraintTop_toTopOf="@+id/decoration_background"
+        android:onClick="Restart_DB"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

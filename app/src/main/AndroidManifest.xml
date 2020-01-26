@@ -15,10 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HomePageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".FriendShazamzamsActivity"></activity>
         <activity android:name=".FriendProfileActivity" />
@@ -27,7 +24,12 @@
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".AccountActivity" />
         <activity android:name=".LoginActivity" ></activity>
-        <activity android:name=".HomePageDemo"></activity>
+        <activity android:name=".HomePageDemo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

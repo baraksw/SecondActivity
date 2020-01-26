@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
+    private Firebase mRef;
 
     public User current_user;
     public UsersMap users_map;
@@ -53,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.registerBtn);
         mNameField = findViewById(R.id.full_nameField);
         current_user = new User();
-        users_map = new UsersMap();
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
                         {
                             current_user.setFull_name(name);
                             current_user.setUser_name(user_name);
+                            current_user.add_friend("TUVAL RAT");
                             add_user_to_db(current_user);
                             userProfile(current_user.getFull_name());
+                           // current_user.add_friends();
                             mProgress.dismiss();
 
                             Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
@@ -105,13 +109,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void add_user_to_db(final User new_user) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
         mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
-                //users_map = new UsersMap();
                 users_map.add_user(new_user);
                 mDataBase.child("DB").setValue(users_map);
+                mDataBase.child("NEWFRIEND").setValue(new_user.get_friend(0));
             }
 
             @Override
@@ -119,6 +124,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void userProfile(String full_name){
@@ -139,5 +145,14 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
     }
+
+    public void Restart_DB(View view) {
+        users_map = new UsersMap();
+        current_user.setFull_name("NULL_FULL");
+        current_user.setUser_name("NULL_USER");
+        users_map.add_user(current_user);
+        mDataBase.child("DB").setValue(users_map);
+        Toast.makeText(SignUpActivity.this, "DB Restarted", Toast.LENGTH_SHORT).show();
     }
+}
 
