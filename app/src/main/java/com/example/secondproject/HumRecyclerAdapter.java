@@ -23,7 +23,6 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
     public HumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hum_row_layout, parent, false);
         HumViewHolder humViewHolder = new HumViewHolder(view);
-
         return humViewHolder;
     }
 

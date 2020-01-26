@@ -35,7 +35,7 @@
     <dimen name="letsgo_bottom_margin">250dp</dimen>
     <dimen name="sign_up_buttom_width">110dp</dimen>
     <dimen name="sign_up_buttom_height">55dp</dimen>
-    <dimen name="decotation_height">250dp</dimen>
+    <dimen name="decotation_height">180dp</dimen>
     <dimen name="global_side_margin">20dp</dimen>
     <dimen name="letsgo_bottom_margin_type2">200dp</dimen>
     <dimen name="space_height">15dp</dimen>
