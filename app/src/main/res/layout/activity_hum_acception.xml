@@ -8,17 +8,17 @@
     tools:context=".HumAcceptionActivity"
     android:background="@drawable/gradient_background">
 
-    <ImageButton
-        android:id="@+id/mic_imageButton"
+    <ImageView
+        android:id="@+id/mic_image_view"
         android:layout_width="260dp"
         android:layout_height="260dp"
-        android:background="@android:color/transparent"
         android:scaleType="centerCrop"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mic_image" />
+        app:srcCompat="@drawable/microphone_when_pressed" />
 
     <RelativeLayout
         android:id="@+id/current_record_bar_layout"
@@ -26,7 +26,7 @@
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mic_imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/mic_image_view"
         android:background="@drawable/story_background">
 
         <ImageButton
@@ -45,7 +45,7 @@
             android:id="@+id/current_record_length_textView"
             android:layout_width="45dp"
             android:layout_height="20dp"
-            android:text="12435345232"
+            android:text="0:03"
             android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"

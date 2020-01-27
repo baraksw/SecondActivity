@@ -68,6 +68,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             @Override
             public  void onClick(View v) {
                 story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
+                holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
                 Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
             }
