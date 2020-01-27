@@ -31,20 +31,20 @@
 
     <ImageButton
         android:id="@+id/mic_imageButton"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mic_image" />
+        app:srcCompat="@drawable/mic_image_2" />
 
     <ImageButton
         android:id="@+id/profile_link_imageButton"
-        android:layout_width="@android:dimen/notification_large_icon_width"
-        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="@dimen/global_top_margin_type2"
         android:layout_marginEnd="@dimen/side_margin"
         android:background="@android:color/transparent"
@@ -52,7 +52,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_link_image" />
+        app:srcCompat="@drawable/profile_link_image_2" />
 
     <Button
         android:id="@+id/logOutBtn"
@@ -81,13 +81,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/atara_image" />
 
-    <com.jgabrielfreitas.core.BlirImageView
+    <com.jgabrielfreitas.core.BlurImageView
         android:id="@+id/blur_mic_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mic_image_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jgabrielfreitas.core.BlurImageView
+        android:id="@+id/blur_profile_link_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/mic_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="@dimen/global_top_margin_type2"
+        android:layout_marginEnd="@dimen/side_margin"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_link_image_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stroy_recycleView"
