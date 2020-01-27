@@ -54,7 +54,6 @@ public class HumAcceptionActivity extends Activity {
     private int endTimeRecord;
     private ImageView micImageButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +87,6 @@ public class HumAcceptionActivity extends Activity {
             }
         });
     }
-
 
     public void resetHumRecording(View view) {
         Intent home_page_intent = new Intent(this, HomePageActivity.class);

@@ -15,7 +15,7 @@ public class FriendShazamzamsActivity extends AppCompatActivity {
     }
 
     public void launchFriendProfileActivity(View view) {
-        Intent intent = new Intent(this, FriendProfileActivity.class);
-        startActivity(intent);
+        Intent friendProfileIntent = new Intent(this, FriendProfileActivity.class);
+        startActivity(friendProfileIntent);
     }
 }
