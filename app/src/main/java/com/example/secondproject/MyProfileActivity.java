@@ -38,7 +38,7 @@ public class MyProfileActivity extends AppCompatActivity {
         hums_recyclerView.setHasFixedSize(true);
         hums_recyclerView.setLayoutManager(hum_layoutManager);
 
-        db_reference = FirebaseDatabase.getInstance().getReference().child("hums_db");
+        db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         temp_hums = new ArrayList<Hum>();
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
