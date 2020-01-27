@@ -50,11 +50,11 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(answerWindowVisible == false){
+                if(!answerWindowVisible){
                     holder.confirmAnswer.setVisibility(View.VISIBLE);
                     holder.answerEditText.setVisibility(View.VISIBLE);
                     answerWindowVisible = true;
-                }else {
+                }else if (answerWindowVisible){
                     holder.confirmAnswer.setVisibility(View.GONE);
                     holder.answerEditText.setVisibility(View.GONE);
                     answerWindowVisible = false;
