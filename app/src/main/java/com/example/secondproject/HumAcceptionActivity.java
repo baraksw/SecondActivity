@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ public class HumAcceptionActivity extends Activity {
     private ProgressDialog humProgress;
     private StorageReference humStorage;
     private int endTimeRecord;
+    private ImageView micImageButton;
 
 
     @Override
@@ -63,6 +66,8 @@ public class HumAcceptionActivity extends Activity {
         humFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         humFileName += "/recorded_Audio.3pg";
         endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
+        micImageButton = (ImageView) findViewById(R.id.mic_image_view);
+        micImageButton.setVisibility(View.VISIBLE);
     }
 
 

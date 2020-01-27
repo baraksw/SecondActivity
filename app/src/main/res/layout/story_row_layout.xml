@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="90dp">
+    android:layout_height="100dp">
 
     <EditText
         android:id="@+id/answer_editText"
         android:layout_width="@dimen/answer_editText_width"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
+        android:background = "@color/white"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <ImageButton
@@ -32,8 +33,8 @@
 
         <com.alexzh.circleimageview.CircleImageView
             android:id="@+id/friend_profile_picture_circleImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="6dp"
             android:layout_marginTop="2dp"
             android:clickable="false"
@@ -86,8 +87,8 @@
 
         <ImageButton
             android:id="@+id/answer_imageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="40dp"

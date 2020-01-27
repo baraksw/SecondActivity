@@ -89,12 +89,15 @@ public class HomePageActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     startRecording();
+                    startTimeRecord = SystemClock.uptimeMillis();
+                    micImageButton.setImageResource(R.drawable.microphone_when_pressed);
                     //mRecordLabel.setText("Recording Started...");
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     //mRecordLabel.setText("Recording Stopped...");
+                    micImageButton.setImageResource(R.drawable.mic_image);
                     stopRecording();
                     endTimeRecord = (int) (SystemClock.uptimeMillis() - startTimeRecord) / 1000;
-                    Toast.makeText(HomePageActivity.this, "Recording time is: "+endTimeRecord, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(HomePageActivity.this, "Recording time is: "+endTimeRecord, Toast.LENGTH_LONG).show();
                     //uploadAudio("asaf", endTimeRecord);
                     startHumAcceptionActivity();
                 }
@@ -123,7 +126,6 @@ public class HomePageActivity extends AppCompatActivity {
         }
 
         mRecorder.start();
-        startTimeRecord = SystemClock.uptimeMillis();
     }
 
     private void stopRecording() {
