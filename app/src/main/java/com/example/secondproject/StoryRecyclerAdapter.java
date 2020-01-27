@@ -1,5 +1,6 @@
 package com.example.secondproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +68,8 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             @Override
             public  void onClick(View v) {
                 story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
+                holder.answerEditText.setVisibility(View.GONE);
+                Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -83,7 +87,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         EditText answerEditText;
         TextView ownerNameTextView;
         TextView humLengthTextView;
-
 
         public StoryViewHolder(@NonNull View itemView) {
             super(itemView);

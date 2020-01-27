@@ -90,8 +90,8 @@
 
     <ImageButton
         android:id="@+id/speaker_imageView"
-        android:layout_width="64dp"
-        android:layout_height="58dp"
+        android:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:background="@color/transparent"
         android:onClick="launchFriendShazamzamsActivity"
         android:scaleType="fitCenter"
