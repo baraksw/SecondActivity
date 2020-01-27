@@ -51,7 +51,6 @@ public class HumAcceptionActivity extends Activity {
     private StorageReference humStorage;
     private int endTimeRecord;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +82,6 @@ public class HumAcceptionActivity extends Activity {
             }
         });
     }
-
 
     public void resetHumRecording(View view) {
         Intent home_page_intent = new Intent(this, HomePageActivity.class);

@@ -69,8 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void launchLoginActivity(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 
         private void startRegister(){
@@ -94,14 +94,12 @@ public class SignUpActivity extends AppCompatActivity {
                             add_user_to_db(current_user);
                             userProfile(current_user.getFull_name());
                             mProgress.dismiss();
-
                             Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(AuthIntent);
                         }
                     }
                 });}
-
         }
 
 
@@ -140,7 +138,6 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-
                     }
                 }
             });

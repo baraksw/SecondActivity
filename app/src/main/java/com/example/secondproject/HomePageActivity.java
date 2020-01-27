@@ -105,8 +105,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void startHumAcceptionActivity()
     {
-        Intent myIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
-        startActivity(myIntent);
+        Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
+        startActivity(startHumAcceptionIntent);
     }
 
     private void startRecording() {
@@ -132,11 +132,6 @@ public class HomePageActivity extends AppCompatActivity {
         mRecorder = null;
     }
 
-
-
-
-
-
     public void openStory(View view) {
         if(!storyVisible){
             story_recyclerView.setVisibility(View.VISIBLE);
@@ -148,8 +143,8 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void launchMyProfilePage(View view) {
-        Intent intent = new Intent(this, MyProfileActivity.class);
-        startActivity(intent);
+        Intent myProfileIntent = new Intent(this, MyProfileActivity.class);
+        startActivity(myProfileIntent);
     }
 
     public void LogOut(View view){
