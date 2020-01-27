@@ -50,7 +50,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
         story_recyclerView.setVisibility(View.GONE);
-        db_reference = FirebaseDatabase.getInstance().getReference().child("hums_db");//TODO: Add the correct path to the firebase.
+        db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         story_hums = new ArrayList<Hum>();
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
