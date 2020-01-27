@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,10 +56,12 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
                 if(!answerWindowVisible){
                     holder.confirmAnswer.setVisibility(View.VISIBLE);
                     holder.answerEditText.setVisibility(View.VISIBLE);
+                    holder.spaceStory.setVisibility(View.GONE);
                     answerWindowVisible = true;
                 }else if (answerWindowVisible){
                     holder.confirmAnswer.setVisibility(View.GONE);
                     holder.answerEditText.setVisibility(View.GONE);
+                    holder.spaceStory.setVisibility(View.VISIBLE);
                     answerWindowVisible = false;
                 }
             }
@@ -70,6 +73,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
                 story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
+                holder.spaceStory.setVisibility(View.VISIBLE);
                 Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -88,6 +92,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         EditText answerEditText;
         TextView ownerNameTextView;
         TextView humLengthTextView;
+        Space spaceStory;
 
         public StoryViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +101,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             answerButton = itemView.findViewById(R.id.answer_imageButton);
             answerEditText = itemView.findViewById(R.id.answer_editText);
             confirmAnswer = itemView.findViewById(R.id.confirm_answer_imageButton);
+            spaceStory = itemView.findViewById(R.id.story_space);
             ownerNameTextView = itemView.findViewById(R.id.friend_row_full_name_textView);
             humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
         }
