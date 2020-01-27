@@ -47,4 +47,6 @@
     <dimen name="hum_answered_dimen">30dp</dimen>
     <dimen name="hum_answered_right_margin">25dp</dimen>
     <dimen name="hum_answered_top_margin">5dp</dimen>
+    <dimen name="answer_editText_width">250dp</dimen>
+    <dimen name="answer_editText_height">50sp</dimen>
 </resources>

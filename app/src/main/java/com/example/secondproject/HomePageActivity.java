@@ -72,10 +72,10 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void openStory(View view) {
-        if(storyVisible == false){
+        if(!storyVisible){
             story_recyclerView.setVisibility(View.VISIBLE);
             storyVisible = true;
-        }else {
+        }else if (storyVisible){
             story_recyclerView.setVisibility(View.GONE);
             storyVisible = false;
         }
