@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HumAcceptionActivity"
+    android:background="@drawable/gradient_background">
+
+    <ImageButton
+        android:id="@+id/mic_imageButton"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mic_image" />
+
+    <RelativeLayout
+        android:id="@+id/current_record_bar_layout"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mic_imageButton"
+        android:background="@drawable/story_background">
+
+        <ImageButton
+            android:id="@+id/play_current_record_imageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:scaleType="center"
+            android:src="@drawable/play_button_icon"
+            android:background="@color/transparent"
+            android:onClick="playCurrentRecord"/>
+
+        <TextView
+            android:id="@+id/current_record_length_textView"
+            android:layout_width="45dp"
+            android:layout_height="20dp"
+            android:text="12435345232"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/play_current_record_imageButton"/>
+
+        <ImageButton
+            android:id="@+id/reset_current_record_imagebutton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+
+            android:background="@color/transparent"
+            android:onClick="resetHumRecording"/>
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/accept_and_upload_imageButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_record_bar_layout"
+        android:background="@color/transparent"
+        android:src="@drawable/v_image_button"
+        android:scaleType="centerInside"
+        android:onClick="upload2DB"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
