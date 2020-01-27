@@ -202,6 +202,11 @@ public class HomePageDemo extends AppCompatActivity {
                         Hum hummy = new Hum("tomer", "efuef", 3);
                         hums_map.add_hum(new_hum);
                         mDataBase.child("db2").setValue(hums_map);
+
+                        users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
+                        current_user = users_map.getUser("asaf");
+                        current_user.add_hum(hum_id);
+                        mDataBase.child("DB").setValue(users_map);
                     }
                 } catch (Exception e) {
                     Log.w("exception", "fuck it");
