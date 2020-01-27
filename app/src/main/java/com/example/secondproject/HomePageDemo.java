@@ -151,7 +151,7 @@ public class HomePageDemo extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
-                mRecordLabel.setText("Uploading Finished");
+                //.setText("Uploading Finished");
             }
         });
     }
