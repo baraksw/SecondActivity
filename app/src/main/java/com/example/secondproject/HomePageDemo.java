@@ -1,6 +1,8 @@
 package com.example.secondproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,12 +17,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -31,11 +37,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
 public class HomePageDemo extends AppCompatActivity {
 
     private Button mRecordBtn;
+    private Button mPlayRecordBtn;
     private TextView mRecordLabel;
     private MediaRecorder mRecorder;
     private String mFileName = null;
@@ -49,7 +54,6 @@ public class HomePageDemo extends AppCompatActivity {
     private StorageReference mStorage;
     private ProgressDialog mProgress;
 
-
     private FirebaseAuth mAuth;
     private Firebase mRef;
     private TextView mValue;
@@ -57,7 +61,9 @@ public class HomePageDemo extends AppCompatActivity {
     private UsersMap users_map;
     private String user_path;
     private String db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
-    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mDataBase, mDataBaseHums;
+
+    public HumsMap hums_map;
 
     //Sample hum to work with for now - it should be replaced with a given hum from RecyclerView!
     Hum hum = new Hum("asaf", "200120_1947.78cb09b4-2c12-48b2-b215-b1aa5293ac14", 5);
@@ -71,13 +77,14 @@ public class HomePageDemo extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
         mRecordLabel = (TextView) findViewById(R.id.recordLabel);
         mRecordBtn = (Button) findViewById(R.id.recordBtn);
+        mPlayRecordBtn = (Button) findViewById(R.id.button_play_current_record);
         mStorage = FirebaseStorage.getInstance().getReference();
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/recorded_Audio.3pg";
         mDataBase = FirebaseDatabase.getInstance().getReference();
-
         users_map = new UsersMap();
         current_user = new User();
+        hums_map = new HumsMap();
 
         mRecordBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -121,7 +128,6 @@ public class HomePageDemo extends AppCompatActivity {
         mRecorder = null;
     }
 
-
     private void uploadAudio(String username, int endTimeRecord) {
 
         mProgress.setMessage("Uploading Audio...");
@@ -130,10 +136,13 @@ public class HomePageDemo extends AppCompatActivity {
         audio_file_random_name = UUID.randomUUID().toString();
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
         String currentDateTime = sdf.format(new Date());
-        hum_id = currentDateTime + "." + audio_file_random_name;
+        hum_id = currentDateTime + "_" + audio_file_random_name;
 
-        //Here we should create the Hum instance, using constructor Hum(username, hum_id, endTimeRecord)
-        //file path is chosen using username and hum_id
+        Hum new_hum = new Hum(username, hum_id, endTimeRecord);
+        Toast.makeText(HomePageDemo.this, "Recording time is: " + hum_id, Toast.LENGTH_LONG).show();
+        //restart_DB();
+        add_hum_to_db(new_hum);
+
 
         final StorageReference filepath = mStorage.child("Audio").child(username).child(hum_id);
         Uri uri = Uri.fromFile(new File(mFileName));
@@ -146,6 +155,7 @@ public class HomePageDemo extends AppCompatActivity {
             }
         });
     }
+
 
     public void playBtn_OnClick(View view) {
         playAudio(hum);
@@ -181,6 +191,38 @@ public class HomePageDemo extends AppCompatActivity {
         startActivity(AuthIntent);
     }
 
+    public void add_hum_to_db(final Hum new_hum) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    {
+                        hums_map = dataSnapshot.child("db2").getValue(HumsMap.class);
+                        Hum hummy = new Hum("tomer", "efuef", 3);
+                        hums_map.add_hum(new_hum);
+                        mDataBase.child("db2").setValue(hums_map);
+
+                        users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
+                        current_user = users_map.getUser("asaf");
+                        current_user.add_hum(hum_id);
+                        mDataBase.child("DB").setValue(users_map);
+                    }
+                } catch (Exception e) {
+                    Log.w("exception", "fuck it");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+
+
+
 /*
     public void register(View view) {
         mDataBase.child("DB/users_db").addValueEventListener(new ValueEventListener() {
@@ -206,6 +248,35 @@ public class HomePageDemo extends AppCompatActivity {
         current_user.setUser_name("Test_user3");
         current_user.setFull_name("New Test3");
         //add_user_to_db(current_user);
+    }
+
+
+    public void onClick_play_current_record(View view) {
+        final MediaPlayer player = new MediaPlayer();
+        try {
+            player.setDataSource(mFileName); //Thats a general name given to every record, and is overrided when
+            //we start a new one. So using this name, you can here the current record.
+            player.prepare();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        }
+
+        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+    }
+
+    public void restart_DB() {
+        hums_map = new HumsMap();
+        Hum fake_hum = new Hum("asaf", "4ddd545", 5);
+        hums_map.add_hum(fake_hum);
+        Hum fake_hum2 = new Hum("tomer", "4ddd5488", 5);
+        hums_map.add_hum(fake_hum2);
+        mDataBase.child("db2").setValue(hums_map);
+        Toast.makeText(HomePageDemo.this, "hums_DB Restarted", Toast.LENGTH_SHORT).show();
     }
 
 

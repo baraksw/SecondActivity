@@ -77,7 +77,6 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/friends_relative_layout_height"
-        android:background="#2DFFFFFF"
         android:paddingBottom="@dimen/relative_layout_bottom_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/my_friends_page_space">

@@ -33,8 +33,8 @@
 
     <ImageButton
         android:id="@+id/profile_link_imageButton"
-        android:layout_width="@android:dimen/app_icon_size"
-        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginTop="@dimen/global_top_margin_type2"
         android:layout_marginEnd="@dimen/side_margin"
         android:background="@android:color/transparent"
@@ -44,10 +44,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_link_image" />
 
+    <Button
+        android:id="@+id/logOutBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="LogOut"
+        android:text="Log Out"
+        app:layout_constraintBottom_toTopOf="@+id/stroy_recycleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
+
     <ImageButton
         android:id="@+id/story_imageButton"
-        android:layout_width="@android:dimen/app_icon_size"
-        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
         android:background="@android:color/transparent"
@@ -57,115 +71,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/atara_image" />
 
-    <ScrollView
-        android:id="@+id/story_scrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="@dimen/side_margin"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stroy_recycleView"
+        android:layout_width="300dp"
+        android:layout_height="600dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/story_imageButton">
+        app:layout_constraintTop_toBottomOf="@+id/story_imageButton" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <ImageButton
-                android:id="@+id/hum_1"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:onClick="hum_1_clicked"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/yair_image" />
-            <EditText
-                android:id="@+id/answer1_editText"
-                android:layout_width="150dp"
-                android:layout_height="50dp" />
-
-            <ImageButton
-                android:id="@+id/hum_2"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ross_image"
-                android:onClick="hum_2_clicked"/>
-            <EditText
-                android:id="@+id/answer2_editText"
-                android:layout_width="150dp"
-                android:layout_height="50dp" />
-
-            <ImageButton
-                android:id="@+id/hum_3"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_link_image" />
-
-            <ImageButton
-                android:id="@+id/hum_4"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_link_image" />
-
-            <ImageButton
-                android:id="@+id/hum_5"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_link_image" />
-
-            <ImageButton
-                android:id="@+id/hum_6"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_link_image" />
-
-            <ImageButton
-                android:id="@+id/hum_7"
-                android:layout_width="@android:dimen/notification_large_icon_width"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginEnd="@dimen/side_margin"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_link_image" />
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

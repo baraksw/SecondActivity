@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
-                    Intent SignInIntent = new Intent(LoginActivity.this, AccountActivity.class);
+                    Intent SignInIntent = new Intent(LoginActivity.this, HomePageActivity.class);
                     SignInIntent.putExtra(UserNameString, userName);
                     startActivity(SignInIntent);
                 }
@@ -186,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                 users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
                 users_map.add_user(new_user);
                 mDataBase.child("DB").setValue(users_map);
+                mDataBase.child("NEWFRIEND").setValue("TOMER");
             }
 
             @Override
