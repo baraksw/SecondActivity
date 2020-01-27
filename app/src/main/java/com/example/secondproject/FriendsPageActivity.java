@@ -63,7 +63,7 @@ public class FriendsPageActivity extends AppCompatActivity {
     }
 
     public void launchFriendProfileActivity(View view) {
-        Intent myProfileIntent = new Intent(this, FriendProfileActivity.class);
-        startActivity(myProfileIntent);
+        Intent myFriendProfileIntent = new Intent(this, FriendProfileActivity.class);
+        startActivity(myFriendProfileIntent);
     }
 }

@@ -16,4 +16,5 @@
     <string name="friends_text">Friends</string>
     <string name="my_profile_text">My Profile</string>
     <string name="hum_answered_text">Hum answered!</string>
+    <string name="story_text">Story</string>
 </resources>
