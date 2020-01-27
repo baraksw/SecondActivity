@@ -15,10 +15,14 @@ public class User implements UserToDB{
     private Hum published_hums[];
     private String friends_array [];
     private int friends_number;
+    private String hums_array [];
+    private int hums_number;
 
     public User() {
         friends_array = new String[10];
         friends_number=0;
+        hums_array = new String[10];
+        hums_number=0;
     }
 
     public String getFull_name() {
@@ -88,6 +92,11 @@ public class User implements UserToDB{
     public String get_friend(int num)
     {
         return this.friends_array[num];
+    }
+
+    public void add_hum(String hum_id){
+        this.hums_array[this.hums_number] = hum_id;
+        hums_number++;
     }
 
     public void add_friends(){

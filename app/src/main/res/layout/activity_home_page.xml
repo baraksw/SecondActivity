@@ -44,6 +44,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_link_image" />
 
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="LogOut"
+        android:text="Log Out"
+        app:layout_constraintBottom_toTopOf="@+id/mic_imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stroy_recycleView"
+        app:layout_constraintVertical_bias="0.502" />
+
     <ImageButton
         android:id="@+id/story_imageButton"
         android:layout_width="@android:dimen/notification_large_icon_width"

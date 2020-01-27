@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +33,7 @@ public class HomePageActivity extends AppCompatActivity {
     private StoryRecyclerAdapter story_adapter;
     private DatabaseReference db_reference;
     private boolean storyVisible = false;
+    private FirebaseAuth mAuth;
 
     Hum temp_hum = new Hum("tuval", "200120_1736.15ac69e1-8f0f-4deb-9790-e9292a2ee2f4", 12);
 
@@ -44,6 +46,7 @@ public class HomePageActivity extends AppCompatActivity {
         story_layoutManager = new GridLayoutManager(this, 1);
         story_recyclerView.setHasFixedSize(true);
         story_recyclerView.setLayoutManager(story_layoutManager);
+        mAuth = FirebaseAuth.getInstance();
 
 
         story_recyclerView.setVisibility(View.GONE);
@@ -81,5 +84,11 @@ public class HomePageActivity extends AppCompatActivity {
     public void launchMyProfilePage(View view) {
         Intent intent = new Intent(this, MyProfileActivity.class);
         startActivity(intent);
+    }
+
+    public void LogOut(View view){
+        mAuth.signOut();
+        Intent HomePageIntent = new Intent(HomePageActivity.this, HomePageDemo.class);
+        startActivity(HomePageIntent);
     }
 }
