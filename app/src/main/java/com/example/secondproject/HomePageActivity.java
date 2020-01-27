@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jgabrielfreitas.core.BlurImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class HomePageActivity extends AppCompatActivity {
     private MediaRecorder mRecorder;
     private ImageButton micImageButton;
     private long startTimeRecord, endTimeRecord;
+    private BlurImageView blur_mic_image;
 
     Hum temp_hum = new Hum("tuval", "200120_1736.15ac69e1-8f0f-4deb-9790-e9292a2ee2f4", 12);
 
@@ -51,6 +53,9 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        blur_mic_image = (BlurImageView) findViewById(R.id.blur_mic_image);
+        blur_mic_image.setBlur(5);
 
         micImageButton = (ImageButton) findViewById(R.id.mic_imageButton);
         story_recyclerView = findViewById(R.id.stroy_recycleView);

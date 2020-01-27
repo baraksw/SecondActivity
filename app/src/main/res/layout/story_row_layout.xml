@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/answer_editText"
         android:layout_width="@dimen/answer_editText_width"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:hint="Please answer here..."
         app:layout_constraintStart_toStartOf="parent"
-        android:background = "@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/story_space" />
 
     <ImageButton
         android:id="@+id/confirm_answer_imageButton"
@@ -22,6 +22,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/answer_editText"
         app:srcCompat="@drawable/v_image_button" />
+
+    <Space
+        android:id="@+id/story_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -48,7 +55,7 @@
         <TextView
             android:id="@+id/friend_row_full_name_textView"
             android:layout_width="35dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:gravity="center"
             android:text="Tuval190"
