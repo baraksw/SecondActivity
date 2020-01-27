@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 
-
 public class HomePageActivity extends AppCompatActivity {
 
     //TODO: Create a list of ImageButton.
