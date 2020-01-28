@@ -15,25 +15,9 @@ public interface UserToDB {
 
     DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
 
-
-    default User getUser(String name){
-        User user = new User();
-        mDataBase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UsersMap usersMap = dataSnapshot.child("DB").getValue(UsersMap.class);
-                User user = usersMap.getUser(name);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return user;
-
+    default void set_user(User user)
+    {
+        mDataBase.child("DB").child("users_db").child(user.full_name).setValue(user);
     }
 
 }
