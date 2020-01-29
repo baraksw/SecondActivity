@@ -22,6 +22,13 @@ import javax.crypto.interfaces.DHPrivateKey;
             public User() {
                 friends_map = new HashMap<String, String>();
             }
+                
+            public User(String full_name, String user_name)
+            {
+                friends_map = new HashMap<String, String>();
+                this.full_name =  full_name;
+                this.user_name = user_name 
+            }
 
     public String getFull_name() {
         return this.full_name;
