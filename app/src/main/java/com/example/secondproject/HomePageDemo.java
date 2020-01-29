@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class HomePageDemo extends AppCompatActivity {
+public class HomePageDemo extends AppCompatActivity implements UserToDB {
 
     private Button mRecordBtn;
     private Button mPlayRecordBtn;
@@ -63,7 +63,10 @@ public class HomePageDemo extends AppCompatActivity {
     private String db_path = "https://secondproject-a6fe3.firebaseio.com/Users/";
     private DatabaseReference mDataBase, mDataBaseHums;
 
+    private Firebase friends_fb;
+
     public HumsMap hums_map;
+    private TextView friends_view;
 
     //Sample hum to work with for now - it should be replaced with a given hum from RecyclerView!
     Hum hum = new Hum("asaf", "200120_1947.78cb09b4-2c12-48b2-b215-b1aa5293ac14", 5);
@@ -85,6 +88,34 @@ public class HomePageDemo extends AppCompatActivity {
         users_map = new UsersMap();
         current_user = new User();
         hums_map = new HumsMap();
+
+        friends_view = findViewById(R.id.rView);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        friends_view.setText("NOOO");
+/*
+        if(mAuth.getCurrentUser()!=null) {
+            mDataBase = FirebaseDatabase.getInstance().getReference();
+            mDataBase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String path = mAuth.getCurrentUser().getDisplayName().toString();
+                   //current_user = dataSnapshot.child("DB").child("users_db").child(path).getValue(User.class);
+                    int number = dataSnapshot.child("DB").child("users_db").child(path).child("_friends_number").getValue(int.class);
+                    friends_view.setText(String.valueOf(number));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }*/
+
+    friends_fb = new Firebase("https://secondproject-a6fe3.firebaseio.com/DB/users_db");
+
+
 
         mRecordBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -205,7 +236,7 @@ public class HomePageDemo extends AppCompatActivity {
 
                         users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
                         current_user = users_map.getUser("asaf");
-                        current_user.add_hum(hum_id);
+                        //current_user.add_hum(hum_id);
                         mDataBase.child("DB").setValue(users_map);
                     }
                 } catch (Exception e) {
@@ -218,36 +249,6 @@ public class HomePageDemo extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-
-
-
-
-/*
-    public void register(View view) {
-        mDataBase.child("DB/users_db").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                current_user.set_user_name("Test_user");
-                current_user.set_full_name("New Test");
-                users_map.add_user(current_user);
-                mDataBase.child("NEW_DB").setValue(users_map);
-
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
- */
-
-    public void register(View view) {
-        current_user.setUser_name("Test_user3");
-        current_user.setFull_name("New Test3");
-        //add_user_to_db(current_user);
     }
 
 
@@ -279,5 +280,43 @@ public class HomePageDemo extends AppCompatActivity {
         Toast.makeText(HomePageDemo.this, "hums_DB Restarted", Toast.LENGTH_SHORT).show();
     }
 
+
+    public void check(View view) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        String user_path = mAuth.getCurrentUser().getDisplayName();
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                current_user=dataSnapshot.child("DB").child("users_db").child(user_path).getValue(User.class);
+                current_user.setFriends_number(2);
+                set_user(current_user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+/*
+    public void check(View view) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String path = mAuth.getCurrentUser().getDisplayName().toString();
+                //
+                //String text1 = current_user.get_friend();
+                mDataBase.child("DB").child("users_db").child(path).child("friends_map").child("a").setValue("OBIS");
+                String text1 = dataSnapshot.child("DB").child("users_db").child(path).child("friends_map").child("a").getValue(String.class);
+                Toast.makeText(HomePageDemo.this,"NOO " +text1,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }*/
 
 }

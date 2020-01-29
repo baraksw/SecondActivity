@@ -90,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
                         {
                             current_user.setFull_name(name);
                             current_user.setUser_name(user_name);
-                            addFriends(current_user);
+                            current_user.add_friend("FirstFriend");
                             add_user_to_db(current_user);
                             userProfile(current_user.getFull_name());
                             mProgress.dismiss();
@@ -117,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
                 users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
                 users_map.add_user(new_user);
                 mDataBase.child("DB").setValue(users_map);
-                mDataBase.child("NEWFRIEND").setValue(new_user.get_friend(0));
+               // mDataBase.child("NEWFRIEND").setValue(new_user.get_friend(0));
             }
 
             @Override
@@ -153,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     User friend = dataSnapshot1.getValue(User.class);
-                    new_user.add_friend(friend.getFull_name());
+                    //new_user.add_friend(friend.getFull_name());
                 }
             }
 
