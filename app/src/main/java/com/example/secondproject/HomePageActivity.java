@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +46,12 @@ public class HomePageActivity extends AppCompatActivity {
     private MediaRecorder mRecorder;
     private ImageButton micImageButton;
     private long startTimeRecord, endTimeRecord;
-    private BlurImageView blur_mic_image;
+    BlurImageView blur_mic_image;
+    private ImageButton profile_link_imageButton;
+    private TextView xp_points_textView6;
+    private Button logOutBtn;
+    private TextView story_textView;
+    BlurImageView blur_profile_link_image;
 
     Hum temp_hum = new Hum("tuval", "200120_1736.15ac69e1-8f0f-4deb-9790-e9292a2ee2f4", 12);
 
@@ -54,9 +60,14 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        story_textView = findViewById(R.id.story_textView);
+        logOutBtn = findViewById(R.id.logOutBtn);
+        xp_points_textView6 = findViewById(R.id.xp_points_textView6);
+        profile_link_imageButton = findViewById(R.id.profile_link_imageButton);
         blur_mic_image = (BlurImageView) findViewById(R.id.blur_mic_image);
-        blur_mic_image.setBlur(5);
-
+        blur_mic_image.setBlur(2);
+        blur_profile_link_image = (BlurImageView) findViewById(R.id.blur_profile_link_image);
+        blur_profile_link_image.setBlur(2);
         micImageButton = (ImageButton) findViewById(R.id.mic_imageButton);
         story_recyclerView = findViewById(R.id.stroy_recycleView);
         story_layoutManager = new GridLayoutManager(this, 1);
@@ -67,8 +78,9 @@ public class HomePageActivity extends AppCompatActivity {
         mFileName += "/recorded_Audio.3pg";
 
 
-
         story_recyclerView.setVisibility(View.GONE);
+        blur_mic_image.setVisibility(View.GONE);
+        blur_profile_link_image.setVisibility(View.GONE);
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         story_hums = new ArrayList<Hum>();
         db_reference.addValueEventListener(new ValueEventListener() {
@@ -92,6 +104,10 @@ public class HomePageActivity extends AppCompatActivity {
         micImageButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                profile_link_imageButton.setVisibility(View.GONE);
+                xp_points_textView6.setVisibility(View.GONE);
+                logOutBtn.setVisibility(View.GONE);
+                story_textView.setVisibility(View.GONE);
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     startRecording();
                     startTimeRecord = SystemClock.uptimeMillis();
@@ -142,9 +158,24 @@ public class HomePageActivity extends AppCompatActivity {
     public void openStory(View view) {
         if(!storyVisible){
             story_recyclerView.setVisibility(View.VISIBLE);
+            blur_mic_image.setVisibility(View.VISIBLE);
+            blur_profile_link_image.setVisibility(View.VISIBLE);
+            micImageButton.setVisibility(View.GONE);
+            profile_link_imageButton.setVisibility(View.GONE);
+            xp_points_textView6.setVisibility(View.GONE);
+            logOutBtn.setVisibility(View.GONE);
+            story_textView.setVisibility(View.GONE);
             storyVisible = true;
-        }else if (storyVisible){
+
+        }else if (storyVisible == true){
             story_recyclerView.setVisibility(View.GONE);
+            blur_mic_image.setVisibility(View.GONE);
+            blur_profile_link_image.setVisibility(View.GONE);
+            micImageButton.setVisibility(View.VISIBLE);
+            profile_link_imageButton.setVisibility(View.VISIBLE);
+            xp_points_textView6.setVisibility(View.VISIBLE);
+            logOutBtn.setVisibility(View.VISIBLE);
+            story_textView.setVisibility(View.VISIBLE);
             storyVisible = false;
         }
     }
