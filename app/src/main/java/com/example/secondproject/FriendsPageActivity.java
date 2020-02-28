@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,8 +27,11 @@ public class FriendsPageActivity extends AppCompatActivity {
     private ArrayList<User> my_friends_temp;
     private DatabaseReference db_reference;
 
+    final static String LOG_TAG = "Friends page log";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "friends page's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_page);
 

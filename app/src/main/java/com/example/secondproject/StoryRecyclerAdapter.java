@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Space;
@@ -13,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoryViewHolder> {
@@ -69,16 +70,21 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
         holder.confirmAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v) {
+            public void onClick(View v) {
                 story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
                 holder.spaceStory.setVisibility(View.VISIBLE);
+                closeKeyboard();
                 Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
+            }
+
+            private void closeKeyboard() {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(holder.confirmAnswer.getWindowToken(), 0);
             }
         });
     }
-
 
     @Override
     public int getItemCount() { return story_hums.size(); }
