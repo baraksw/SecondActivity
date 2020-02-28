@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jgabrielfreitas.core.BlurImageView;
 import com.jgabrielfreitas.core.BlurImageView;
 
 import java.io.IOException;
@@ -46,11 +49,11 @@ public class HomePageActivity extends AppCompatActivity {
     private MediaRecorder mRecorder;
     private ImageButton micImageButton;
     private long startTimeRecord, endTimeRecord;
-    BlurImageView blur_mic_image;
     private ImageButton profile_link_imageButton;
     private TextView xp_points_textView6;
     private Button logOutBtn;
     private TextView story_textView;
+    BlurImageView blur_mic_image;
     BlurImageView blur_profile_link_image;
 
     Hum temp_hum = new Hum("tuval", "200120_1736.15ac69e1-8f0f-4deb-9790-e9292a2ee2f4", 12);
@@ -64,10 +67,12 @@ public class HomePageActivity extends AppCompatActivity {
         logOutBtn = findViewById(R.id.logOutBtn);
         xp_points_textView6 = findViewById(R.id.xp_points_textView6);
         profile_link_imageButton = findViewById(R.id.profile_link_imageButton);
+
         blur_mic_image = (BlurImageView) findViewById(R.id.blur_mic_image);
         blur_mic_image.setBlur(2);
         blur_profile_link_image = (BlurImageView) findViewById(R.id.blur_profile_link_image);
         blur_profile_link_image.setBlur(2);
+
         micImageButton = (ImageButton) findViewById(R.id.mic_imageButton);
         story_recyclerView = findViewById(R.id.stroy_recycleView);
         story_layoutManager = new GridLayoutManager(this, 1);
@@ -78,9 +83,10 @@ public class HomePageActivity extends AppCompatActivity {
         mFileName += "/recorded_Audio.3pg";
 
 
-        story_recyclerView.setVisibility(View.GONE);
         blur_mic_image.setVisibility(View.GONE);
         blur_profile_link_image.setVisibility(View.GONE);
+
+        story_recyclerView.setVisibility(View.GONE);
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         story_hums = new ArrayList<Hum>();
         db_reference.addValueEventListener(new ValueEventListener() {
@@ -168,9 +174,10 @@ public class HomePageActivity extends AppCompatActivity {
             storyVisible = true;
 
         }else if (storyVisible == true){
-            story_recyclerView.setVisibility(View.GONE);
             blur_mic_image.setVisibility(View.GONE);
             blur_profile_link_image.setVisibility(View.GONE);
+
+            story_recyclerView.setVisibility(View.GONE);
             micImageButton.setVisibility(View.VISIBLE);
             profile_link_imageButton.setVisibility(View.VISIBLE);
             xp_points_textView6.setVisibility(View.VISIBLE);
@@ -189,6 +196,14 @@ public class HomePageActivity extends AppCompatActivity {
         mAuth.signOut();
         Intent HomePageIntent = new Intent(HomePageActivity.this, HomePageDemo.class);
         startActivity(HomePageIntent);
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
 
