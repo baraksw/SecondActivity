@@ -19,6 +19,9 @@ import javax.crypto.interfaces.DHPrivateKey;
             public int hums_number = 0;
             public HashMap<String,String> friends_map;
 
+            static final int UPLOAD_XP = 1;
+            static final int ANSWER_XP = 2;
+
             public User() {
                 friends_map = new HashMap<String, String>();
             }
@@ -27,7 +30,7 @@ import javax.crypto.interfaces.DHPrivateKey;
             {
                 friends_map = new HashMap<String, String>();
                 this.full_name =  full_name;
-                this.user_name = user_name 
+                this.user_name = user_name;
             }
 
     public String getFull_name() {
@@ -99,6 +102,15 @@ import javax.crypto.interfaces.DHPrivateKey;
     public String get_friend(){
         return friends_map.get("0");
 
+    }
+
+    public void add_xp(int reason_code)
+    {
+        if(reason_code == 0) //Uploaded a hum
+            setXp_cnt(this.xp_cnt + UPLOAD_XP );
+        else
+            setXp_cnt(this.xp_cnt + ANSWER_XP);
+        update_XP_in_DB(this);
     }
 
 }

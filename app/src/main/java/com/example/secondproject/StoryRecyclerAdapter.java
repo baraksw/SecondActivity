@@ -2,6 +2,7 @@ package com.example.secondproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,33 +11,46 @@ import android.widget.ImageButton;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoryViewHolder> {
+
     private Context context;
     private ArrayList<Hum> story_hums;
     private boolean answerWindowVisible = false;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mDataBase = database.getReference();
 
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
         this.story_hums = story_hums;
 
     }
-
-    @NonNull
-    @Override
-    public StoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        @NonNull
+        @Override
+        public StoryViewHolder onCreateViewHolder (@NonNull ViewGroup parent,int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.story_row_layout, parent, false);
         StoryViewHolder storyViewHolder = new StoryViewHolder(view);
         return storyViewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull StoryViewHolder holder, int position) {
+        @Override
+        public void onBindViewHolder (@NonNull StoryViewHolder holder,int position){
         String friend_row_full_name = story_hums.get(position).getOwner();
         int hum_row_len = story_hums.get(position).getHum_len();
 
@@ -53,12 +67,12 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!answerWindowVisible){
+                if (!answerWindowVisible) {
                     holder.confirmAnswer.setVisibility(View.VISIBLE);
                     holder.answerEditText.setVisibility(View.VISIBLE);
                     holder.spaceStory.setVisibility(View.GONE);
                     answerWindowVisible = true;
-                }else if (answerWindowVisible){
+                } else if (answerWindowVisible) {
                     holder.confirmAnswer.setVisibility(View.GONE);
                     holder.answerEditText.setVisibility(View.GONE);
                     holder.spaceStory.setVisibility(View.VISIBLE);
@@ -69,41 +83,88 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
         holder.confirmAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v) {
-                story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
+            public void onClick(View v) {
+                String answer = holder.answerEditText.getText().toString();
+
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
                 holder.spaceStory.setVisibility(View.VISIBLE);
-                Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
+
+                //UploadAnswer(answer, story_hums.get(position));
+
+                /*
+                if(story_hums.get(position).uploadAnswer(answer)){
+                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();}
+                else {
+                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show(); }
+                 */
+
+
+                //TODO - both implementations above have problems - TALK WITH ASAF ABOUT THEM
             }
         });
-    }
 
 
-    @Override
-    public int getItemCount() { return story_hums.size(); }
 
-    public static class StoryViewHolder extends RecyclerView.ViewHolder {
+     }
 
-        TextView friendRowFullName;
-        ImageButton storyHumPlay;
-        ImageButton answerButton;
-        ImageButton confirmAnswer;
-        EditText answerEditText;
-        TextView ownerNameTextView;
-        TextView humLengthTextView;
-        Space spaceStory;
+            void UploadAnswer(String answer, Hum hum) {
+                if (hum.getHum_answer() == null) {
+                    hum.setHumAnswer(answer);
+                    mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
+                    mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.w("good1", hum.getHum_answer());
+                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
 
-        public StoryViewHolder(@NonNull View itemView) {
-            super(itemView);
-            friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
-            storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
-            answerButton = itemView.findViewById(R.id.answer_imageButton);
-            answerEditText = itemView.findViewById(R.id.answer_editText);
-            confirmAnswer = itemView.findViewById(R.id.confirm_answer_imageButton);
-            spaceStory = itemView.findViewById(R.id.story_space);
-            ownerNameTextView = itemView.findViewById(R.id.friend_row_full_name_textView);
-            humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("semek", "semek");
+                            Toast.makeText(context, "not uploaded", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+
+
+                } else {
+                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public int getItemCount() {
+                return story_hums.size();
+            }
+
+            public static class StoryViewHolder extends RecyclerView.ViewHolder {
+
+                TextView friendRowFullName;
+                ImageButton storyHumPlay;
+                ImageButton answerButton;
+                ImageButton confirmAnswer;
+                EditText answerEditText;
+                TextView ownerNameTextView;
+                TextView humLengthTextView;
+                Space spaceStory;
+
+                public StoryViewHolder(@NonNull View itemView) {
+                    super(itemView);
+                    friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
+                    storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
+                    answerButton = itemView.findViewById(R.id.answer_imageButton);
+                    answerEditText = itemView.findViewById(R.id.answer_editText);
+                    confirmAnswer = itemView.findViewById(R.id.confirm_answer_imageButton);
+                    spaceStory = itemView.findViewById(R.id.story_space);
+                    ownerNameTextView = itemView.findViewById(R.id.friend_row_full_name_textView);
+                    humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
+                }
+            }
+
         }
-    }
-}
+
+
+

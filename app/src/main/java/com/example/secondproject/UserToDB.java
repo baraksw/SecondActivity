@@ -17,7 +17,12 @@ public interface UserToDB {
 
     default void set_user(User user)
     {
-        mDataBase.child("DB").child("users_db").child(user.full_name).setValue(user);
+        mDataBase.child("DB").child("users_db").child(user.getFull_name()).setValue(user);
+    }
+
+    default void update_XP_in_DB(User user)
+    {
+        mDataBase.child("db2").child("hums").child(user.getFull_name()).child("xp_cnt").setValue(user.getXp_cnt());
     }
 
 }
