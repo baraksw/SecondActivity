@@ -117,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
                 users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
                 users_map.add_user(new_user);
                 mDataBase.child("DB").setValue(users_map);
-               // mDataBase.child("NEWFRIEND").setValue(new_user.get_friend(0));
+               // mDataBase.child("NEWFRIEND").setValue(new_user.get_friend());
             }
 
             @Override

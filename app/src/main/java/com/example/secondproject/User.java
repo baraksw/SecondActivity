@@ -20,7 +20,7 @@ import javax.crypto.interfaces.DHPrivateKey;
             public HashMap<String,String> friends_map;
 
             public User() {
-                friends_map = new HashMap<String, String>();
+                friends_map = new HashMap<String,String>();
             }
                 
             public User(String full_name, String user_name)
@@ -74,15 +74,6 @@ import javax.crypto.interfaces.DHPrivateKey;
 
     }
 
-    public void addHum(Hum new_hum) {
-
-        this.xp_cnt += 5;
-        updateLevel();
-
-        //published_hums[].add(new_hum);
-    }
-
-
     public int get_friends_number() {
         return this.friends_number;
     }
@@ -96,9 +87,10 @@ import javax.crypto.interfaces.DHPrivateKey;
         friends_number++;
     }
 
+    /*
     public String get_friend(){
         return friends_map.get("0");
 
     }
-
+*/
 }
