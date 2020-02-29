@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Space;
@@ -41,16 +43,17 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         this.story_hums = story_hums;
 
     }
-        @NonNull
-        @Override
-        public StoryViewHolder onCreateViewHolder (@NonNull ViewGroup parent,int viewType){
+
+    @NonNull
+    @Override
+    public StoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.story_row_layout, parent, false);
         StoryViewHolder storyViewHolder = new StoryViewHolder(view);
         return storyViewHolder;
     }
 
-        @Override
-        public void onBindViewHolder (@NonNull StoryViewHolder holder,int position){
+    @Override
+    public void onBindViewHolder(@NonNull StoryViewHolder holder, int position) {
         String friend_row_full_name = story_hums.get(position).getOwner();
         int hum_row_len = story_hums.get(position).getHum_len();
 
@@ -85,34 +88,33 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             @Override
             public void onClick(View v) {
                 String answer = holder.answerEditText.getText().toString();
+                boolean upload_success = story_hums.get(position).uploadAnswer(answer);
+
+                if (upload_success) {
+                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
+                }
 
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
                 holder.spaceStory.setVisibility(View.VISIBLE);
+                closeKeyboard();
+                Toast.makeText(v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
+            }
 
-                //UploadAnswer(answer, story_hums.get(position));
-
-                /*
-                if(story_hums.get(position).uploadAnswer(answer)){
-                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();}
-                else {
-                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show(); }
-                 */
-
-
-                //TODO - both implementations above have problems - TALK WITH ASAF ABOUT THEM
+            private void closeKeyboard() {
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(holder.confirmAnswer.getWindowToken(), 0);
             }
         });
+    }
 
-
-
-     }
-
-            void UploadAnswer(String answer, Hum hum) {
-                if (hum.getHum_answer() == null) {
-                    hum.setHumAnswer(answer);
-                    mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
-                    mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
+    void UploadAnswer(String answer, Hum hum) {
+        if (hum.getHum_answer() == null) {
+            hum.setHumAnswer(answer);
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Log.w("good1", hum.getHum_answer());
@@ -130,41 +132,38 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
                     });
 
 
-                } else {
-                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public int getItemCount() {
-                return story_hums.size();
-            }
-
-            public static class StoryViewHolder extends RecyclerView.ViewHolder {
-
-                TextView friendRowFullName;
-                ImageButton storyHumPlay;
-                ImageButton answerButton;
-                ImageButton confirmAnswer;
-                EditText answerEditText;
-                TextView ownerNameTextView;
-                TextView humLengthTextView;
-                Space spaceStory;
-
-                public StoryViewHolder(@NonNull View itemView) {
-                    super(itemView);
-                    friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
-                    storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
-                    answerButton = itemView.findViewById(R.id.answer_imageButton);
-                    answerEditText = itemView.findViewById(R.id.answer_editText);
-                    confirmAnswer = itemView.findViewById(R.id.confirm_answer_imageButton);
-                    spaceStory = itemView.findViewById(R.id.story_space);
-                    ownerNameTextView = itemView.findViewById(R.id.friend_row_full_name_textView);
-                    humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
-                }
-            }
-
+        } else {
+            Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
         }
+    }
+    
+    public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
+        TextView friendRowFullName;
+        ImageButton storyHumPlay;
+        ImageButton answerButton;
+        ImageButton confirmAnswer;
+        EditText answerEditText;
+        TextView ownerNameTextView;
+        TextView humLengthTextView;
+        Space spaceStory;
 
+        public StoryViewHolder(@NonNull View itemView) {
+            super(itemView);
+            friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
+            storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
+            answerButton = itemView.findViewById(R.id.answer_imageButton);
+            answerEditText = itemView.findViewById(R.id.answer_editText);
+            confirmAnswer = itemView.findViewById(R.id.confirm_answer_imageButton);
+            spaceStory = itemView.findViewById(R.id.story_space);
+            ownerNameTextView = itemView.findViewById(R.id.friend_row_full_name_textView);
+            humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return story_hums.size();
+    }
+}
 

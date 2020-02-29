@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,8 +21,10 @@ import com.google.firebase.database.core.Context;
 
 import java.util.ArrayList;
 
+
 public class MyProfileActivity extends AppCompatActivity {
 
+    final static String LOG_TAG = "My profile log";
     private RecyclerView hums_recyclerView;
     private ArrayList<Hum> temp_hums;
     private RecyclerView.LayoutManager hum_layoutManager;
@@ -30,6 +33,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
