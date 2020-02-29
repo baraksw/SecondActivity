@@ -1,6 +1,7 @@
 package com.example.secondproject;
 
 
+import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
@@ -42,14 +43,6 @@ public class Hum implements HumToDB {
         playAudio(this);
     }
 
-    public void add_hum_to_db() {
-        //add_hum_to_db(this);
-    }
-
-    public static void OpenYoutubeOnWeb(String urlString) {
-        //TODO: Implementing the recyclerview
-    }
-
     public int countNumOfListeners() {
         if (user_viewed_list == null) {
             this.num_of_listeners = 0;
@@ -64,8 +57,17 @@ public class Hum implements HumToDB {
         return this.hum_len;
     }
 
-    public boolean uploadAnswer(String answer) {
-        return UploadAnswer(answer, this);
+    public void AddHum2Db(String answer, Context relevant_context) {
+        this.num_of_hums_answered += 1;
+        this.hum_answer = answer;
+
+        boolean upload_success = UploadAnswer(answer, this);
+
+        if (upload_success) {
+            Toast.makeText(relevant_context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(relevant_context, "Hum already answered...", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void print()
@@ -76,11 +78,5 @@ public class Hum implements HumToDB {
     public int getNum_of_Hums_answered() {
         return this.num_of_hums_answered;
     }
-
-    public void setHumAnswer(String song_name) {
-        this.hum_answer = song_name;
-        //this.num_of_hums_answered = View.VISIBLE;
-    }
-
 }
 

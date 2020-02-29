@@ -1,32 +1,24 @@
 package com.example.secondproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -88,13 +80,16 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             @Override
             public void onClick(View v) {
                 String answer = holder.answerEditText.getText().toString();
-                boolean upload_success = story_hums.get(position).uploadAnswer(answer);
+
+                story_hums.get(position).AddHum2Db(answer, context);
+
+                /*boolean upload_success = story_hums.get(position).AddHum2Db(answer);
 
                 if (upload_success) {
                     Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
-                }
+                }*/
 
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
@@ -110,9 +105,9 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         });
     }
 
+    /*
     void UploadAnswer(String answer, Hum hum) {
         if (hum.getHum_answer() == null) {
-            hum.setHumAnswer(answer);
             mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
             mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -135,7 +130,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         } else {
             Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
     
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
