@@ -96,26 +96,18 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/global_top_margin"
-        android:text="כפתור זמני-לעמוד חבר גנרי"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/friends_headline"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="launchFriendProfileActivity"/>
-
-    <Button
         android:id="@+id/friendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="add friend"
+        android:background="@drawable/custom_button"
         android:onClick="addFriendBtn"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        android:text="add friend"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/adding_friends_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/adding_friends_editText"
+        app:layout_constraintTop_toTopOf="@+id/adding_friends_editText"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

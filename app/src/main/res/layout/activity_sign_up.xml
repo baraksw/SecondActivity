@@ -140,6 +140,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/decoration_background"
         app:layout_constraintTop_toTopOf="@+id/decoration_background"
-        android:onClick="Restart_DB"/>
+        android:onClick="Restart_DB"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

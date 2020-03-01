@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     UsersMap users_map;
     private int try_1;
+    private Button demoButton;
 
     private SignInButton mGoogleBtn;
     GoogleSignInClient mGoogleSignInClient;
@@ -59,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         mEmailField = (EditText) findViewById(R.id.email_editText);
         mPasswordField = (EditText) findViewById(R.id.password_editText);
         mLoginBtn = (ImageButton) findViewById(R.id.loginBtn);
+        demoButton = (Button) findViewById(R.id.button);
+        demoButton.setVisibility(View.GONE);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

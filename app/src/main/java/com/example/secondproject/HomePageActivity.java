@@ -207,7 +207,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void LogOut(View view){
         mAuth.signOut();
-        Intent HomePageIntent = new Intent(HomePageActivity.this, HomePageDemo.class);
+        Intent HomePageIntent = new Intent(HomePageActivity.this, LoginActivity.class);
         startActivity(HomePageIntent);
     }
 
