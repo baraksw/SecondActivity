@@ -113,7 +113,6 @@ public interface HumToDB {
 
     default boolean UploadAnswer (String answer, Hum hum) {
         if (hum.getHum_answer() == null) {
-            hum.setHumAnswer(answer);
             mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
             mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

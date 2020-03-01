@@ -59,7 +59,7 @@ public class HomePageActivity extends AppCompatActivity {
     private TextView story_textView;
     BlurImageView blur_mic_image;
     BlurImageView blur_profile_link_image;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +149,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void startHumAcceptionActivity()
     {
         Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
+        startHumAcceptionIntent.putExtra("End time record", endTimeRecord);
         startActivity(startHumAcceptionIntent);
     }
 
