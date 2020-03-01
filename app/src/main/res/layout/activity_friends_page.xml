@@ -105,7 +105,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/adding_friends_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/adding_friends_editText"
         app:layout_constraintTop_toTopOf="@+id/adding_friends_editText"
         app:layout_constraintVertical_bias="1.0" />
