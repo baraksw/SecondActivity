@@ -46,8 +46,8 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
                 hums.get(position).playHum();
             }
         });
-        holder.humAnsweredImage.setVisibility(hum_visibility);
-        holder.humAnsweredText.setVisibility(hum_visibility);
+        //holder.humAnsweredImage.setVisibility(hum_visibility);
+        //holder.humAnsweredText.setVisibility(hum_visibility);
     }
 
     @Override

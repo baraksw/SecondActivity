@@ -41,7 +41,7 @@
     <dimen name="space_height">15dp</dimen>
     <dimen name="profile_relative_layout_height">430dp</dimen>
     <dimen name="relative_layout_bottom_padding">10dp</dimen>
-    <dimen name="friends_relative_layout_height">600dp</dimen>
+    <dimen name="friends_relative_layout_height">520dp</dimen>
     <dimen name="friend_row_star_dimen">30dp</dimen>
     <dimen name="friend_row_name_width">200dp</dimen>
     <dimen name="hum_answered_dimen">30dp</dimen>

@@ -2,6 +2,9 @@ package com.example.secondproject;
 
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
@@ -12,23 +15,23 @@ import javax.crypto.interfaces.DHPrivateKey;
 
         public class User implements UserToDB {
 
+            public String Friends = "My Friends";
+            public String Hums = "My Hums";
             public String full_name = "anonymous", user_name = "anonymous user";
             public int xp_cnt = 0;
             public int level = 1;
             public int friends_number = 0;
             public int hums_number = 0;
-            public HashMap<String,String> friends_map;
 
             static final int UPLOAD_XP = 1;
             static final int ANSWER_XP = 2;
 
             public User() {
-                friends_map = new HashMap<String, String>();
+
             }
                 
             public User(String full_name, String user_name)
             {
-                friends_map = new HashMap<String, String>();
                 this.full_name =  full_name;
                 this.user_name = user_name;
             }
@@ -77,15 +80,6 @@ import javax.crypto.interfaces.DHPrivateKey;
 
     }
 
-    public void addHum(Hum new_hum) {
-
-        this.xp_cnt += 5;
-        updateLevel();
-
-        //published_hums[].add(new_hum);
-    }
-
-
     public int get_friends_number() {
         return this.friends_number;
     }
@@ -95,14 +89,13 @@ import javax.crypto.interfaces.DHPrivateKey;
     }
 
     public void add_friend(String name){
-        friends_map.put(String.valueOf(friends_number),name);
         friends_number++;
     }
 
+    /*
     public String get_friend(){
         return friends_map.get("0");
-
-    }
+    }*/
 
     public void UpdateXp(int reason_code)
     {
@@ -112,5 +105,6 @@ import javax.crypto.interfaces.DHPrivateKey;
             setXp_cnt(this.xp_cnt + ANSWER_XP);
         update_XP_in_DB(this);
     }
+
 
 }

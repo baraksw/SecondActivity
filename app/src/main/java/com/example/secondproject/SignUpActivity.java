@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private int count_friends = 0;
     private EditText mNameField;
     private EditText mEmailField;
     private EditText mPasswordField;
@@ -93,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                             current_user.add_friend("FirstFriend");
                             add_user_to_db(current_user);
                             userProfile(current_user.getFull_name());
+                            add_friend("tubas");
                             mProgress.dismiss();
                             Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -110,21 +112,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void add_user_to_db(final User new_user) {
-        mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
-                users_map.add_user(new_user);
-                mDataBase.child("DB").setValue(users_map);
-               // mDataBase.child("NEWFRIEND").setValue(new_user.get_friend(0));
-            }
+        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
@@ -144,25 +133,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         }
 
+
     }
-    private void addFriends(User new_user) {
-
-        friends_db = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
-        friends_db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    User friend = dataSnapshot1.getValue(User.class);
-                    //new_user.add_friend(friend.getFull_name());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+    public void add_friend(String name){
+        mDataBase.child("DB").child("users_db").child(current_user.getFull_name()).child("friends").child(String.valueOf(count_friends)).setValue(name);
+        count_friends++;
     }
 
 
