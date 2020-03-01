@@ -134,7 +134,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView friendRowFullName;
         ImageButton storyHumPlay;
         ImageButton answerButton;
         ImageButton confirmAnswer;
@@ -145,7 +144,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
         public StoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
             storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
             answerButton = itemView.findViewById(R.id.answer_imageButton);
             answerEditText = itemView.findViewById(R.id.answer_editText);

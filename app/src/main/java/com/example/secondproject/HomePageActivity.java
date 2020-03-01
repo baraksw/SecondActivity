@@ -133,6 +133,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void startHumAcceptionActivity()
     {
         Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
+        startHumAcceptionIntent.putExtra("End time record", endTimeRecord);
         startActivity(startHumAcceptionIntent);
     }
 

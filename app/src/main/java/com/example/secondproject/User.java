@@ -104,7 +104,7 @@ import javax.crypto.interfaces.DHPrivateKey;
 
     }
 
-    public void add_xp(int reason_code)
+    public void UpdateXp(int reason_code)
     {
         if(reason_code == 0) //Uploaded a hum
             setXp_cnt(this.xp_cnt + UPLOAD_XP );

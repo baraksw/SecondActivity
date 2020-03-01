@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:text="Tuval190"
+            android:text="@string/story_profile_name"
             android:textAppearance="@style/friend_row_name_textStyle"
             android:textColor="@color/white"
             android:textSize="8sp"
