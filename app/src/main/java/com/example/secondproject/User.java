@@ -53,7 +53,7 @@ import javax.crypto.interfaces.DHPrivateKey;
     }
 
     public int getXp_cnt() {
-        return this.xp_cnt;
+        return getXP(this);
     }
 
     public void setXp_cnt(int xp_cnt) {
