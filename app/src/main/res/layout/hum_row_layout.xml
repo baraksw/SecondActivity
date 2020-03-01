@@ -31,24 +31,6 @@
         android:text="@string/hum_name_text"
         android:textAppearance="@style/record_time_textStyle"/>
 
-    <ImageView
-        android:id="@+id/listeners_imageView"
-        android:layout_width="65dp"
-        android:layout_height="20dp"
-        android:paddingLeft="5dp"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/hum_name_textView"
-        app:srcCompat="@drawable/friends_image" />
-
-    <TextView
-        android:id="@+id/num_of_listeners_textView"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/listeners_imageView"
-        android:layout_below="@id/listeners_imageView"
-        android:text="@string/num_of_listeners_text"
-        android:gravity="center"
-        android:textAppearance="@style/num_of_listeners_textStyle"/>
 
     <ImageView
         android:id="@+id/hum_answered_imageView"
