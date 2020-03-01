@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FriendsPageActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class FriendsPageActivity extends AppCompatActivity {
     private RecyclerView friend_recyclerView;
     private RecyclerView.LayoutManager friend_layoutManager;
     private FriendRecyclerAdapter friend_adapter;
-    private ArrayList<String> my_friends_temp;
+    private ArrayList<User> my_friends_temp;
     private DatabaseReference db_reference;
     private String friend_name;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
@@ -52,13 +53,17 @@ public class FriendsPageActivity extends AppCompatActivity {
         friend_recyclerView.setLayoutManager(friend_layoutManager);
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
-        my_friends_temp = new ArrayList<String>();
+        my_friends_temp = new ArrayList<User>();
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    String user = dataSnapshot1.getValue(String.class);
-                    my_friends_temp.add(user);
+                    //HashMap temp_user = dataSnapshot1.getValue(HashMap.class);
+                    User local_user = new User(String.valueOf(dataSnapshot1.child("full_name").getValue(String.class)),
+                            String.valueOf(dataSnapshot1.child("user_name").getValue(String.class)),
+                            dataSnapshot1.child("xp_cnt").getValue(Integer.class));
+
+                    my_friends_temp.add(local_user);
                 }
                 friend_adapter = new FriendRecyclerAdapter(FriendsPageActivity.this, my_friends_temp);
                 friend_recyclerView.setAdapter(friend_adapter);
