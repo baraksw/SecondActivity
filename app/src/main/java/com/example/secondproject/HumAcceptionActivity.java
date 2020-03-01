@@ -156,7 +156,16 @@ public class HumAcceptionActivity extends Activity {
     public void add_hum_to_db(final Hum new_hum) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
         mDataBase.child("db2").child("hums_db").child(new_hum.hum_id).setValue(new_hum);
+        mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class)-1);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
     }
 }
 

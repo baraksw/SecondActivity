@@ -38,7 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomePageActivity extends AppCompatActivity {
-
+    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView story_recyclerView;
     private ArrayList<Hum> story_hums;
     private RecyclerView.LayoutManager story_layoutManager;
