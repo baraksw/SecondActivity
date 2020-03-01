@@ -56,6 +56,7 @@ public class HumAcceptionActivity extends Activity {
     private ImageView micImageButton;
     private DatabaseReference mDataBase;
     public HumsMap hums_map;
+    private String current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class HumAcceptionActivity extends Activity {
         humFileName += "/recorded_Audio.3pg";
         endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
         mAuth = FirebaseAuth.getInstance();
+        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
     }
 
 
@@ -104,10 +106,10 @@ public class HumAcceptionActivity extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
         String currentDateTime = sdf.format(new Date());
         String hum_id = currentDateTime + "_" + audio_file_random_name;
-        mDataBase.child("DB").child("users_db").child(mAuth.getCurrentUser().getDisplayName().toString()).child("Hums").child("hums0").setValue(hum_id);
+        mDataBase.child("DB").child("users_db").child(current_user).child("Hums").child("hums0").setValue(hum_id);
         try {
-            Hum hum = new Hum("asaf", hum_id, 5);
-            uploadAudio("asaf", 5, hum_id);
+            Hum hum = new Hum(current_user, hum_id, endTimeRecord);
+            uploadAudio(current_user, endTimeRecord, hum_id);
             add_hum_to_db(hum);
 
         } catch (Exception e) {

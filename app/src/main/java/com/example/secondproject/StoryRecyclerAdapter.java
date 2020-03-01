@@ -58,15 +58,17 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         int hum_row_len = story_hums.get(position).getHum_len();
 
         holder.humLengthTextView.setText("0:" + String.valueOf(hum_row_len));
+        holder.ownerNameTextView.setText(friend_row_full_name);
+        holder.confirmAnswer.setVisibility(View.GONE);
+        holder.answerEditText.setVisibility(View.GONE);
+
         holder.storyHumPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 story_hums.get(position).playHum();
             }
         });
-        holder.ownerNameTextView.setText(friend_row_full_name);
-        holder.confirmAnswer.setVisibility(View.GONE);
-        holder.answerEditText.setVisibility(View.GONE);
+
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +141,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView friendRowFullName;
         ImageButton storyHumPlay;
         ImageButton answerButton;
         ImageButton confirmAnswer;
@@ -150,7 +151,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
         public StoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            friendRowFullName = itemView.findViewById(R.id.friend_row_full_name_textView);
             storyHumPlay = itemView.findViewById(R.id.play_story_hum_imageButton);
             answerButton = itemView.findViewById(R.id.answer_imageButton);
             answerEditText = itemView.findViewById(R.id.answer_editText);
