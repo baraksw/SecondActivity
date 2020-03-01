@@ -39,6 +39,7 @@ import java.io.IOException;
 
 public interface HumToDB {
     StorageReference mStorage = FirebaseStorage.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     String mFileName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recorded_Audio.3pg";
     String hum_answer = "";
@@ -113,6 +114,16 @@ public interface HumToDB {
 
     default boolean UploadAnswer(String answer, Hum hum) {
         mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
+        mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class)+2);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         return true;
     }
         /*
