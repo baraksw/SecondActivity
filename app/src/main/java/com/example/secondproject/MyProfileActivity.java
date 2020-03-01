@@ -37,8 +37,11 @@ public class MyProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<String> my_hums;
     private String current_user = "userDefault";
-
+    private TextView xp_text;
     private TextView profile_name;
+    private String xp_number;
+
+
     //private TextView profile_xp;
     //private String current_xp = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getXp());
     // TODO: complete the function "getXp"
@@ -48,10 +51,25 @@ public class MyProfileActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null)
-            current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        xp_text = findViewById(R.id.xp_points_textView);
 
-        mProfileDb = FirebaseDatabase.getInstance().getReference();
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            mProfileDb = FirebaseDatabase.getInstance().getReference();
+            mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    xp_text.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+
         hums_ref = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
 
         hums_recyclerView = findViewById(R.id.my_shazamzams_recyclerView);
