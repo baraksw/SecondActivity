@@ -69,8 +69,6 @@ public class HumAcceptionActivity extends Activity {
         humFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         humFileName += "/recorded_Audio.3pg";
         endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
-        micImageButton = (ImageView) findViewById(R.id.mic_image_view);
-        micImageButton.setVisibility(View.VISIBLE);
     }
 
 
