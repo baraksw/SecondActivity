@@ -32,7 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jgabrielfreitas.core.BlurImageView;
-import com.jgabrielfreitas.core.BlurImageView;
+import static java.lang.Math.toIntExact;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,7 +49,8 @@ public class HomePageActivity extends AppCompatActivity {
     private String mFileName;
     private MediaRecorder mRecorder;
     private ImageButton micImageButton;
-    private long startTimeRecord, endTimeRecord;
+    private long startTimeRecord;
+    private int endTimeRecord;
     private ImageButton profile_link_imageButton;
     private TextView xp_points_textView6;
     private Button logOutBtn;
@@ -138,14 +139,14 @@ public class HomePageActivity extends AppCompatActivity {
                     endTimeRecord = (int) (SystemClock.uptimeMillis() - startTimeRecord) / 1000;
                     //Toast.makeText(HomePageActivity.this, "Recording time is: "+endTimeRecord, Toast.LENGTH_LONG).show();
                     //uploadAudio("asaf", endTimeRecord);
-                    startHumAcceptionActivity();
+                    startHumAcceptionActivity(endTimeRecord);
                 }
                 return false;
             }
         });
     }
 
-    public void startHumAcceptionActivity()
+    public void startHumAcceptionActivity(int endTimeRecord)
     {
         Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
         startHumAcceptionIntent.putExtra("End time record", endTimeRecord);

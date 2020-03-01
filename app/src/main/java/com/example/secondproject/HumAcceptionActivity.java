@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import static java.lang.Math.toIntExact;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -53,10 +53,14 @@ public class HumAcceptionActivity extends Activity {
     private ProgressDialog humProgress;
     private StorageReference humStorage;
     private int endTimeRecord;
+    private String recordLengthString;
     private ImageView micImageButton;
     private DatabaseReference mDataBase;
     public HumsMap hums_map;
     private String current_user;
+    private TextView recordLength;
+    private ImageButton playerBtn;
+    private boolean play = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +74,23 @@ public class HumAcceptionActivity extends Activity {
         Intent home_page_activity = getIntent();
         humFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         humFileName += "/recorded_Audio.3pg";
-        endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
-        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null)
+            current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        else
+            Toast.makeText(HumAcceptionActivity.this, "User not logged in!!",Toast.LENGTH_LONG).show();
         mAuth = FirebaseAuth.getInstance();
-        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
+        String recordLengthString = String.valueOf(endTimeRecord);
+        recordLength = (TextView)findViewById(R.id.current_record_length_textView);
+        //Toast.makeText(HumAcceptionActivity.this, "Recording time is: "+ endTimeRecord, Toast.LENGTH_LONG).show();
+        if(endTimeRecord <= 9)
+            recordLength.setText("0:0" + recordLengthString);
+        else
+            recordLength.setText("0:" + recordLengthString);
+        playerBtn = findViewById(R.id.play_current_record_imageButton);
     }
 
-
-    public void playCurrentRecord(View view) {
+    public void humPlayerOnClick(View view) {
         final MediaPlayer player = new MediaPlayer();
         try {
             player.setDataSource(humFileName); //Thats a general name given to every record, and is overrided when
@@ -87,17 +100,13 @@ public class HumAcceptionActivity extends Activity {
             Log.e("PlayCurrent_log", "prepare() failed");
         }
 
-        player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
+        player.start();
     }
+
 
     public void resetHumRecording(View view) {
         Intent home_page_intent = new Intent(this, HomePageActivity.class);
-        Toast.makeText(HumAcceptionActivity.this, "Succecfuly uploaded!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HumAcceptionActivity.this, "Canceld recording", Toast.LENGTH_SHORT).show();
         startActivity(home_page_intent);
     }
 
@@ -112,7 +121,6 @@ public class HumAcceptionActivity extends Activity {
         add_hum_to_db(hum);
         Intent home_page_intent = new Intent(this, HomePageActivity.class);
         startActivity(home_page_intent);
-
     }
 
     private void uploadAudio(String username, int endTimeRecord, String hum_id) {
