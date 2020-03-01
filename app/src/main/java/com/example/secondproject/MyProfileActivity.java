@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,11 @@ public class MyProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager hum_layoutManager;
     private HumRecyclerAdapter hum_adapter;
     private DatabaseReference db_reference;
+    private DatabaseReference mProfileDb;
+    private DatabaseReference hums_ref;
+    private FirebaseAuth mAuth;
+    private ArrayList<String> my_hums;
+    private String current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,31 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
+        mProfileDb = FirebaseDatabase.getInstance().getReference();
+        hums_ref = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+
         hums_recyclerView = findViewById(R.id.my_shazamzams_recyclerView);
         hum_layoutManager = new GridLayoutManager(this, 1);
         hums_recyclerView.setHasFixedSize(true);
         hums_recyclerView.setLayoutManager(hum_layoutManager);
+
+        /*
+        my_hums = new ArrayList<String>();
+        mProfileDb.child("Hums").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    my_hums.add(dataSnapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         temp_hums = new ArrayList<Hum>();
@@ -49,7 +76,9 @@ public class MyProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
-                    temp_hums.add(hum);
+                    if(hum.owner.equals(current_user)==true){
+                        temp_hums.add(hum);
+                    }
                 }
                 hum_adapter = new HumRecyclerAdapter(MyProfileActivity.this, temp_hums);
                 hums_recyclerView.setAdapter(hum_adapter);
