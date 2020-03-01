@@ -52,12 +52,17 @@ public class HumAcceptionActivity extends Activity {
     private ProgressDialog humProgress;
     private StorageReference humStorage;
     private int endTimeRecord;
+    private ImageView micImageButton;
+    private DatabaseReference mDataBase;
+    public HumsMap hums_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hum_acception);
-        humAuth =FirebaseAuth.getInstance();
+        humAuth = FirebaseAuth.getInstance();
+        hums_map = new HumsMap();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
         humProgress = new ProgressDialog(this);
         humStorage = FirebaseStorage.getInstance().getReference();
         Intent home_page_activity = getIntent();
@@ -71,7 +76,7 @@ public class HumAcceptionActivity extends Activity {
         final MediaPlayer player = new MediaPlayer();
         try {
             player.setDataSource(humFileName); //Thats a general name given to every record, and is overrided when
-            //we start a new one. So by using mFileName, you can hear the current record.
+            //we start a new one. So by using humFileName, you can hear the current record.
             player.prepare();
         } catch (IOException e) {
             Log.e("PlayCurrent_log", "prepare() failed");
@@ -93,15 +98,16 @@ public class HumAcceptionActivity extends Activity {
 
     public void upload2DB(View view) {
 
-            String audio_file_random_name = UUID.randomUUID().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
-            String currentDateTime = sdf.format(new Date());
-            String hum_id = currentDateTime + "_" + audio_file_random_name;
-           try{ Hum hum = new Hum("asaf", hum_id, 5);
+        String audio_file_random_name = UUID.randomUUID().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
+        String currentDateTime = sdf.format(new Date());
+        String hum_id = currentDateTime + "_" + audio_file_random_name;
+        try {
+            Hum hum = new Hum("asaf", hum_id, 5);
             uploadAudio("asaf", 5, hum_id);
+            add_hum_to_db(hum);
 
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             Log.w("fuck it", "bubi");
             e.printStackTrace();
         }
@@ -121,27 +127,56 @@ public class HumAcceptionActivity extends Activity {
         //restart_DB();
         //add_hum_to_db(new_hum);
 
-        try{
+        try {
             final StorageReference filepath = humStorage.child("Audio").child(username).child(hum_id);
-        Uri uri = Uri.fromFile(new File(humFileName));
-        audio_path = uri.getPath();
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                humProgress.dismiss();
-                Toast.makeText(HumAcceptionActivity.this, "Succecfuly uploaded!", Toast.LENGTH_SHORT).show();
-            }
+            Uri uri = Uri.fromFile(new File(humFileName));
+            audio_path = uri.getPath();
+            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    humProgress.dismiss();
+                    Toast.makeText(HumAcceptionActivity.this, "Succecfuly uploaded!", Toast.LENGTH_SHORT).show();
+                }
 
                 //mRecordLabel.setText("Uploading Finished");
             });
-        }
-        catch(Exception e){
-        Log.w("fuck it", "bubi1");
-        e.printStackTrace();
+        } catch (Exception e) {
+            Log.w("fuck it", "bubi1");
+            e.printStackTrace();
 
         }
-        }
     }
+
+    public void add_hum_to_db(final Hum new_hum) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    {
+                        hums_map = dataSnapshot.child("db2").getValue(HumsMap.class);
+                        hums_map.add_hum(new_hum);
+                        mDataBase.child("db2").setValue(hums_map);
+                        /*users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
+                        current_user = users_map.getUser("asaf");
+                        //current_user.add_hum(hum_id);
+                        mDataBase.child("DB").setValue(users_map);
+                        */
+
+                    }
+                } catch (Exception e) {
+                    Log.w("exception", "fuck it");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+}
 
 
 

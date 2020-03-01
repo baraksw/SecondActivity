@@ -81,6 +81,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/atara_image" />
 
+    <ProgressBar
+        android:id="@+id/record_animation"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:progress="70"
+        android:indeterminateDrawable="@drawable/circle_progress_bar"/>
+
+    <ProgressBar
+        android:id="@+id/record_animation2"
+        android:layout_width="390dp"
+        android:layout_height="390dp"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:progress="70"
+        android:indeterminateDrawable="@drawable/circle_progress_bar2"/>
+
+
+
     <com.jgabrielfreitas.core.BlurImageView
         android:id="@+id/blur_mic_image"
         android:layout_width="300dp"

@@ -2,6 +2,7 @@ package com.example.secondproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,30 @@ import android.widget.ImageButton;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoryViewHolder> {
+
     private Context context;
     private ArrayList<Hum> story_hums;
     private boolean answerWindowVisible = false;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mDataBase = database.getReference();
 
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
@@ -54,12 +70,12 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!answerWindowVisible){
+                if (!answerWindowVisible) {
                     holder.confirmAnswer.setVisibility(View.VISIBLE);
                     holder.answerEditText.setVisibility(View.VISIBLE);
                     holder.spaceStory.setVisibility(View.GONE);
                     answerWindowVisible = true;
-                }else if (answerWindowVisible){
+                } else if (answerWindowVisible) {
                     holder.confirmAnswer.setVisibility(View.GONE);
                     holder.answerEditText.setVisibility(View.GONE);
                     holder.spaceStory.setVisibility(View.VISIBLE);
@@ -71,12 +87,20 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.confirmAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                story_hums.get(position).answereHum(holder.answerEditText.getText().toString());
+                String answer = holder.answerEditText.getText().toString();
+                boolean upload_success = story_hums.get(position).uploadAnswer(answer);
+
+                if (upload_success) {
+                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
+                }
+
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
                 holder.spaceStory.setVisibility(View.VISIBLE);
                 closeKeyboard();
-                Toast.makeText( v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
             }
 
             private void closeKeyboard() {
@@ -86,9 +110,33 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         });
     }
 
-    @Override
-    public int getItemCount() { return story_hums.size(); }
+    void UploadAnswer(String answer, Hum hum) {
+        if (hum.getHum_answer() == null) {
+            hum.setHumAnswer(answer);
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.w("good1", hum.getHum_answer());
+                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
 
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("semek", "semek");
+                            Toast.makeText(context, "not uploaded", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+
+
+        } else {
+            Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
+        }
+    }
+    
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
         TextView friendRowFullName;
@@ -112,4 +160,10 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             humLengthTextView = itemView.findViewById(R.id.hum_length_textView);
         }
     }
+
+    @Override
+    public int getItemCount() {
+        return story_hums.size();
+    }
 }
+
