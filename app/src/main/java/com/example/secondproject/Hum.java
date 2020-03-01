@@ -65,7 +65,7 @@ public class Hum implements HumToDB {
         this.hum_answer = answer;
         this.answered = View.VISIBLE;
 
-        
+
         boolean upload_success = UploadAnswer(answer, this);
 
         if (upload_success) {
