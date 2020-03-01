@@ -55,7 +55,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     public void onBindViewHolder(@NonNull StoryViewHolder holder, int position) {
         String friend_row_full_name = story_hums.get(position).getOwner();
         int hum_row_len = story_hums.get(position).getHum_len();
-
         holder.humLengthTextView.setText("0:" + String.valueOf(hum_row_len));
         holder.storyHumPlay.setOnClickListener(new View.OnClickListener() {
             @Override

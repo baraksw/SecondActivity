@@ -31,7 +31,7 @@ public class FriendsPageActivity extends AppCompatActivity {
     private RecyclerView friend_recyclerView;
     private RecyclerView.LayoutManager friend_layoutManager;
     private FriendRecyclerAdapter friend_adapter;
-    private ArrayList<User> my_friends_temp;
+    private ArrayList<String> my_friends_temp;
     private DatabaseReference db_reference;
     private String friend_name;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
@@ -52,12 +52,12 @@ public class FriendsPageActivity extends AppCompatActivity {
         friend_recyclerView.setLayoutManager(friend_layoutManager);
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
-        my_friends_temp = new ArrayList<User>();
+        my_friends_temp = new ArrayList<String>();
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    User user = dataSnapshot1.getValue(User.class);
+                    String user = dataSnapshot1.getValue(String.class);
                     my_friends_temp.add(user);
                 }
                 friend_adapter = new FriendRecyclerAdapter(FriendsPageActivity.this, my_friends_temp);
