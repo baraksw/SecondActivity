@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,11 @@ public class MyProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager hum_layoutManager;
     private HumRecyclerAdapter hum_adapter;
     private DatabaseReference db_reference;
+    private TextView profile_name;
+    private String current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+    //private TextView profile_xp;
+    //private String current_xp = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getXp());
+    // TODO: complete the function "getXp"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,11 @@ public class MyProfileActivity extends AppCompatActivity {
         hum_layoutManager = new GridLayoutManager(this, 1);
         hums_recyclerView.setHasFixedSize(true);
         hums_recyclerView.setLayoutManager(hum_layoutManager);
+
+        //profile_xp = findViewById(R.id.xp_points_textView);
+        //profile_xp.setText(current_xp);
+        profile_name = findViewById(R.id.user_name_textView);
+        profile_name.setText(current_user);
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         temp_hums = new ArrayList<Hum>();
