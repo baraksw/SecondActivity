@@ -3,6 +3,7 @@ package com.example.secondproject;
 import android.media.MediaPlayer;
 import android.net.Uri;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +40,8 @@ import java.io.IOException;
 public interface HumToDB {
     StorageReference mStorage = FirebaseStorage.getInstance().getReference();
     DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    String mFileName = Environment.getExternalStorageDirectory().getAbsolutePath()+"/recorded_Audio.3pg";
+    String mFileName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recorded_Audio.3pg";
+    String hum_answer = "";
 
     //Play a specific Hum
     default void playAudio(Hum hum) {
@@ -67,18 +70,16 @@ public interface HumToDB {
     //Insert new Hum to firebase
     default void add_hum_to_db(final Hum new_hum) {
         DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.addValueEventListener(new ValueEventListener()
-        {
+        mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     HumsMap hums_map = new HumsMap();
                     hums_map = dataSnapshot.child("db2").getValue(HumsMap.class);
-                        Hum hummy = new Hum("tomer", "efuef", 3);
-                        hums_map.add_hum(new_hum);
-                        mDataBase.child("db2").setValue(hums_map);
-                }
-                catch (Exception e) {
+                    Hum hummy = new Hum("tomer", "efuef", 3);
+                    hums_map.add_hum(new_hum);
+                    mDataBase.child("db2").setValue(hums_map);
+                } catch (Exception e) {
                     Log.w("exception", "fuck it");
                     e.printStackTrace();
                 }
@@ -109,5 +110,60 @@ public interface HumToDB {
             }
         });
     }
+
+    default boolean UploadAnswer (String answer, Hum hum) {
+        if (hum.getHum_answer() == null) {
+            hum.setHumAnswer(answer);
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.w("good1", hum.getHum_answer());
+
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("semek", "semek");
+                        }
+                    });
+
+            return true;
+
+
+                        /*
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("great", task.getException().getMessage());
+                    } else {
+                        Log.d("fuck", task.getException().getMessage());
+                    }
+                }
+            });
+
+                        */
+
+            /*mDataBase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Log.w("good2", dataSnapshot.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").getValue(String.class));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            }); */
+
+        } else {
+            return false;
+        }
+    }
 }
+
+
+
+
 

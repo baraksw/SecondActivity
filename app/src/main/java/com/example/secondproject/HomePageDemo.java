@@ -274,8 +274,6 @@ public class HomePageDemo extends AppCompatActivity implements UserToDB {
         hums_map = new HumsMap();
         Hum fake_hum = new Hum("asaf", "4ddd545", 5);
         hums_map.add_hum(fake_hum);
-        Hum fake_hum2 = new Hum("tomer", "4ddd5488", 5);
-        hums_map.add_hum(fake_hum2);
         mDataBase.child("db2").setValue(hums_map);
         Toast.makeText(HomePageDemo.this, "hums_DB Restarted", Toast.LENGTH_SHORT).show();
     }

@@ -23,6 +23,9 @@ import javax.crypto.interfaces.DHPrivateKey;
             public int friends_number = 0;
             public int hums_number = 0;
 
+            static final int UPLOAD_XP = 1;
+            static final int ANSWER_XP = 2;
+
             public User() {
 
             }
@@ -88,5 +91,20 @@ import javax.crypto.interfaces.DHPrivateKey;
     public void add_friend(String name){
         friends_number++;
     }
+
+    /*
+    public String get_friend(){
+        return friends_map.get("0");
+    }*/
+
+    public void add_xp(int reason_code)
+    {
+        if(reason_code == 0) //Uploaded a hum
+            setXp_cnt(this.xp_cnt + UPLOAD_XP );
+        else
+            setXp_cnt(this.xp_cnt + ANSWER_XP);
+        update_XP_in_DB(this);
+    }
+
 
 }
