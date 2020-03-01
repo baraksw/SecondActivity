@@ -22,7 +22,7 @@ public interface UserToDB {
     default void update_XP_in_DB(User user) {
         mDataBase.child("db2").child("hums").child(user.getFull_name()).child("xp_cnt").setValue(user.getXp_cnt());
     }
-
+/*
     default int getXP(User user) {
         int xp = -1;
         mDataBase.addValueEventListener(new ValueEventListener() {
@@ -38,5 +38,5 @@ public interface UserToDB {
         });
 
         return xp;
-    }
+    } */
 }

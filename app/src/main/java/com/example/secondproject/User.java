@@ -36,6 +36,13 @@ import javax.crypto.interfaces.DHPrivateKey;
                 this.user_name = user_name;
             }
 
+            public User(String full_name, String user_name, int xp_cnt){
+                this.full_name = full_name;
+                this.user_name = user_name;
+                this.xp_cnt = xp_cnt;
+
+            }
+
     public String getFull_name() {
         return this.full_name;
     }
@@ -53,7 +60,8 @@ import javax.crypto.interfaces.DHPrivateKey;
     }
 
     public int getXp_cnt() {
-        return getXP(this);
+        //return getXP(this);
+        return 1;
     }
 
     public void setXp_cnt(int xp_cnt) {
