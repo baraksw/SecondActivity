@@ -8,48 +8,38 @@
     tools:context=".HumAcceptionActivity"
     android:background="@drawable/gradient_background">
 
-    <ImageView
-        android:id="@+id/mic_image_view"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:scaleType="centerCrop"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/microphone_when_pressed" />
-
     <RelativeLayout
         android:id="@+id/current_record_bar_layout"
         android:layout_width="180dp"
         android:layout_height="60dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/story_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mic_image_view"
-        android:background="@drawable/story_background">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ImageButton
             android:id="@+id/play_current_record_imageButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:scaleType="center"
-            android:src="@drawable/play_button_icon"
             android:background="@color/transparent"
-            android:onClick="playCurrentRecord"/>
+            android:onClick="playCurrentRecord"
+            android:scaleType="center"
+            android:src="@drawable/play_button_icon" />
 
         <TextView
             android:id="@+id/current_record_length_textView"
             android:layout_width="45dp"
             android:layout_height="20dp"
-            android:text="0:03"
-            android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/play_current_record_imageButton"/>
+            android:layout_toRightOf="@id/play_current_record_imageButton"
+            android:gravity="center_vertical"
+            android:text="0:03" />
 
         <ImageButton
             android:id="@+id/reset_current_record_imagebutton"
@@ -58,10 +48,10 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:scaleType="fitCenter"
-
             android:background="@color/transparent"
-            android:onClick="resetHumRecording"/>
+
+            android:onClick="resetHumRecording"
+            android:scaleType="fitCenter" />
 
     </RelativeLayout>
 
@@ -69,14 +59,35 @@
         android:id="@+id/accept_and_upload_imageButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        android:background="@color/transparent"
+        android:onClick="upload2DB"
+        android:scaleType="centerInside"
+        android:src="@drawable/v_image_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_record_bar_layout"
-        android:background="@color/transparent"
-        android:src="@drawable/v_image_button"
-        android:scaleType="centerInside"
-        android:onClick="upload2DB"/>
+        app:layout_constraintTop_toBottomOf="@+id/current_record_bar_layout" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Please confirm your hum"
+        android:textAppearance="@style/headline_font"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/decorations_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
