@@ -18,7 +18,7 @@ import javax.crypto.interfaces.DHPrivateKey;
             public String Friends = "My Friends";
             public String Hums = "My Hums";
             public String full_name = "anonymous", user_name = "anonymous user";
-            public int xp_cnt = 0;
+            public int xp_cnt = 3;
             public int level = 1;
             public int friends_number = 0;
             public int hums_number = 0;
