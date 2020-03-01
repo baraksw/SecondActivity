@@ -36,7 +36,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private DatabaseReference hums_ref;
     private FirebaseAuth mAuth;
     private ArrayList<String> my_hums;
-    private String current_user = "userDefault";
+    private String current_user;
     private TextView xp_text;
     private TextView profile_name;
     private String xp_number;
@@ -50,11 +50,15 @@ public class MyProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        current_user = String.valueOf(mAuth.getCurrentUser().getDisplayName());
         setContentView(R.layout.activity_my_profile);
         xp_text = findViewById(R.id.xp_points_textView);
-        mAuth = FirebaseAuth.getInstance();
+        profile_name = findViewById(R.id.user_name_textView);
+        profile_name.setText(current_user);
+
         if(mAuth.getCurrentUser()!=null) {
-            current_user = String.valueOf(mAuth.getCurrentUser().getDisplayName());
             mProfileDb = FirebaseDatabase.getInstance().getReference();
             mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
                 @Override
