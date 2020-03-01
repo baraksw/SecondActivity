@@ -59,9 +59,7 @@ public class HomePageActivity extends AppCompatActivity {
     private TextView story_textView;
     BlurImageView blur_mic_image;
     BlurImageView blur_profile_link_image;
-
-    Hum temp_hum = new Hum("tuval", "200120_1736.15ac69e1-8f0f-4deb-9790-e9292a2ee2f4", 12);
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +98,6 @@ public class HomePageActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
                     story_hums.add(hum);
-                    story_hums.add(temp_hum);
                 }
                 story_adapter = new StoryRecyclerAdapter(HomePageActivity.this, story_hums);
                 story_recyclerView.setAdapter(story_adapter);
