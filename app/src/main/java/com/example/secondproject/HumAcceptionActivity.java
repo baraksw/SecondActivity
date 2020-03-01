@@ -73,6 +73,7 @@ public class HumAcceptionActivity extends Activity {
         endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
         current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         mAuth = FirebaseAuth.getInstance();
+        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
     }
 
 
@@ -106,7 +107,7 @@ public class HumAcceptionActivity extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
         String currentDateTime = sdf.format(new Date());
         String hum_id = currentDateTime + "_" + audio_file_random_name;
-        mDataBase.child("DB").child("users_db").child(mAuth.getCurrentUser().getDisplayName().toString()).child("Hums").child("hums0").setValue(hum_id);
+        mDataBase.child("DB").child("users_db").child(current_user).child("Hums").child("hums0").setValue(hum_id);
         try {
             Hum hum = new Hum(current_user, hum_id, endTimeRecord);
             uploadAudio(current_user, endTimeRecord, hum_id);

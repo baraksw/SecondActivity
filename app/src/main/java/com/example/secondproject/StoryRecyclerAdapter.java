@@ -48,15 +48,17 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         String friend_row_full_name = story_hums.get(position).getOwner();
         int hum_row_len = story_hums.get(position).getHum_len();
         holder.humLengthTextView.setText("0:" + String.valueOf(hum_row_len));
+        holder.ownerNameTextView.setText(friend_row_full_name);
+        holder.confirmAnswer.setVisibility(View.GONE);
+        holder.answerEditText.setVisibility(View.GONE);
+
         holder.storyHumPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 story_hums.get(position).playHum();
             }
         });
-        holder.ownerNameTextView.setText(friend_row_full_name);
-        holder.confirmAnswer.setVisibility(View.GONE);
-        holder.answerEditText.setVisibility(View.GONE);
+
         holder.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
