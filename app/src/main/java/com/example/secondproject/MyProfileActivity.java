@@ -110,6 +110,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
                     if(hum.owner.equals(current_user)==true){
+                        hum.hum_answer = dataSnapshot1.child("hum_answer").getValue(String.class);
                         temp_hums.add(hum);
                     }
                 }
