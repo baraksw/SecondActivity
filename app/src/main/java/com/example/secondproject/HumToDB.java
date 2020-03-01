@@ -112,10 +112,13 @@ public interface HumToDB {
     }
 
     default boolean UploadAnswer(String answer, Hum hum) {
-        mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
-        return true;
-        }
+        if (hum.getHum_answer() == "NULL") {
+            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
+            return true;
+        } else
+            return false;
     }
+}
 
 
 
