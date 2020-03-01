@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,11 @@ public class MyProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<String> my_hums;
     private String current_user;
+
+    private TextView profile_name;
+    //private TextView profile_xp;
+    //private String current_xp = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getXp());
+    // TODO: complete the function "getXp"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,10 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }
         });*/
+        //profile_xp = findViewById(R.id.xp_points_textView);
+        //profile_xp.setText(current_xp);
+        profile_name = findViewById(R.id.user_name_textView);
+        profile_name.setText(current_user);
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         temp_hums = new ArrayList<Hum>();

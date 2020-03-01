@@ -59,7 +59,7 @@ public class HomePageActivity extends AppCompatActivity {
     private TextView story_textView;
     BlurImageView blur_mic_image;
     BlurImageView blur_profile_link_image;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +84,6 @@ public class HomePageActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/recorded_Audio.3pg";
-
         blur_mic_image.setVisibility(View.GONE);
         blur_profile_link_image.setVisibility(View.GONE);
         record_animation.setVisibility(View.GONE);
@@ -149,6 +148,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void startHumAcceptionActivity()
     {
         Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
+        startHumAcceptionIntent.putExtra("End time record", endTimeRecord);
         startActivity(startHumAcceptionIntent);
     }
 

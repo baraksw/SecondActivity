@@ -71,6 +71,7 @@ public class HumAcceptionActivity extends Activity {
         humFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         humFileName += "/recorded_Audio.3pg";
         endTimeRecord = home_page_activity.getIntExtra("End time record", endTimeRecord);
+        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         mAuth = FirebaseAuth.getInstance();
         current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
     }
