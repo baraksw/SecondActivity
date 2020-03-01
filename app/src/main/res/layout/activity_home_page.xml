@@ -59,17 +59,16 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/custom_button"
         android:onClick="LogOut"
         android:scaleType="centerCrop"
         android:text="Log Out"
-        app:layout_constraintBottom_toTopOf="@+id/stroy_recycleView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453"
-        android:background="@drawable/custom_button"
-        android:textColor="@color/white" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/story_imageButton"
