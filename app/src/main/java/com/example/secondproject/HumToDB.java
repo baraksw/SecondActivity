@@ -111,56 +111,12 @@ public interface HumToDB {
         });
     }
 
-    default boolean UploadAnswer (String answer, Hum hum) {
-        if (hum.getHum_answer() == null) {
-            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
-            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.w("good1", hum.getHum_answer());
-
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("semek", "semek");
-                        }
-                    });
-
-            return true;
-
-
-                        /*
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Log.d("great", task.getException().getMessage());
-                    } else {
-                        Log.d("fuck", task.getException().getMessage());
-                    }
-                }
-            });
-
-                        */
-
-            /*mDataBase.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Log.w("good2", dataSnapshot.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").getValue(String.class));
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            }); */
-
-        } else {
-            return false;
+    default boolean UploadAnswer(String answer, Hum hum) {
+        mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
+        return true;
         }
     }
-}
+
 
 
 

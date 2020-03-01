@@ -10,14 +10,14 @@ public class Hum implements HumToDB {
     User user_viewed_list[];
     String owner, hum_id;
     int num_of_listeners, hum_len, num_of_hums_answered, answered = View.INVISIBLE;
-    String hum_answer;
+    String hum_answer = "NULL";
 
     public Hum(String owner, String hum_id, int hum_len) {
         this.hum_len = hum_len;
         this.hum_id = hum_id;
         this.owner = owner;
         this.num_of_listeners = 0;
-        this.hum_answer = null;
+        //this.hum_answer = null;
         num_of_hums_answered = 0;
         user_viewed_list = null;
     }
@@ -64,6 +64,7 @@ public class Hum implements HumToDB {
         this.num_of_hums_answered += 1;
         this.hum_answer = answer;
         this.answered = View.VISIBLE;
+
 
         boolean upload_success = UploadAnswer(answer, this);
 

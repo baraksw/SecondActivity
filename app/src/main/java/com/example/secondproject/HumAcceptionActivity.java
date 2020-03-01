@@ -107,17 +107,9 @@ public class HumAcceptionActivity extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy_HHmm");
         String currentDateTime = sdf.format(new Date());
         String hum_id = currentDateTime + "_" + audio_file_random_name;
-        mDataBase.child("DB").child("users_db").child(current_user).child("Hums").child("hums0").setValue(hum_id);
-        try {
-            Hum hum = new Hum(current_user, hum_id, endTimeRecord);
-            uploadAudio(current_user, endTimeRecord, hum_id);
-            add_hum_to_db(hum);
-
-        } catch (Exception e) {
-            Log.w("fuck it", "bubi");
-            e.printStackTrace();
-        }
-
+        Hum hum = new Hum(current_user, hum_id, endTimeRecord);
+        uploadAudio(current_user, endTimeRecord, hum_id);
+        add_hum_to_db(hum);
         Intent home_page_intent = new Intent(this, HomePageActivity.class);
         startActivity(home_page_intent);
 
@@ -155,33 +147,9 @@ public class HumAcceptionActivity extends Activity {
 
     public void add_hum_to_db(final Hum new_hum) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                try {
-                    {
-                        hums_map = dataSnapshot.child("db2").getValue(HumsMap.class);
-                        hums_map.add_hum(new_hum);
-                        mDataBase.child("db2").setValue(hums_map);
-                        /*users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
-                        current_user = users_map.getUser("asaf");
-                        //current_user.add_hum(hum_id);
-                        mDataBase.child("DB").setValue(users_map);
-                        */
+        mDataBase.child("db2").child("hums_db").child(new_hum.hum_id).setValue(new_hum);
 
-                    }
-                } catch (Exception e) {
-                    Log.w("exception", "fuck it");
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
-
 }
 
 
