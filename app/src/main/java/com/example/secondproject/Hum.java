@@ -5,12 +5,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
-
 public class Hum implements HumToDB {
 
     User user_viewed_list[];
     String owner, hum_id;
-    int num_of_listeners, hum_len, num_of_hums_answered;
+    int num_of_listeners, hum_len, num_of_hums_answered, answered = View.INVISIBLE;
     String hum_answer;
 
     public Hum(String owner, String hum_id, int hum_len) {
@@ -39,6 +38,10 @@ public class Hum implements HumToDB {
 
     public String getHum_answer() { return hum_answer; }
 
+    public int getAnswered() {
+        return answered;
+    }
+
     public void playHum() {
         playAudio(this);
     }
@@ -60,6 +63,7 @@ public class Hum implements HumToDB {
     public void AddHum2Db(String answer, Context relevant_context) {
         this.num_of_hums_answered += 1;
         this.hum_answer = answer;
+        this.answered = View.VISIBLE;
 
         boolean upload_success = UploadAnswer(answer, this);
 

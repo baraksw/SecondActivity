@@ -36,7 +36,7 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
 
         int num_of_listeners = hums.get(position).countNumOfListeners();
         int hum_row_len = hums.get(position).getHum_len();
-        int hum_visibility = hums.get(position).getHum_answered();
+        int hum_visibility = hums.get(position).getAnswered();
 
         holder.numOfListeners.setText(num_of_listeners + " Listeners"); //TODO: Update this to the latest version of hum.
         holder.humRecLen.setText(String.valueOf(hum_row_len));
