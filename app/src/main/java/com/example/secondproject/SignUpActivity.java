@@ -141,13 +141,5 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public void Restart_DB(View view) {
-        users_map = new UsersMap();
-        current_user.setFull_name("NULL_FULL");
-        current_user.setUser_name("NULL_USER");
-        users_map.add_user(current_user);
-        mDataBase.child("DB").setValue(users_map);
-        Toast.makeText(SignUpActivity.this, "DB Restarted", Toast.LENGTH_SHORT).show();
-    }
 }
 
