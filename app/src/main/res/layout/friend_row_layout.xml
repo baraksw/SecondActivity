@@ -10,7 +10,7 @@
         android:id="@+id/friend_profile_picture"
         android:layout_width="192dp"
         android:layout_height="192dp"
-        android:clickable="false"
+        android:onClick="launchFriendProfileActivity"
         android:src="@drawable/sample_avatar"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"

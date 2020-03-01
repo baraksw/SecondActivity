@@ -41,7 +41,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
         this.story_hums = story_hums;
-
     }
 
     @NonNull
@@ -130,7 +129,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
                         }
                     });
-
 
         } else {
             Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
