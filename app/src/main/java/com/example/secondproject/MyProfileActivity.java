@@ -59,7 +59,7 @@ public class MyProfileActivity extends AppCompatActivity {
             mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    xp_text.setText(String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
+                    xp_text.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
                 }
 
                 @Override
