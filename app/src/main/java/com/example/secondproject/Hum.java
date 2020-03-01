@@ -9,7 +9,7 @@ public class Hum implements HumToDB {
 
     User user_viewed_list[];
     String owner, hum_id;
-    int num_of_listeners, hum_len, num_of_hums_answered, answered = View.INVISIBLE;
+    int num_of_listeners = 0, hum_len= 0, num_of_hums_answered =0 , answered = View.INVISIBLE;
     String hum_answer = "NULL";
 
     public Hum(String owner, String hum_id, int hum_len) {

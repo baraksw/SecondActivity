@@ -52,9 +52,9 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         xp_text = findViewById(R.id.xp_points_textView);
-
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-            current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()!=null) {
+            current_user = String.valueOf(mAuth.getCurrentUser().getDisplayName());
             mProfileDb = FirebaseDatabase.getInstance().getReference();
             mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
                 @Override
