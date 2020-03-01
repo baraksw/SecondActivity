@@ -36,7 +36,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private DatabaseReference hums_ref;
     private FirebaseAuth mAuth;
     private ArrayList<String> my_hums;
-    private String current_user;
+    private String current_user = "userDefault";
 
     private TextView profile_name;
     //private TextView profile_xp;
@@ -48,8 +48,8 @@ public class MyProfileActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-
-        current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null)
+            current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         mProfileDb = FirebaseDatabase.getInstance().getReference();
         hums_ref = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
@@ -77,7 +77,8 @@ public class MyProfileActivity extends AppCompatActivity {
         //profile_xp = findViewById(R.id.xp_points_textView);
         //profile_xp.setText(current_xp);
         profile_name = findViewById(R.id.user_name_textView);
-        profile_name.setText(current_user);
+        //profile_name.setText(current_user);
+
 
         db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
         temp_hums = new ArrayList<Hum>();
