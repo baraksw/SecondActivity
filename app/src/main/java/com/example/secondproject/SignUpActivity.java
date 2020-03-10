@@ -2,16 +2,13 @@ package com.example.secondproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 
 import com.firebase.client.Firebase;
@@ -21,47 +18,37 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 
 public class SignUpActivity extends AppCompatActivity {
 
     private int count_friends = 0;
-    private EditText mNameField;
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private EditText mUser_NameField;
-    private ImageButton mRegisterBtn;
-    private Button mAuthBtn;
+    private EditText usernameEditText;
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private EditText fullNameEditText;
+    private ImageButton registerBtn;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference friends_db = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
-    private ProgressDialog mProgress;
-    private Firebase mRef;
 
     public User current_user;
     public UsersMap users_map;
-    public DatabaseReference users_DB_ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth=FirebaseAuth.getInstance();
-        mProgress = new ProgressDialog(this);
-        mUser_NameField = findViewById(R.id.user_nameField);
-        mEmailField = findViewById(R.id.email_editText);
-        mPasswordField = findViewById(R.id.password_editText);
-        mRegisterBtn = findViewById(R.id.registerBtn);
-        mNameField = findViewById(R.id.full_nameField);
+        mAuth = FirebaseAuth.getInstance();
+        usernameEditText = findViewById(R.id.user_nameField);
+        emailEditText = findViewById(R.id.email_editText);
+        passwordEditText = findViewById(R.id.password_editText);
+        registerBtn = findViewById(R.id.registerBtn);
+        fullNameEditText = findViewById(R.id.full_nameField);
         current_user = new User();
-        mRegisterBtn.setOnClickListener(new View.OnClickListener() {
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRegister();
@@ -75,28 +62,24 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
         private void startRegister(){
-            final String name = mNameField.getText().toString().trim();
-            final String user_name = mUser_NameField.getText().toString().trim();
-            String email = mEmailField.getText().toString().trim();
-            String password = mPasswordField.getText().toString().trim();
+            final String fullName = fullNameEditText.getText().toString().trim();
+            final String userName = usernameEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
-            if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(user_name)) {
-                mProgress.setMessage("Signing Up...");
-                mProgress.show();
+            if(!TextUtils.isEmpty(fullName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(userName)) {
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            current_user.setFull_name(name);
-                            current_user.setUser_name(user_name);
-                            current_user.add_friend("FirstFriend");
-                            add_user_to_db(current_user);
-                            userProfile(current_user.getFull_name());
-                            add_friend("tubas");
-                            mProgress.dismiss();
-                            Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            current_user.setFull_name(fullName);
+                            current_user.setUser_name(userName);
+                            addRegularUserToDB(current_user);
+                            addNameToUser(current_user.getFull_name());
+
+                            Intent AuthIntent = new Intent(SignUpActivity.this, HomePageActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(AuthIntent);
                         }
@@ -104,20 +87,12 @@ public class SignUpActivity extends AppCompatActivity {
                 });}
         }
 
-
-    public void AuthPage(View view) {
-
-        Intent AuthIntent = new Intent(this, LoginActivity.class);
-        startActivity(AuthIntent);
-    }
-
-    public void add_user_to_db(final User new_user) {
+    public void addRegularUserToDB(final User new_user) {
         mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
 
-
     }
 
-    private void userProfile(String full_name){
+    private void addNameToUser(String full_name){
         FirebaseUser fb_user = mAuth.getCurrentUser();
         if(fb_user!=null)
         {
@@ -135,11 +110,26 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
     public void add_friend(String name){
         mDataBase.child("DB").child("users_db").child(current_user.getFull_name()).child("friends").child(String.valueOf(count_friends)).setValue(name);
         count_friends++;
     }
 
+
+
+    /*
+
+    public void Restart_DB(View view) {
+        users_map = new UsersMap();
+        current_user.setFull_name("NULL_FULL");
+        current_user.setUser_name("NULL_USER");
+        users_map.add_user(current_user);
+        mDataBase.child("DB").setValue(users_map);
+        Toast.makeText(SignUpActivity.this, "DB Restarted", Toast.LENGTH_SHORT).show();
+    }
+
+     */
 
 }
 

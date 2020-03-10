@@ -1,8 +1,6 @@
 package com.example.secondproject;
 
 import java.util.HashMap;
-import com.example.secondproject.Hum;
-
 
 public class HumsMap {
 

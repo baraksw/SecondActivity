@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -38,19 +37,14 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmailField;
     private EditText mPasswordField;
     private ImageButton mLoginBtn;
+    private SignInButton mGoogleBtn;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    public static final String UserNameString = "UserName";
-    private String userName = "John";
+    public static final String UserNameString = "deafultUserName";
+    private String userName = "defaultUserName";
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     UsersMap users_map;
-    private int try_1;
-    private Button demoButton;
-
-    private SignInButton mGoogleBtn;
     GoogleSignInClient mGoogleSignInClient;
-    //private String Tag = "LoginActivity";
-
     private static final int RC_SIGN_IN = 1;
 
     @Override
@@ -61,46 +55,53 @@ public class LoginActivity extends AppCompatActivity {
         mEmailField = (EditText) findViewById(R.id.email_editText);
         mPasswordField = (EditText) findViewById(R.id.password_editText);
         mLoginBtn = (ImageButton) findViewById(R.id.loginBtn);
-        demoButton = (Button) findViewById(R.id.button);
-        demoButton.setVisibility(View.GONE);
+        mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() != null) {
-                    Intent SignInIntent = new Intent(LoginActivity.this, HomePageActivity.class);
-                    SignInIntent.putExtra(UserNameString, userName);
-                    startActivity(SignInIntent);
-                }
-            }
-        };
+        onChangeAuthState();
 
+        // Configure Google Sign In
+        googleSignInProccess();
+
+        //regular sign in proccess (username + passowrd)
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startSignIn();
-            }
-        });
-        // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-
-        mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        mGoogleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SignIn();
+                startRegularSignIn();
             }
         });
 
     }
 
-    private void SignIn() {
+    private void googleSignInProccess() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                googleSignIn();
+            }
+        });
+    }
+
+    private void onChangeAuthState() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            if (firebaseAuth.getCurrentUser() != null) {
+                Intent SignInSuccessfulIntent = new Intent(LoginActivity.this, HomePageActivity.class);
+                SignInSuccessfulIntent.putExtra(UserNameString, userName);
+                startActivity(SignInSuccessfulIntent);
+            }
+        }
+    };
+
+
+    }
+
+    private void googleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -153,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
             User new_user = new User();
             new_user.setFull_name(full_name);
             new_user.setUser_name(user_name);
-            add_user_to_db(new_user);
+            addGoogleUserToDB(new_user);
 
             Toast.makeText(LoginActivity.this, user_name, Toast.LENGTH_SHORT).show();
         }
@@ -165,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-    private void startSignIn() {
+    private void startRegularSignIn() {
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty((password))) {
@@ -183,21 +184,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void add_user_to_db(final User new_user) {
-        mDataBase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                users_map = dataSnapshot.child("DB").getValue(UsersMap.class);
-                users_map.add_user(new_user);
-                mDataBase.child("DB").setValue(users_map);
-                mDataBase.child("NEWFRIEND").setValue("TOMER");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    public void addGoogleUserToDB(final User new_user) {
+        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
 
     }
 
