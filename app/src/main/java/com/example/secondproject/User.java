@@ -17,13 +17,13 @@ public class User implements UserToDB {
 
     public String Friends = "My Friends";
     public String Hums = "My Hums";
-    public String full_name = "anonymous", user_name = "anonymous user";
-    public int xp_cnt = 3;
-    public int level = 1;
+    public String full_name, user_name;
+    public int xp_cnt = 0;
     public int friends_number = 0;
 
     public User() {
-
+        full_name = "deafult";
+        user_name = "deafult username";
     }
 
     public User(String full_name, String user_name) {
@@ -35,7 +35,6 @@ public class User implements UserToDB {
         this.full_name = full_name;
         this.user_name = user_name;
         this.xp_cnt = xp_cnt;
-
     }
 
     public void setUser_name(String user_name) {
@@ -55,31 +54,11 @@ public class User implements UserToDB {
     }
 
     public int getXp_cnt() {
-        //return getXP(this);
-        return 1;
+        return this.xp_cnt;
     }
 
     public void setXp_cnt(int xp_cnt) {
         this.xp_cnt = xp_cnt;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-
-    public void updateLevel() {
-
-        int new_level = this.xp_cnt / 100;
-
-        if (new_level != this.level) {
-            setLevel(new_level);
-        }
-
     }
 
     public int get_friends_number() {
@@ -93,6 +72,4 @@ public class User implements UserToDB {
     public void add_friend(String name) {
         friends_number++;
     }
-
-
 }

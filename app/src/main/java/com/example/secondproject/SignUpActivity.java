@@ -2,15 +2,13 @@ package com.example.secondproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 
 import com.firebase.client.Firebase;
@@ -27,33 +25,30 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpActivity extends AppCompatActivity {
 
     private int count_friends = 0;
-    private EditText mNameField;
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private EditText mUser_NameField;
-    private ImageButton mRegisterBtn;
-    private Button mAuthBtn;
+    private EditText usernameEditText;
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private EditText fullNameEditText;
+    private ImageButton registerBtn;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference friends_db = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
-    private Firebase mRef;
 
     public User current_user;
     public UsersMap users_map;
-    public DatabaseReference users_DB_ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth=FirebaseAuth.getInstance();
-        mUser_NameField = findViewById(R.id.user_nameField);
-        mEmailField = findViewById(R.id.email_editText);
-        mPasswordField = findViewById(R.id.password_editText);
-        mRegisterBtn = findViewById(R.id.registerBtn);
-        mNameField = findViewById(R.id.full_nameField);
+        mAuth = FirebaseAuth.getInstance();
+        usernameEditText = findViewById(R.id.user_nameField);
+        emailEditText = findViewById(R.id.email_editText);
+        passwordEditText = findViewById(R.id.password_editText);
+        registerBtn = findViewById(R.id.registerBtn);
+        fullNameEditText = findViewById(R.id.full_nameField);
         current_user = new User();
-        mRegisterBtn.setOnClickListener(new View.OnClickListener() {
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRegister();
@@ -67,10 +62,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
         private void startRegister(){
-            final String fullName = mNameField.getText().toString().trim();
-            final String userName = mUser_NameField.getText().toString().trim();
-            String email = mEmailField.getText().toString().trim();
-            String password = mPasswordField.getText().toString().trim();
+            final String fullName = fullNameEditText.getText().toString().trim();
+            final String userName = usernameEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
             if(!TextUtils.isEmpty(fullName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(userName)) {
 
@@ -84,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
                             addRegularUserToDB(current_user);
                             addNameToUser(current_user.getFull_name());
 
-                            Intent AuthIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            Intent AuthIntent = new Intent(SignUpActivity.this, HomePageActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(AuthIntent);
                         }

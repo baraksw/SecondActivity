@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -23,12 +22,12 @@ import java.util.ArrayList;
 public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdapter.StoryViewHolder> {
 
     private Context context;
-    private ArrayList<Hum> story_hums;
+    private ArrayList<Hum> storyHums;
     private boolean answerWindowVisible = false;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
-        this.story_hums = story_hums;
+        this.storyHums = story_hums;
     }
 
     @NonNull
@@ -41,9 +40,9 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull StoryViewHolder holder, int position) {
-        String friend_row_full_name = story_hums.get(position).getOwner();
-        int hum_row_len = story_hums.get(position).getHum_len();
-        holder.humLengthTextView.setText("0:" + String.valueOf(hum_row_len));
+        String friend_row_full_name = storyHums.get(position).getOwner();
+        int humRowLen = storyHums.get(position).getHum_len();
+        holder.humLengthTextView.setText("0:0" + String.valueOf(humRowLen));
         holder.ownerNameTextView.setText(friend_row_full_name);
         holder.confirmAnswer.setVisibility(View.GONE);
         holder.answerEditText.setVisibility(View.GONE);
@@ -51,7 +50,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         holder.storyHumPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                story_hums.get(position).playHum();
+                storyHums.get(position).playHum();
             }
         });
 
@@ -76,8 +75,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             @Override
             public void onClick(View v) {
                 String answer = holder.answerEditText.getText().toString();
-
-                story_hums.get(position).AddAnswerToDB(answer, context);
+                storyHums.get(position).AddAnswerToDB(answer, context);
 
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
@@ -117,7 +115,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
 
     @Override
     public int getItemCount() {
-        return story_hums.size();
+        return storyHums.size();
     }
 }
 
