@@ -23,21 +23,5 @@ public interface UserToDB {
         mDataBase.child("db2").child("hums").child(user.getFull_name()).child("xp_cnt").setValue(user.getXp_cnt());
     }
 
-   /* default int getXP(User user) {
-        mDataBase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               xp = dataSnapshot.child("DB").child("users_db").child(user.getFull_name()).child("xp_cnt").getValue(int.class);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-
-        return xp;
-    }
-    */
 
 }

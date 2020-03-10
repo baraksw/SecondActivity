@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Context;
 
 import java.util.ArrayList;
 
@@ -27,75 +25,52 @@ import java.util.ArrayList;
 public class MyProfileActivity extends AppCompatActivity {
 
     final static String LOG_TAG = "My profile log";
-    private RecyclerView hums_recyclerView;
-    private ArrayList<Hum> temp_hums;
-    private RecyclerView.LayoutManager hum_layoutManager;
-    private HumRecyclerAdapter hum_adapter;
-    private DatabaseReference db_reference;
-    private DatabaseReference mProfileDb;
-    private DatabaseReference hums_ref;
+    private RecyclerView humsRecyclerView;
+    private ArrayList<Hum> tempHums;
+    private RecyclerView.LayoutManager humLayoutManager;
+    private HumRecyclerAdapter humAdapter;
+    private DatabaseReference dbHumsReference;
+    private DatabaseReference dbProfileReference;
     private FirebaseAuth mAuth;
-    private String current_user;
-    private TextView xp_text;
-    private TextView profile_name;
+    private String currentUser;
+    private TextView XPTextView;
+    private TextView profileName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_profile);
 
         mAuth = FirebaseAuth.getInstance();
-        current_user = String.valueOf(mAuth.getCurrentUser().getDisplayName());
-        setContentView(R.layout.activity_my_profile);
-        xp_text = findViewById(R.id.xp_points_textView);
-        profile_name = findViewById(R.id.user_name_textView);
-        profile_name.setText(current_user);
+        currentUser = String.valueOf(mAuth.getCurrentUser().getDisplayName());
+        profileName = findViewById(R.id.user_name_textView);
+        profileName.setText(currentUser);
 
+        XPTextView = findViewById(R.id.xp_points_textView);
         showXPText();
 
-        hums_ref = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        hums_recyclerView = findViewById(R.id.my_shazamzams_recyclerView);
-        hum_layoutManager = new GridLayoutManager(this, 1);
-        hums_recyclerView.setHasFixedSize(true);
-        hums_recyclerView.setLayoutManager(hum_layoutManager);
+        humLayoutManager = new GridLayoutManager(this, 1);
+        humsRecyclerView = findViewById(R.id.my_shazamzams_recyclerView);
+        humsRecyclerView.setHasFixedSize(true);
+        humsRecyclerView.setLayoutManager(humLayoutManager);
 
+        tempHums = new ArrayList<Hum>();
 
-        /*
-        my_hums = new ArrayList<String>();
-        mProfileDb.child("Hums").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    my_hums.add(dataSnapshot.getValue(String.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-        //profile_xp = findViewById(R.id.xp_points_textView);
-        //profile_xp.setText(current_xp);
-        profile_name = findViewById(R.id.user_name_textView);
-        //profile_name.setText(current_user);
-
-
-        db_reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        temp_hums = new ArrayList<Hum>();
-        db_reference.addValueEventListener(new ValueEventListener() {
+        dbHumsReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+        dbHumsReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
-                    if(hum.owner.equals(current_user)==true){
+                    if(hum.owner.equals(currentUser) == true){
                         hum.hum_answer = dataSnapshot1.child("hum_answer").getValue(String.class);
-                        temp_hums.add(hum);
+                        tempHums.add(hum);
                     }
                 }
-                hum_adapter = new HumRecyclerAdapter(MyProfileActivity.this, temp_hums);
-                hums_recyclerView.setAdapter(hum_adapter);
+                humAdapter = new HumRecyclerAdapter(MyProfileActivity.this, tempHums);
+                humsRecyclerView.setAdapter(humAdapter);
             }
 
             @Override
@@ -107,11 +82,11 @@ public class MyProfileActivity extends AppCompatActivity {
 
     private void showXPText() {
         if(mAuth.getCurrentUser()!=null) {
-            mProfileDb = FirebaseDatabase.getInstance().getReference();
-            mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
+            dbProfileReference = FirebaseDatabase.getInstance().getReference();
+            dbProfileReference.child("DB").child("users_db").child(currentUser).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    xp_text.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
+                    XPTextView.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
                 }
 
                 @Override

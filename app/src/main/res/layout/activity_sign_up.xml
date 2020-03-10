@@ -136,11 +136,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Restart DB"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/decoration_background"
         app:layout_constraintTop_toTopOf="@+id/decoration_background"
-        android:onClick="Restart_DB"
         android:background="@drawable/custom_button"
         android:textColor="@color/white"/>
 
