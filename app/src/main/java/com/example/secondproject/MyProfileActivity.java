@@ -35,16 +35,10 @@ public class MyProfileActivity extends AppCompatActivity {
     private DatabaseReference mProfileDb;
     private DatabaseReference hums_ref;
     private FirebaseAuth mAuth;
-    private ArrayList<String> my_hums;
     private String current_user;
     private TextView xp_text;
     private TextView profile_name;
-    private String xp_number;
 
-
-    //private TextView profile_xp;
-    //private String current_xp = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getXp());
-    // TODO: complete the function "getXp"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,28 +52,14 @@ public class MyProfileActivity extends AppCompatActivity {
         profile_name = findViewById(R.id.user_name_textView);
         profile_name.setText(current_user);
 
-        if(mAuth.getCurrentUser()!=null) {
-            mProfileDb = FirebaseDatabase.getInstance().getReference();
-            mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    xp_text.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-
+        showXPText();
 
         hums_ref = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-
         hums_recyclerView = findViewById(R.id.my_shazamzams_recyclerView);
         hum_layoutManager = new GridLayoutManager(this, 1);
         hums_recyclerView.setHasFixedSize(true);
         hums_recyclerView.setLayoutManager(hum_layoutManager);
+
 
         /*
         my_hums = new ArrayList<String>();
@@ -123,6 +103,23 @@ public class MyProfileActivity extends AppCompatActivity {
                 Toast.makeText(MyProfileActivity.this, "Oops... something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showXPText() {
+        if(mAuth.getCurrentUser()!=null) {
+            mProfileDb = FirebaseDatabase.getInstance().getReference();
+            mProfileDb.child("DB").child("users_db").child(current_user).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    xp_text.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     public void launchHomePage(View view) {
