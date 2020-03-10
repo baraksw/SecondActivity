@@ -23,7 +23,7 @@ import javax.crypto.interfaces.DHPrivateKey;
             public int friends_number = 0;
             public int hums_number = 0;
 
-            static final int UPLOAD_XP = 1;
+            static final int UPLOAD_XP = -1;
             static final int ANSWER_XP = 2;
 
             public User() {

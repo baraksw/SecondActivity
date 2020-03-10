@@ -22,13 +22,12 @@ public interface UserToDB {
     default void update_XP_in_DB(User user) {
         mDataBase.child("db2").child("hums").child(user.getFull_name()).child("xp_cnt").setValue(user.getXp_cnt());
     }
-/*
-    default int getXP(User user) {
-        int xp = -1;
+
+   /* default int getXP(User user) {
         mDataBase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               int xp = dataSnapshot.child("DB").child("users_db").child(user.getFull_name()).child("xp_cnt").getValue(int.class);
+               xp = dataSnapshot.child("DB").child("users_db").child(user.getFull_name()).child("xp_cnt").getValue(int.class);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -38,5 +37,7 @@ public interface UserToDB {
         });
 
         return xp;
-    } */
+    }
+    */
+
 }

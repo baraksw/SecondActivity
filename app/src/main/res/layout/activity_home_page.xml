@@ -9,7 +9,7 @@
     android:layoutDirection="ltr">
 
     <TextView
-        android:id="@+id/xp_points_textView6"
+        android:id="@+id/xpPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -77,7 +77,7 @@
         android:layout_marginStart="@dimen/side_margin"
         android:layout_marginTop="@dimen/global_top_margin_type2"
         android:background="@android:color/transparent"
-        android:onClick="openStory"
+        android:onClick="onClickOpenStory"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

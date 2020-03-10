@@ -61,7 +61,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="48dp"
         android:background="@color/transparent"
-        android:onClick="upload2DB"
+        android:onClick="uploadToDB"
         android:scaleType="centerInside"
         android:src="@drawable/v_image_button"
         app:layout_constraintEnd_toEndOf="parent"

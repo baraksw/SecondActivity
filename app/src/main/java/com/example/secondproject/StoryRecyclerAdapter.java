@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,8 +26,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
     private ArrayList<Hum> story_hums;
     private boolean answerWindowVisible = false;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference mDataBase = database.getReference();
-
     public StoryRecyclerAdapter(Context context, ArrayList<Hum> story_hums) {
         this.context = context;
         this.story_hums = story_hums;
@@ -81,15 +77,7 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
             public void onClick(View v) {
                 String answer = holder.answerEditText.getText().toString();
 
-                story_hums.get(position).AddHum2Db(answer, context);
-
-                /*boolean upload_success = story_hums.get(position).AddHum2Db(answer);
-
-                if (upload_success) {
-                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
-                }*/
+                story_hums.get(position).AddAnswerToDB(answer, context);
 
                 holder.confirmAnswer.setVisibility(View.GONE);
                 holder.answerEditText.setVisibility(View.GONE);
@@ -105,32 +93,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
         });
     }
 
-    /*
-    void UploadAnswer(String answer, Hum hum) {
-        if (hum.getHum_answer() == null) {
-            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).removeValue();
-            mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).setValue(hum).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.w("good1", hum.getHum_answer());
-                    Toast.makeText(context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
-
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("semek", "semek");
-                            Toast.makeText(context, "not uploaded", Toast.LENGTH_LONG).show();
-
-                        }
-                    });
-
-        } else {
-            Toast.makeText(context, "Hum already answered...", Toast.LENGTH_LONG).show();
-        }
-    }*/
-    
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
 
         ImageButton storyHumPlay;

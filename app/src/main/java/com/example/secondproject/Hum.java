@@ -1,13 +1,12 @@
 package com.example.secondproject;
 
-
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
+
 public class Hum implements HumToDB {
 
-    User user_viewed_list[];
     String owner, hum_id;
     int num_of_listeners = 0, hum_len= 0, num_of_hums_answered =0 , answered = View.INVISIBLE;
     String hum_answer = "NULL";
@@ -17,17 +16,15 @@ public class Hum implements HumToDB {
         this.hum_id = hum_id;
         this.owner = owner;
         this.num_of_listeners = 0;
-        //this.hum_answer = null;
-        num_of_hums_answered = 0;
-        user_viewed_list = null;
+        this.num_of_hums_answered = 0;
     }
 
     public Hum()
     {
         this.owner = "nobody";
-        this.hum_id = "45tts";
-
+        this.hum_id = "null";
     }
+
     public String getOwner() {
         return owner;
     }
@@ -46,25 +43,15 @@ public class Hum implements HumToDB {
         playAudio(this);
     }
 
-    public int countNumOfListeners() {
-        if (user_viewed_list == null) {
-            this.num_of_listeners = 0;
-        } else {
-            this.num_of_listeners = user_viewed_list.length;
-        }
-        return this.num_of_listeners;
-    }
-
     public int getHum_len() {
         //TODO: updating this function;
         return this.hum_len;
     }
 
-    public void AddHum2Db(String answer, Context relevant_context) {
+    public void AddAnswerToDB(String answer, Context relevant_context) {
         this.num_of_hums_answered += 1;
         this.hum_answer = answer;
         this.answered = View.VISIBLE;
-
 
         boolean upload_success = UploadAnswer(answer, this);
 
@@ -75,13 +62,9 @@ public class Hum implements HumToDB {
         }
     }
 
-    public void print()
-    {
-        System.out.print("this id is: " + this.hum_id);
+    public void addHumToDB(){
+        addHumToDB(this); //Implemented in HumToDB interface
     }
 
-    public int getNum_of_Hums_answered() {
-        return this.num_of_hums_answered;
-    }
 }
 
