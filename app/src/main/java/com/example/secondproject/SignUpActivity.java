@@ -117,6 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+
     /*
 
     public void Restart_DB(View view) {
@@ -129,5 +130,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
      */
+
 }
 
