@@ -25,11 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -134,17 +131,17 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
+                    updateGoogleUserDetails(user);
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.google_sign_fail_msg, Toast.LENGTH_SHORT).show();
-                    updateUI(null);
+                    updateGoogleUserDetails(null);
                 }
 
             }
         });
     }
 
-    private void updateUI(FirebaseUser fUser) {
+    private void updateGoogleUserDetails(FirebaseUser fUser) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (account != null) {
             String full_name = account.getGivenName() + ' ' + account.getFamilyName();
@@ -156,8 +153,13 @@ public class LoginActivity extends AppCompatActivity {
             new_user.setUser_name(user_name);
             addGoogleUserToDB(new_user);
 
-            Toast.makeText(LoginActivity.this, user_name, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void addGoogleUserToDB(final User new_user) {
+        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
+        Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -182,11 +184,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    public void addGoogleUserToDB(final User new_user) {
-        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
-
     }
 
     public void launchSignUpActivity(View view) {
