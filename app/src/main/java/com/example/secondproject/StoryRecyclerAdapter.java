@@ -81,7 +81,6 @@ public class StoryRecyclerAdapter extends RecyclerView.Adapter<StoryRecyclerAdap
                 holder.answerEditText.setVisibility(View.GONE);
                 holder.spaceStory.setVisibility(View.VISIBLE);
                 closeKeyboard();
-                Toast.makeText(v.getContext(), "Thanks for your answer!", Toast.LENGTH_SHORT).show();
             }
 
             private void closeKeyboard() {

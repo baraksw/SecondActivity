@@ -55,10 +55,10 @@ public class Hum implements HumToDB {
 
         boolean upload_success = UploadAnswer(answer, this);
 
-        if (upload_success) {
-            Toast.makeText(relevant_context, "Thanks for your answer!", Toast.LENGTH_LONG).show();
+        if (upload_success) { //if nobody has answered this hum before
+            Toast.makeText(relevant_context, R.string.upload_answer_success_msg, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(relevant_context, "Hum already answered...", Toast.LENGTH_LONG).show();
+            Toast.makeText(relevant_context, R.string.upload_answer_fail_msg, Toast.LENGTH_LONG).show();
         }
     }
 

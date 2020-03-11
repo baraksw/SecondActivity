@@ -34,11 +34,11 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
     @Override
     public void onBindViewHolder(@NonNull HumViewHolder holder, final int position) {
 
-        int hum_row_len = hums.get(position).getHum_len();
+        int humRowLen = hums.get(position).getHum_len();
         int hum_visibility = hums.get(position).getAnswered();
 
         //holder.numOfListeners.setText(num_of_listeners + " Listeners"); //TODO: Update this to the latest version of hum.
-        holder.humRecLen.setText("0:0" + String.valueOf(hum_row_len));
+        holder.humRecLen.setText("0:0" + String.valueOf(humRowLen));
         holder.humPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +50,7 @@ public class HumRecyclerAdapter extends RecyclerView.Adapter<HumRecyclerAdapter.
             holder.humAnsweredImage.setVisibility(View.VISIBLE);
             holder.humAnsweredText.setVisibility(View.VISIBLE);
         } else {
-            holder.humNameText.setText("No Answer");
+            holder.humNameText.setText(R.string.no_answer_text);
             holder.humAnsweredImage.setVisibility(View.INVISIBLE);
             holder.humAnsweredText.setVisibility(View.INVISIBLE);
         }
