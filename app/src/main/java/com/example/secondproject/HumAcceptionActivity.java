@@ -58,7 +58,7 @@ public class HumAcceptionActivity extends Activity {
         if (FirebaseAuth.getInstance().getCurrentUser() != null)
             currentUser = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         else
-            Toast.makeText(HumAcceptionActivity.this, "User not logged in!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(HumAcceptionActivity.this, R.string.user_not_logged_in_msg, Toast.LENGTH_LONG).show();
 
         showHumLength();
 
@@ -66,7 +66,7 @@ public class HumAcceptionActivity extends Activity {
 
     private void showHumLength() {
         Intent homePageActivity = getIntent();
-        endTimeRecord = homePageActivity.getIntExtra("End time record", endTimeRecord);
+        endTimeRecord = homePageActivity.getIntExtra(getString(R.string.End_time_record_str), endTimeRecord);
         String recordLengthString = String.valueOf(endTimeRecord);
         recordLength = (TextView)findViewById(R.id.current_record_length_textView);
         if(endTimeRecord <= 9)
@@ -90,7 +90,7 @@ public class HumAcceptionActivity extends Activity {
 
     public void resetHumRecording(View view) {
         Intent home_page_intent = new Intent(this, HomePageActivity.class);
-        Toast.makeText(HumAcceptionActivity.this, "Canceld recording", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HumAcceptionActivity.this, R.string.cancel_record_msg, Toast.LENGTH_SHORT).show();
         startActivity(home_page_intent);
     }
 
@@ -119,7 +119,7 @@ public class HumAcceptionActivity extends Activity {
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(HumAcceptionActivity.this, "Succecfuly uploaded!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HumAcceptionActivity.this, R.string.upload_success_msg, Toast.LENGTH_SHORT).show();
                 }
 
             });

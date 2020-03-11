@@ -30,7 +30,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager humLayoutManager;
     private HumRecyclerAdapter humAdapter;
     private DatabaseReference dbHumsReference;
-    private DatabaseReference dbProfileReference;
+    private DatabaseReference dbReference;
     private FirebaseAuth mAuth;
     private String currentUser;
     private TextView XPTextView;
@@ -75,15 +75,15 @@ public class MyProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MyProfileActivity.this, "Oops... something went wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfileActivity.this, R.string.general_fail_message, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void showXPText() {
         if(mAuth.getCurrentUser()!=null) {
-            dbProfileReference = FirebaseDatabase.getInstance().getReference();
-            dbProfileReference.child("DB").child("users_db").child(currentUser).addValueEventListener(new ValueEventListener() {
+            dbReference = FirebaseDatabase.getInstance().getReference();
+            dbReference.child("DB").child("users_db").child(currentUser).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     XPTextView.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));

@@ -102,7 +102,7 @@ public class HomePageActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(HomePageActivity.this, "Oops... something went wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageActivity.this, R.string.general_fail_message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -170,7 +170,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void startHumAcceptionActivity(int endTimeRecord)
     {
         Intent startHumAcceptionIntent = new Intent(getBaseContext(), HumAcceptionActivity.class);
-        startHumAcceptionIntent.putExtra("End time record", endTimeRecord);
+        startHumAcceptionIntent.putExtra(getString(R.string.End_time_record_str), endTimeRecord);
         startActivity(startHumAcceptionIntent);
     }
 

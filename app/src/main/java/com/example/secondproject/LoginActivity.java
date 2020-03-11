@@ -118,10 +118,10 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(LoginActivity.this, "Google Sign In Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(acc);
         } catch (ApiException e) {
-            Toast.makeText(LoginActivity.this, "Google Sign In Unsuccessfull", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.google_sign_fail_msg, Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(null);
         }
     }
@@ -132,11 +132,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Unsuccessfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.google_sign_fail_msg, Toast.LENGTH_SHORT).show();
                     updateUI(null);
                 }
 
@@ -170,13 +170,13 @@ public class LoginActivity extends AppCompatActivity {
         String email = mEmailField.getText().toString();
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty((password))) {
-            Toast.makeText(LoginActivity.this, "Fields are empty.", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, R.string.empty_login_fields_msg, Toast.LENGTH_LONG).show();
         } else {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Sign In Problem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, R.string.sign_in_fail_msg, Toast.LENGTH_LONG).show();
 
                     }
                 }
