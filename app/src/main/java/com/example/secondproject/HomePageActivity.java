@@ -92,6 +92,7 @@ public class HomePageActivity extends AppCompatActivity {
         dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                storyHums.clear();
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
                     storyHums.add(hum);
