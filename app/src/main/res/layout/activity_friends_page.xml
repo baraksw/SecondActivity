@@ -85,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/friends_relative_layout_height"
         android:paddingBottom="@dimen/relative_layout_bottom_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/adding_friends_editText">
 
         <androidx.recyclerview.widget.RecyclerView
