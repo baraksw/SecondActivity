@@ -62,6 +62,7 @@ public class MyProfileActivity extends AppCompatActivity {
         dbHumsReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tempHums.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
                     if(hum.owner.equals(currentUser) == true){
