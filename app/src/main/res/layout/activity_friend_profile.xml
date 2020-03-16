@@ -8,16 +8,6 @@
     android:background="@drawable/gradient_background"
     android:layoutDirection="ltr" >
 
-    <TextView
-        android:id="@+id/xp_points_textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Xp points"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
-
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="@android:dimen/app_icon_size"
@@ -52,10 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
         app:view_borderColor="@color/gunmetal"
         app:view_borderWidth="@dimen/profile_pic_border_width"
-        app:view_shadowColor="@color/gunmetal"
-        app:view_shadowDx="10dp"
-        app:view_shadowDy="0dp"
-        app:view_shadowRadius="4dp" />
+        app:view_shadowColor="@color/gunmetal" />
 
     <ImageView
         android:id="@+id/xp_star_icon"
@@ -71,14 +58,14 @@
         android:id="@+id/xp_points_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xp points"
+        android:text="@string/xp_points_text"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <TextView
-        android:id="@+id/xp_points_textView5"
+        android:id="@+id/shazamzams_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"
@@ -96,9 +83,8 @@
         android:onClick="launchFriendShazamzamsActivity"
         android:scaleType="fitCenter"
         android:src="@drawable/speaker_circled_icon"
-        app:layout_constraintBottom_toTopOf="@+id/xp_points_textView5"
+        app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,8 @@
 
     <com.alexzh.circleimageview.CircleImageView
         android:id="@+id/friend_profile_picture"
-        android:layout_width="192dp"
-        android:layout_height="192dp"
+        android:layout_width="@dimen/friend_profile_width"
+        android:layout_height="@dimen/friend_profile_height"
         android:onClick="launchFriendProfileActivity"
         android:src="@drawable/sample_avatar"
         android:layout_centerVertical="true"
@@ -22,7 +22,7 @@
         android:id="@+id/friend_row_full_name"
         android:layout_width="@dimen/friend_row_name_width"
         android:layout_height="wrap_content"
-        android:text="Tuval Ben-Ami AKA T.M."
+        android:text="@string/tuval_ben_ami_text"
         android:textAppearance="@style/friend_row_name_textStyle"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/friend_profile_picture"
@@ -34,7 +34,7 @@
         android:layout_height="@dimen/friend_row_star_dimen"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/friend_row_star_top_margin"
         android:layout_marginRight="@dimen/global_right_margin"
         android:scaleType="centerCrop"
         android:src="@drawable/star_image" />
@@ -42,11 +42,11 @@
     <TextView
         android:id="@+id/friend_row_xp_textView"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/friend_row_xp_height"
         android:layout_below="@id/friend_xp_star_icon"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/global_right_margin"
-        android:text="168 xp"
+        android:text="@string/_168_xp_text"
         android:textAppearance="@style/friend_xp_textStyle" />
 
 </RelativeLayout>
