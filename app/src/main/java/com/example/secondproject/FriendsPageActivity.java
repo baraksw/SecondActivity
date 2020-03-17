@@ -72,7 +72,6 @@ public class FriendsPageActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(FriendsPageActivity.this, R.string.general_fail_message, Toast.LENGTH_SHORT).show();
-
             }
         });
     }

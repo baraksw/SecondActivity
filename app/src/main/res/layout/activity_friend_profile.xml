@@ -32,12 +32,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/user_name_textView"
+        android:id="@+id/friend_name_textView"
         android:textAppearance="@style/headline_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/friend_name_top_margin"
-        android:text="@string/user_name_string"
+        android:text="@string/profile_user_name_string"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
         android:src="@drawable/sample_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_textView"
+        app:layout_constraintTop_toBottomOf="@+id/friend_name_textView"
         app:view_borderColor="@color/gunmetal"
         app:view_borderWidth="@dimen/profile_pic_border_width"
         app:view_shadowColor="@color/gunmetal"
@@ -71,7 +71,7 @@
         android:id="@+id/xp_points_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xp points"
+        android:text="@string/profile_user_xp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

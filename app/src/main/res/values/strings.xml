@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SecondActivity</string>
     <string name="hums_page_headline_text">Help Your Friends</string>
-    <string name="user_name_string">Atara Haimi</string>
+    <string name="profile_user_name_string">Atara Haimi</string>
     <string name="friends_page_headline_text">Friends</string>
     <string name="shazamzams_text">Shazamzams</string>
     <string name="friends_shazamzams_headline_text">Shazamzams</string>
@@ -30,4 +30,5 @@
     <string name="google_sign_fail_msg">Google Sign In Unsuccessful</string>
     <string name="empty_login_fields_msg">Fields are empty.</string>
     <string name="sign_in_fail_msg">Sign In Problem</string>
+    <string name="profile_user_xp">Xp points</string>
 </resources>
