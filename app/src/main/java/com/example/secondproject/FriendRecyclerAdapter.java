@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
     private ArrayList<User> myFriends;
+    private Context context;
 
     public FriendRecyclerAdapter( ArrayList<User> myFriends){
         this.myFriends = myFriends;
@@ -32,15 +33,28 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_row_layout, parent, false);
         FriendViewHolder friendViewHolder = new FriendViewHolder(view);
+        context = parent.getContext();
         return friendViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
+
+        String friend_name = myFriends.get(position).getFull_name();
+        int friend_xp = myFriends.get(position).getXp_cnt();
+
         holder.friendName.setText(myFriends.get(position).getFull_name());
-        //holder.xpTextView.setText(myFriends.get(position).getXp_cnt() + " XP");
+        holder.friendName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent friendProfileIntent = new Intent(context, FriendProfileActivity.class);
+                friendProfileIntent.putExtra("friend_name", friend_name);
+                friendProfileIntent.putExtra("friend_xp", friend_xp);
+                context.startActivity(friendProfileIntent);
+            }
+        });
+
         setFriendXPText(holder, myFriends.get(position));
-        //TODO - get the actual xp
     }
 
     private void setFriendXPText(FriendViewHolder holder, User user) {
@@ -67,7 +81,6 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
         TextView friendName;
         TextView xpTextView;
-        private String current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         public FriendViewHolder(@NonNull View itemView) {
             super(itemView);

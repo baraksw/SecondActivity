@@ -22,6 +22,14 @@ public class FriendProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile);
 
+        Intent current_friend = getIntent();
+        friend_name = current_friend.getStringExtra("friend_name");
+        friend_xp = current_friend.getIntExtra("friend_xp", -1);
+
+        profile_name = findViewById(R.id.friend_profile_name_textView);
+        profile_name.setText(friend_name);
+        profile_xp = findViewById(R.id.friend_profile_xp_points_textView);
+        profile_xp.setText(friend_xp + " Xp");
     }
 
     public void launchFriendsPageActivity(View view) {
