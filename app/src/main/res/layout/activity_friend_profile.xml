@@ -8,16 +8,6 @@
     android:background="@drawable/gradient_background"
     android:layoutDirection="ltr" >
 
-    <TextView
-        android:id="@+id/xp_points_textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Xp points"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
-
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="@android:dimen/app_icon_size"
@@ -32,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/friend_name_textView"
+        android:id="@+id/friend_profile_name_textView"
         android:textAppearance="@style/headline_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,7 +39,7 @@
         android:src="@drawable/sample_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friend_name_textView"
+        app:layout_constraintTop_toBottomOf="@+id/friend_profile_name_textView"
         app:view_borderColor="@color/gunmetal"
         app:view_borderWidth="@dimen/profile_pic_border_width"
         app:view_shadowColor="@color/gunmetal"
@@ -68,7 +58,7 @@
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:id="@+id/xp_points_textView"
+        android:id="@+id/friend_profile_xp_points_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/profile_user_xp"
@@ -78,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <TextView
-        android:id="@+id/xp_points_textView5"
+        android:id="@+id/shazamzams_button_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"
@@ -96,7 +86,7 @@
         android:onClick="launchFriendShazamzamsActivity"
         android:scaleType="fitCenter"
         android:src="@drawable/speaker_circled_icon"
-        app:layout_constraintBottom_toTopOf="@+id/xp_points_textView5"
+        app:layout_constraintBottom_toTopOf="@+id/shazamzams_button_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

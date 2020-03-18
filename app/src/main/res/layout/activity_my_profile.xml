@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/friend_name_textView"
+        android:id="@+id/my_name_textView"
         android:textAppearance="@style/headline_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/line_width"
         android:background="@color/gunmetal"
         app:layout_constraintBottom_toBottomOf="@id/profile_picture"
-        app:layout_constraintTop_toBottomOf="@id/friend_name_textView"
+        app:layout_constraintTop_toBottomOf="@id/my_name_textView"
         tools:layout_editor_absoluteX="24dp" />
 
     <com.alexzh.circleimageview.CircleImageView
@@ -64,7 +64,7 @@
         android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friend_name_textView"
+        app:layout_constraintTop_toBottomOf="@+id/my_name_textView"
         app:view_borderColor="@color/gunmetal"
         app:view_borderWidth="@dimen/profile_pic_border_width" />
 
