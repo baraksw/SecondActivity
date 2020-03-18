@@ -65,7 +65,7 @@ public class FriendsPageActivity extends AppCompatActivity {
 
                     my_friends_temp.add(local_user);
                 }
-                friend_adapter = new FriendRecyclerAdapter(FriendsPageActivity.this, my_friends_temp);
+                friend_adapter = new FriendRecyclerAdapter(my_friends_temp);
                 friend_recyclerView.setAdapter(friend_adapter);
             }
 
@@ -79,11 +79,6 @@ public class FriendsPageActivity extends AppCompatActivity {
     public void launchMyProfilePage(View view) {
         Intent myProfileIntent = new Intent(this, MyProfileActivity.class);
         startActivity(myProfileIntent);
-    }
-
-    public void launchFriendProfileActivity(View view) {
-        Intent myFriendProfileIntent = new Intent(this, FriendProfileActivity.class);
-        startActivity(myFriendProfileIntent);
     }
 
     public void addFriendBtn(View view) {

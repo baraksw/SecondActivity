@@ -22,11 +22,9 @@ import java.util.ArrayList;
 
 public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
     private ArrayList<User> myFriends;
-    Context context;
 
-    public FriendRecyclerAdapter(Context context, ArrayList<User> myFriends){
+    public FriendRecyclerAdapter( ArrayList<User> myFriends){
         this.myFriends = myFriends;
-        this.context = context;
     }
 
     @NonNull
@@ -43,13 +41,6 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
         //holder.xpTextView.setText(myFriends.get(position).getXp_cnt() + " XP");
         setFriendXPText(holder, myFriends.get(position));
         //TODO - get the actual xp
-
-        holder.profilePicture.setOnClickListener((view) -> {
-            Intent friendProfileIntent = new Intent(context, FriendProfileActivity.class);
-            friendProfileIntent.putExtra("friend_name", myFriends.get(position).getFull_name());
-            friendProfileIntent.putExtra("friend_xp", myFriends.get(position).getXp_cnt());
-            context.startActivity(friendProfileIntent);
-        });
     }
 
     private void setFriendXPText(FriendViewHolder holder, User user) {
@@ -76,14 +67,12 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
         TextView friendName;
         TextView xpTextView;
-        com.alexzh.circleimageview.CircleImageView profilePicture;
         private String current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         public FriendViewHolder(@NonNull View itemView) {
             super(itemView);
             friendName = itemView.findViewById(R.id.friend_row_full_name);
             xpTextView = itemView.findViewById(R.id.friend_row_xp_textView);
-            profilePicture = itemView.findViewById(R.id.friend_profile_picture);
         }
     }
 
