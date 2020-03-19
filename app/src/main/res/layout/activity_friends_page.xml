@@ -41,7 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/friends_page_icon_View" />
 
-
     <View
         android:id="@+id/horizontal_line"
         android:layout_width="match_parent"
@@ -74,9 +73,13 @@
 
     <EditText
         android:id="@+id/adding_friends_editText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Enter friend's user name here..."
+        android:layout_width="0dp"
+        android:layout_height="@dimen/hint_height"
+        android:layout_marginStart="@dimen/global_left_margin"
+        android:layout_marginEnd="@dimen/global_right_margin"
+        android:hint="@string/friend_user_name_hint"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toStartOf="@+id/friend_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_friends_page_space" />
 
@@ -94,16 +97,16 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/friendBtn"
+        android:id="@+id/friend_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/global_right_margin"
         android:background="@drawable/custom_button"
         android:onClick="addFriendBtn"
-        android:text="add friend"
+        android:text="@string/add_friend_text"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/adding_friends_editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/adding_friends_editText"
         app:layout_constraintTop_toTopOf="@+id/adding_friends_editText"
         app:layout_constraintVertical_bias="1.0" />
 

@@ -92,7 +92,7 @@
         android:id="@+id/sign_up_imageButton"
         android:layout_width="@dimen/sign_up_buttom_width"
         android:layout_height="@dimen/sign_up_buttom_height"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="@dimen/sign_up_top_margin"
         android:background="@android:color/transparent"
         android:onClick="launchSignUpActivity"
         android:scaleType="centerCrop"

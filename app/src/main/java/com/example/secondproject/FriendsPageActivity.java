@@ -56,6 +56,7 @@ public class FriendsPageActivity extends AppCompatActivity {
         db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                my_friends_temp.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     //HashMap temp_user = dataSnapshot1.getValue(HashMap.class);
                     User local_user = new User(String.valueOf(dataSnapshot1.child("full_name").getValue(String.class)),

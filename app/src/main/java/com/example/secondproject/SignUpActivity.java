@@ -44,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.user_nameField);
         emailEditText = findViewById(R.id.email_editText);
         passwordEditText = findViewById(R.id.password_editText);
-        registerBtn = findViewById(R.id.registerBtn);
+        registerBtn = findViewById(R.id.register_btn);
         fullNameEditText = findViewById(R.id.full_nameField);
         current_user = new User();
 

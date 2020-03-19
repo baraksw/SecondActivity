@@ -10,22 +10,22 @@
 
     <RelativeLayout
         android:id="@+id/current_record_bar_layout"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="@dimen/current_record_bar_width"
+        android:layout_height="@dimen/current_record_bar_height"
+        android:layout_marginTop="@dimen/current_record_bar_top_margin"
         android:background="@drawable/story_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/confirm_record_textView">
 
         <ImageButton
             android:id="@+id/play_current_record_imageButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/play_current_record_width"
+            android:layout_height="@dimen/play_current_record_height"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/play_record_left_margin"
             android:background="@color/transparent"
             android:onClick="humPlayerOnClick"
             android:scaleType="center"
@@ -33,21 +33,21 @@
 
         <TextView
             android:id="@+id/current_record_length_textView"
-            android:layout_width="45dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/current_record_length_width"
+            android:layout_height="@dimen/current_record_length_height"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/length_current_record_left_margin"
             android:layout_toRightOf="@id/play_current_record_imageButton"
             android:gravity="center_vertical"
-            android:text="0:03" />
+            android:text="@string/record_length_text" />
 
         <ImageButton
-            android:id="@+id/reset_current_record_imagebutton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/reset_current_record_imageButton"
+            android:layout_width="@dimen/reset_current_record_width"
+            android:layout_height="@dimen/reset_current_record_height"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="@dimen/reset_current_record_right_margin"
             android:background="@color/transparent"
             android:src="@drawable/bin"
             android:onClick="resetHumRecording"
@@ -57,9 +57,9 @@
 
     <ImageButton
         android:id="@+id/accept_and_upload_imageButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="@dimen/confirm_record_width"
+        android:layout_height="@dimen/confirm_record_height"
+        android:layout_marginTop="@dimen/confirm_record_top_margin"
         android:background="@color/transparent"
         android:onClick="uploadToDB"
         android:scaleType="centerInside"
@@ -69,25 +69,24 @@
         app:layout_constraintTop_toBottomOf="@+id/current_record_bar_layout" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/confirm_record_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="Please confirm your hum"
+        android:layout_marginTop="@dimen/confirm_record_text_top_margin"
+        android:text="@string/please_confirm_your_hum_text"
         android:textAppearance="@style/headline_font"
-        android:textSize="30sp"
+        android:textSize="@dimen/confirm_record_textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/decoration_imageView"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/decoration_height"
         android:src="@drawable/decorations_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
