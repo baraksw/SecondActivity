@@ -27,12 +27,15 @@ public class FriendsPageActivity extends AppCompatActivity {
     private FirebaseUser current;
     private int friends_number;
     private User current_user;
+    private String current_user_name;
     private FirebaseAuth mAuth;
     private RecyclerView friend_recyclerView;
     private RecyclerView.LayoutManager friend_layoutManager;
     private FriendRecyclerAdapter friend_adapter;
-    private ArrayList<User> my_friends_temp;
-    private DatabaseReference db_reference;
+    private ArrayList<User> users_list;
+    private ArrayList<String> friends_list;
+    private DatabaseReference users_db_reference;
+    private DatabaseReference friends_db_reference;
     private String friend_name;
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     private EditText mFriendField;
@@ -50,29 +53,55 @@ public class FriendsPageActivity extends AppCompatActivity {
         friend_layoutManager = new GridLayoutManager(this, 1);
         friend_recyclerView.setHasFixedSize(true);
         friend_recyclerView.setLayoutManager(friend_layoutManager);
+        current_user_name = String.valueOf(mAuth.getCurrentUser().getDisplayName());
 
-        db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
-        my_friends_temp = new ArrayList<User>();
-        db_reference.addValueEventListener(new ValueEventListener() {
+        users_db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db");
+        friends_db_reference = FirebaseDatabase.getInstance().getReference().child("DB").child("users_db").child(current_user_name).child("friends");
+        users_list = new ArrayList<User>();
+        friends_list = new ArrayList<String>();
+
+        friends_db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                my_friends_temp.clear();
+                friends_list.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    //HashMap temp_user = dataSnapshot1.getValue(HashMap.class);
-                    User local_user = new User(String.valueOf(dataSnapshot1.child("full_name").getValue(String.class)),
-                            String.valueOf(dataSnapshot1.child("user_name").getValue(String.class)),
-                            dataSnapshot1.child("xp_cnt").getValue(Integer.class));
-
-                    my_friends_temp.add(local_user);
+                    String temp_friend = dataSnapshot1.getValue(String.class);
+                    friends_list.add(temp_friend);
                 }
-                friend_adapter = new FriendRecyclerAdapter(FriendsPageActivity.this, my_friends_temp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(FriendsPageActivity.this, R.string.general_fail_message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        users_db_reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                users_list.clear();
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+
+                    String temp_full_name = String.valueOf(dataSnapshot1.child("full_name").getValue(String.class));
+                    String temp_user_name = String.valueOf(dataSnapshot1.child("user_name").getValue(String.class));
+                    int temp_xp = dataSnapshot1.child("xp_cnt").getValue(Integer.class);
+
+                    for (int i = 0; i < friends_list.size(); i++) {
+                        if (friends_list.get(i).equals(temp_full_name)){
+                            User local_user = new User(temp_full_name, temp_user_name, temp_xp);
+                            users_list.add(local_user);
+
+                        }
+                    }
+                }
+
+                friend_adapter = new FriendRecyclerAdapter(users_list);
                 friend_recyclerView.setAdapter(friend_adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(FriendsPageActivity.this, R.string.general_fail_message, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -80,11 +109,6 @@ public class FriendsPageActivity extends AppCompatActivity {
     public void launchMyProfilePage(View view) {
         Intent myProfileIntent = new Intent(this, MyProfileActivity.class);
         startActivity(myProfileIntent);
-    }
-
-    public void launchFriendProfileActivity(View view) {
-        Intent myFriendProfileIntent = new Intent(this, FriendProfileActivity.class);
-        startActivity(myFriendProfileIntent);
     }
 
     public void addFriendBtn(View view) {

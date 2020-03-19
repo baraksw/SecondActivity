@@ -8,9 +8,9 @@
 
     <com.alexzh.circleimageview.CircleImageView
         android:id="@+id/friend_profile_picture"
+        android:clickable="false"
         android:layout_width="@dimen/friend_profile_width"
         android:layout_height="@dimen/friend_profile_height"
-        android:onClick="launchFriendProfileActivity"
         android:src="@drawable/sample_avatar"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"

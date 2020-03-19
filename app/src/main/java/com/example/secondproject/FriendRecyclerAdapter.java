@@ -2,6 +2,7 @@ package com.example.secondproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,10 @@ import java.util.ArrayList;
 
 public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
     private ArrayList<User> myFriends;
-    Context context;
+    private Context context;
 
-    public FriendRecyclerAdapter(Context context, ArrayList<User> myFriends){
+    public FriendRecyclerAdapter( ArrayList<User> myFriends){
         this.myFriends = myFriends;
-        this.context = context;
     }
 
     @NonNull
@@ -33,20 +33,28 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_row_layout, parent, false);
         FriendViewHolder friendViewHolder = new FriendViewHolder(view);
+        context = parent.getContext();
         return friendViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
-        holder.friendName.setText(myFriends.get(position).getFull_name());
-        //holder.xpTextView.setText(myFriends.get(position).getXp_cnt() + " XP");
-        setFriendXPText(holder, myFriends.get(position));
-        //TODO - get the actual xp
 
-        holder.circleImage.setOnClickListener((view) -> {
-            Intent friendProfileIntent = new Intent(context, FriendProfileActivity.class);
-            context.startActivity(friendProfileIntent);
+        String friend_name = myFriends.get(position).getFull_name();
+        int friend_xp = myFriends.get(position).getXp_cnt();
+
+        holder.friendName.setText(myFriends.get(position).getFull_name());
+        holder.friendName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent friendProfileIntent = new Intent(context, FriendProfileActivity.class);
+                friendProfileIntent.putExtra("friend_name", friend_name);
+                friendProfileIntent.putExtra("friend_xp", friend_xp);
+                context.startActivity(friendProfileIntent);
+            }
         });
+
+        setFriendXPText(holder, myFriends.get(position));
     }
 
     private void setFriendXPText(FriendViewHolder holder, User user) {
@@ -59,7 +67,7 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("Set friend xp", "setting friend's xp canceled");
             }
         });
     }
@@ -73,14 +81,11 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
         TextView friendName;
         TextView xpTextView;
-        com.alexzh.circleimageview.CircleImageView circleImage;
-        private String current_user = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         public FriendViewHolder(@NonNull View itemView) {
             super(itemView);
             friendName = itemView.findViewById(R.id.friend_row_full_name);
             xpTextView = itemView.findViewById(R.id.friend_row_xp_textView);
-            circleImage = itemView.findViewById(R.id.friend_profile_picture);
         }
     }
 

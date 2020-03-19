@@ -38,13 +38,13 @@ public class MyProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        Log.i(LOG_TAG, "My profile's onCreate");
         mAuth = FirebaseAuth.getInstance();
         currentUser = String.valueOf(mAuth.getCurrentUser().getDisplayName());
-        profileName = findViewById(R.id.user_name_textView);
+        profileName = findViewById(R.id.my_name_textView);
         profileName.setText(currentUser);
 
         XPTextView = findViewById(R.id.xp_points_textView);

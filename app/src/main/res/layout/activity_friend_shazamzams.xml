@@ -64,4 +64,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/friends_shazamzams_headline" />
 
+    <Space
+        android:id="@+id/friends_shazamzams_page_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/num_of_shazamzams" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:paddingBottom="@dimen/relative_layout_bottom_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/friends_shazamzams_page_space">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friends_shazamzams_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
