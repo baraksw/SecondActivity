@@ -24,11 +24,11 @@ public class FriendShazamzamsActivity extends AppCompatActivity {
     private static final String TAG = "FriendShazamzamsActivit";
     private String current_friend_name;
     private int current_friend_xp;
-    private GridLayoutManager friendHumLayoutManager;
-    private RecyclerView friendHumsRecyclerView;
-    private ArrayList<Hum> tempFriendHums;
-    private DatabaseReference dbFriendHumsReference;
-    private HumRecyclerAdapter humAdapter;
+    private GridLayoutManager friend_hums_LayoutManager;
+    private RecyclerView friend_hums_RecyclerView;
+    private ArrayList<Hum> temp_friend_hums;
+    private DatabaseReference hums_db_Reference;
+    private HumRecyclerAdapter hum_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +43,27 @@ public class FriendShazamzamsActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: friend name:" + current_friend_name);
         Log.d(TAG, "onCreate: friend xp:" + current_friend_xp);
 
-        friendHumLayoutManager = new GridLayoutManager(this, 1);
-        friendHumsRecyclerView = findViewById(R.id.friends_shazamzams_recyclerView);
-        friendHumsRecyclerView.setHasFixedSize(true);
-        friendHumsRecyclerView.setLayoutManager(friendHumLayoutManager);
+        friend_hums_LayoutManager = new GridLayoutManager(this, 1);
+        friend_hums_RecyclerView = findViewById(R.id.friends_shazamzams_recyclerView);
+        friend_hums_RecyclerView.setHasFixedSize(true);
+        friend_hums_RecyclerView.setLayoutManager(friend_hums_LayoutManager);
 
-        tempFriendHums = new ArrayList<Hum>();
+        temp_friend_hums = new ArrayList<Hum>();
 
-        dbFriendHumsReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        dbFriendHumsReference.addValueEventListener(new ValueEventListener() {
+        hums_db_Reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+        hums_db_Reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tempFriendHums.clear();
+                temp_friend_hums.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
                     if(hum.owner.equals(current_friend_name) == true){
                         hum.hum_answer = dataSnapshot1.child("hum_answer").getValue(String.class);
-                        tempFriendHums.add(hum);
+                        temp_friend_hums.add(hum);
                     }
                 }
-                humAdapter = new HumRecyclerAdapter(FriendShazamzamsActivity.this, tempFriendHums);
-                friendHumsRecyclerView.setAdapter(humAdapter);
+                hum_adapter = new HumRecyclerAdapter(FriendShazamzamsActivity.this, temp_friend_hums);
+                friend_hums_RecyclerView.setAdapter(hum_adapter);
             }
 
             @Override

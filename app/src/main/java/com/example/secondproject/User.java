@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import javax.crypto.interfaces.DHPrivateKey;
 
-public class User implements UserToDB {
+public class User {
 
     public String Friends = "My Friends";
     public String Hums = "My Hums";

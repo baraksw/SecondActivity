@@ -22,7 +22,7 @@
         android:id="@+id/friend_row_full_name"
         android:layout_width="@dimen/friend_row_name_width"
         android:layout_height="wrap_content"
-        android:text="@string/tuval_ben_ami_text"
+        android:text="@string/fake_name_text"
         android:textAppearance="@style/friend_row_name_textStyle"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/friend_profile_picture"
@@ -46,7 +46,7 @@
         android:layout_below="@id/friend_xp_star_icon"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/global_right_margin"
-        android:text="@string/_168_xp_text"
+        android:text="@string/changing_xp_text"
         android:textAppearance="@style/friend_xp_textStyle" />
 
 </RelativeLayout>

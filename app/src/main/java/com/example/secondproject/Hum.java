@@ -43,10 +43,7 @@ public class Hum implements HumToDB {
         playAudio(this);
     }
 
-    public int getHum_len() {
-        //TODO: updating this function;
-        return this.hum_len;
-    }
+    public int getHum_len() { return this.hum_len; }
 
     public void AddAnswerToDB(String answer, Context relevant_context) {
         this.num_of_hums_answered += 1;

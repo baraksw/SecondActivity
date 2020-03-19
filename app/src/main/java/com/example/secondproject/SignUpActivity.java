@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,30 +23,29 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpActivity extends AppCompatActivity {
 
     private int count_friends = 0;
-    private EditText usernameEditText;
-    private EditText emailEditText;
-    private EditText passwordEditText;
-    private EditText fullNameEditText;
-    private ImageButton registerBtn;
-    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
+    private EditText username_EditText;
+    private EditText email_EditText;
+    private EditText password_EditText;
+    private EditText full_name_EditText;
+    private ImageButton register_Button;
+    private DatabaseReference db_Reference = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
-
     public User current_user;
-    public UsersMap users_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        usernameEditText = findViewById(R.id.user_nameField);
-        emailEditText = findViewById(R.id.email_editText);
-        passwordEditText = findViewById(R.id.password_editText);
-        registerBtn = findViewById(R.id.register_btn);
-        fullNameEditText = findViewById(R.id.full_nameField);
+        username_EditText = findViewById(R.id.user_nameField);
+        email_EditText = findViewById(R.id.email_editText);
+        password_EditText = findViewById(R.id.password_editText);
+        register_Button = findViewById(R.id.register_btn);
+        full_name_EditText = findViewById(R.id.full_nameField);
+
         current_user = new User();
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        register_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRegister();
@@ -56,28 +53,23 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    public void launchLoginActivity(View view) {
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivity(loginIntent);
-    }
-
         private void startRegister(){
-            final String fullName = fullNameEditText.getText().toString().trim();
-            final String userName = usernameEditText.getText().toString().trim();
-            String email = emailEditText.getText().toString().trim();
-            String password = passwordEditText.getText().toString().trim();
+            final String full_name = full_name_EditText.getText().toString().trim();
+            final String username = username_EditText.getText().toString().trim();
+            String email = email_EditText.getText().toString().trim();
+            String password = password_EditText.getText().toString().trim();
 
-            if(!TextUtils.isEmpty(fullName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(userName)) {
+            if(!TextUtils.isEmpty(full_name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(username)) {
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            current_user.setFull_name(fullName);
-                            current_user.setUser_name(userName);
+                            current_user.setFull_name(full_name);
+                            current_user.setUser_name(username);
                             addRegularUserToDB(current_user);
-                            addNameToUser(current_user.getFull_name());
+                            addNameToUser(current_user.getFull_name()); //allows us to address the current user using his username value
 
                             Intent AuthIntent = new Intent(SignUpActivity.this, HomePageActivity.class);
                             AuthIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -88,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
     public void addRegularUserToDB(final User new_user) {
-        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
+        db_Reference.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
 
     }
 
@@ -111,11 +103,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    public void add_friend(String name){
-        mDataBase.child("DB").child("users_db").child(current_user.getFull_name()).child("friends").child(String.valueOf(count_friends)).setValue(name);
-        count_friends++;
+    public void launchLoginActivity(View view) {
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
-
 
 
     /*

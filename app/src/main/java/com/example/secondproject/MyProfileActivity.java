@@ -24,16 +24,16 @@ import java.util.ArrayList;
 public class MyProfileActivity extends AppCompatActivity {
 
     final static String LOG_TAG = "My profile log";
-    private RecyclerView humsRecyclerView;
-    private ArrayList<Hum> tempHums;
-    private RecyclerView.LayoutManager humLayoutManager;
-    private HumRecyclerAdapter humAdapter;
-    private DatabaseReference dbHumsReference;
-    private DatabaseReference dbReference;
+    private RecyclerView hums_RecyclerView;
+    private ArrayList<Hum> temp_hums;
+    private RecyclerView.LayoutManager hum_LayoutManager;
+    private HumRecyclerAdapter hum_Adapter;
+    private DatabaseReference hums_db_Reference;
+    private DatabaseReference db_Reference;
     private FirebaseAuth mAuth;
-    private String currentUser;
-    private TextView XPTextView;
-    private TextView profileName;
+    private String current_username;
+    private TextView XP_TextView;
+    private TextView profile_name;
 
 
     @Override
@@ -43,34 +43,34 @@ public class MyProfileActivity extends AppCompatActivity {
 
         Log.i(LOG_TAG, "My profile's onCreate");
         mAuth = FirebaseAuth.getInstance();
-        currentUser = String.valueOf(mAuth.getCurrentUser().getDisplayName());
-        profileName = findViewById(R.id.my_name_textView);
-        profileName.setText(currentUser);
+        current_username = String.valueOf(mAuth.getCurrentUser().getDisplayName());
+        profile_name = findViewById(R.id.my_name_textView);
+        profile_name.setText(current_username);
 
-        XPTextView = findViewById(R.id.xp_points_textView);
+        XP_TextView = findViewById(R.id.xp_points_textView);
         showXPText();
 
-        humLayoutManager = new GridLayoutManager(this, 1);
-        humsRecyclerView = findViewById(R.id.my_shazamzams_recyclerView);
-        humsRecyclerView.setHasFixedSize(true);
-        humsRecyclerView.setLayoutManager(humLayoutManager);
+        hum_LayoutManager = new GridLayoutManager(this, 1);
+        hums_RecyclerView = findViewById(R.id.my_shazamzams_recyclerView);
+        hums_RecyclerView.setHasFixedSize(true);
+        hums_RecyclerView.setLayoutManager(hum_LayoutManager);
 
-        tempHums = new ArrayList<Hum>();
+        temp_hums = new ArrayList<Hum>();
 
-        dbHumsReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        dbHumsReference.addValueEventListener(new ValueEventListener() {
+        hums_db_Reference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+        hums_db_Reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tempHums.clear();
+                temp_hums.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
-                    if(hum.owner.equals(currentUser) == true){
+                    if(hum.owner.equals(current_username) == true){ //Selecting only the hums of the current user
                         hum.hum_answer = dataSnapshot1.child("hum_answer").getValue(String.class);
-                        tempHums.add(hum);
+                        temp_hums.add(hum);
                     }
                 }
-                humAdapter = new HumRecyclerAdapter(MyProfileActivity.this, tempHums);
-                humsRecyclerView.setAdapter(humAdapter);
+                hum_Adapter = new HumRecyclerAdapter(MyProfileActivity.this, temp_hums);
+                hums_RecyclerView.setAdapter(hum_Adapter);
             }
 
             @Override
@@ -82,11 +82,11 @@ public class MyProfileActivity extends AppCompatActivity {
 
     private void showXPText() {
         if(mAuth.getCurrentUser()!=null) {
-            dbReference = FirebaseDatabase.getInstance().getReference();
-            dbReference.child("DB").child("users_db").child(currentUser).addValueEventListener(new ValueEventListener() {
+            db_Reference = FirebaseDatabase.getInstance().getReference();
+            db_Reference.child("DB").child("users_db").child(current_username).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    XPTextView.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
+                    XP_TextView.setText("XP: "+ String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)));
                 }
 
                 @Override

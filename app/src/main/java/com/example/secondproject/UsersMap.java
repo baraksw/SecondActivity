@@ -52,8 +52,6 @@ public class UsersMap {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     User current_user = keyNode.getValue(User.class);
-                    //user.add_friend(current_user.getFull_name());
-
                 }
             }
 

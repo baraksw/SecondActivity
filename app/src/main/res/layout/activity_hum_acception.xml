@@ -27,7 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/play_record_left_margin"
             android:background="@color/transparent"
-            android:onClick="humPlayerOnClick"
+            android:onClick="recordPlayerOnClick"
             android:scaleType="center"
             android:src="@drawable/play_button_icon" />
 

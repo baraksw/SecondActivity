@@ -37,8 +37,8 @@ public class FriendsPageActivity extends AppCompatActivity {
     private DatabaseReference users_db_reference;
     private DatabaseReference friends_db_reference;
     private String friend_name;
-    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    private EditText mFriendField;
+    private DatabaseReference db_Reference = FirebaseDatabase.getInstance().getReference();
+    private EditText add_friend_EditText;
 
     final static String LOG_TAG = "Friends page log";
 
@@ -48,7 +48,7 @@ public class FriendsPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_page);
         mAuth=FirebaseAuth.getInstance();
-        mFriendField = findViewById(R.id.adding_friends_editText);
+        add_friend_EditText = findViewById(R.id.adding_friends_editText);
         friend_recyclerView = findViewById(R.id.my_friends_recyclerView);
         friend_layoutManager = new GridLayoutManager(this, 1);
         friend_recyclerView.setHasFixedSize(true);
@@ -76,6 +76,7 @@ public class FriendsPageActivity extends AppCompatActivity {
             }
         });
 
+        //Activated when a friend is added by the current user
         users_db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -112,8 +113,8 @@ public class FriendsPageActivity extends AppCompatActivity {
     }
 
     public void addFriendBtn(View view) {
-        friend_name = mFriendField.getText().toString().trim();
-        mDataBase.child("DB").child("users_db").child(mAuth.getCurrentUser().getDisplayName().toString()).child("friends").child(friend_name).setValue(friend_name);
+        friend_name = add_friend_EditText.getText().toString().trim();
+        db_Reference.child("DB").child("users_db").child(mAuth.getCurrentUser().getDisplayName().toString()).child("friends").child(friend_name).setValue(friend_name);
 
     }
 
