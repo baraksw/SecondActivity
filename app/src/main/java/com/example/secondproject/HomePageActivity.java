@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -33,72 +31,72 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomePageActivity extends AppCompatActivity {
-    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    private RecyclerView storyRecyclerView;
-    private ArrayList<Hum> storyHums;
-    private RecyclerView.LayoutManager storyLayoutManager;
-    private StoryRecyclerAdapter storyAdapter;
-    private DatabaseReference dbReference;
-    private boolean storyVisible = false;
+    private RecyclerView story_RecyclerView;
+    private ArrayList<Hum> story_hums;
+    private RecyclerView.LayoutManager story_LayoutManager;
+    private StoryRecyclerAdapter story_Adapter;
+    private DatabaseReference hums_dbReference;
+    private boolean is_story_visible = false;
     private FirebaseAuth mAuth;
-    private String mFileName;
+    private String record_path_FileName;
     private MediaRecorder mRecorder;
-    private ImageButton micImageButton;
-    private long startTimeRecord;
-    private int endTimeRecord;
-    private ImageButton profileLinkImageButton;
-    private TextView xpPoints;
-    private Button logOutBtn;
-    private ProgressBar recordAnimation;
-    private ProgressBar recordAnimation2;
-    private ImageButton storyImageButton;
-    private TextView storyTextView;
-    BlurImageView blurMicImage;
-    BlurImageView blurProfileLinkImage;
+    private long start_time_record;
+    private int end_time_record;
+    private ImageButton mic_ImageButton;
+    private ImageButton profile_link_ImageButton;
+    private ImageButton story_ImageButton;
+    private TextView xp_points_TextView;
+    private TextView story_TextView;
+    private Button log_out_Button;
+    private ProgressBar record_animation;
+    private ProgressBar record_animation2;
+    BlurImageView mic_BlurImage;
+    BlurImageView profile_link_BlurImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        storyImageButton = findViewById(R.id.story_imageButton);
-        storyTextView = findViewById(R.id.story_textView);
-        logOutBtn = findViewById(R.id.logOutBtn);
-        xpPoints = findViewById(R.id.xpPoints);
-        profileLinkImageButton = findViewById(R.id.profile_link_imageButton);
-        recordAnimation = findViewById(R.id.record_animation);
-        recordAnimation2 = findViewById(R.id.record_animation2);
-        blurMicImage = (BlurImageView) findViewById(R.id.blur_mic_image);
-        blurMicImage.setBlur(2);
-        blurProfileLinkImage = (BlurImageView) findViewById(R.id.blur_profile_link_image);
-        blurProfileLinkImage.setBlur(2);
-        micImageButton = (ImageButton) findViewById(R.id.mic_imageButton);
-        storyRecyclerView = findViewById(R.id.stroy_recycleView);
-        storyLayoutManager = new GridLayoutManager(this, 1);
-        storyRecyclerView.setHasFixedSize(true);
-        storyRecyclerView.setLayoutManager(storyLayoutManager);
+        story_ImageButton = findViewById(R.id.story_imageButton);
+        story_TextView = findViewById(R.id.story_textView);
+        log_out_Button = findViewById(R.id.logOutBtn);
+        xp_points_TextView = findViewById(R.id.xpPoints);
+        profile_link_ImageButton = findViewById(R.id.profile_link_imageButton);
+        record_animation = findViewById(R.id.record_animation);
+        record_animation2 = findViewById(R.id.record_animation2);
+        mic_BlurImage = (BlurImageView) findViewById(R.id.blur_mic_image);
+        mic_BlurImage.setBlur(2);
+        profile_link_BlurImage = (BlurImageView) findViewById(R.id.blur_profile_link_image);
+        profile_link_BlurImage.setBlur(2);
+        mic_ImageButton = (ImageButton) findViewById(R.id.mic_imageButton);
+        story_RecyclerView = findViewById(R.id.stroy_recycleView);
+        story_LayoutManager = new GridLayoutManager(this, 1);
+        story_RecyclerView.setHasFixedSize(true);
+        story_RecyclerView.setLayoutManager(story_LayoutManager);
         mAuth = FirebaseAuth.getInstance();
-        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/recorded_Audio.3pg";
-        dbReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        storyHums = new ArrayList<Hum>();
+        record_path_FileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        record_path_FileName += "/recorded_Audio.3pg"; //a general name given locally to every record
+        hums_dbReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+        story_hums = new ArrayList<Hum>();
 
-        blurMicImage.setVisibility(View.GONE);
-        blurProfileLinkImage.setVisibility(View.GONE);
-        recordAnimation.setVisibility(View.GONE);
-        recordAnimation2.setVisibility(View.GONE);
-        storyRecyclerView.setVisibility(View.GONE);
+        mic_BlurImage.setVisibility(View.GONE);
+        profile_link_BlurImage.setVisibility(View.GONE);
+        record_animation.setVisibility(View.GONE);
+        record_animation2.setVisibility(View.GONE);
+        story_RecyclerView.setVisibility(View.GONE);
 
-        dbReference.addValueEventListener(new ValueEventListener() {
+        //Creating the Hum's story
+        hums_dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                storyHums.clear();
+                story_hums.clear();
                 for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     Hum hum = dataSnapshot1.getValue(Hum.class);
-                    storyHums.add(hum);
+                    story_hums.add(hum);
                 }
-                storyAdapter = new StoryRecyclerAdapter(HomePageActivity.this, storyHums);
-                storyRecyclerView.setAdapter(storyAdapter);
+                story_Adapter = new StoryRecyclerAdapter(HomePageActivity.this, story_hums);
+                story_RecyclerView.setAdapter(story_Adapter);
             }
 
             @Override
@@ -107,50 +105,51 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        micImageButton.setOnTouchListener(new View.OnTouchListener() {
+        //Recording a hum
+        mic_ImageButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     startRecording();
-                    startTimeRecord = SystemClock.uptimeMillis();
-                    onPressedVisibilities();
+                    start_time_record = SystemClock.uptimeMillis();
+                    micOnPressedVisibilities();
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     stopRecording();
-                    endTimeRecord = (int) (SystemClock.uptimeMillis() - startTimeRecord) / 1000;
-                    onReleaseVisibilities();
-                    startHumAcceptionActivity(endTimeRecord);
+                    end_time_record = (int) (SystemClock.uptimeMillis() - start_time_record) / 1000;
+                    micOnReleaseVisibilities();
+                    startHumAcceptionActivity(end_time_record);
                 }
                 return false;
             }
         });
     }
 
-    private void onPressedVisibilities() {
-        recordAnimation.setVisibility(View.VISIBLE);
-        recordAnimation2.setVisibility(View.VISIBLE);
-        profileLinkImageButton.setVisibility(View.GONE);
-        xpPoints.setVisibility(View.GONE);
-        logOutBtn.setVisibility(View.GONE);
-        storyTextView.setVisibility(View.GONE);
-        storyImageButton.setVisibility(View.GONE);
+    private void micOnPressedVisibilities() {
+        record_animation.setVisibility(View.VISIBLE);
+        record_animation2.setVisibility(View.VISIBLE);
+        profile_link_ImageButton.setVisibility(View.GONE);
+        xp_points_TextView.setVisibility(View.GONE);
+        log_out_Button.setVisibility(View.GONE);
+        story_TextView.setVisibility(View.GONE);
+        story_ImageButton.setVisibility(View.GONE);
     }
 
 
-    private void onReleaseVisibilities() {
-        recordAnimation.setVisibility(View.GONE);
-        recordAnimation2.setVisibility(View.GONE);
-        profileLinkImageButton.setVisibility(View.VISIBLE);
-        xpPoints.setVisibility(View.VISIBLE);
-        logOutBtn.setVisibility(View.VISIBLE);
-        storyTextView.setVisibility(View.VISIBLE);
-        storyImageButton.setVisibility(View.VISIBLE);
+    private void micOnReleaseVisibilities() {
+        record_animation.setVisibility(View.GONE);
+        record_animation2.setVisibility(View.GONE);
+        profile_link_ImageButton.setVisibility(View.VISIBLE);
+        xp_points_TextView.setVisibility(View.VISIBLE);
+        log_out_Button.setVisibility(View.VISIBLE);
+        story_TextView.setVisibility(View.VISIBLE);
+        story_ImageButton.setVisibility(View.VISIBLE);
     }
 
     private void startRecording() {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(mFileName);
+        mRecorder.setOutputFile(record_path_FileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {
@@ -176,27 +175,27 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void onClickOpenStory(View view) {
-        if(!storyVisible){
-            storyRecyclerView.setVisibility(View.VISIBLE);
-            blurMicImage.setVisibility(View.VISIBLE);
-            blurProfileLinkImage.setVisibility(View.VISIBLE);
-            micImageButton.setVisibility(View.GONE);
-            profileLinkImageButton.setVisibility(View.GONE);
-            xpPoints.setVisibility(View.GONE);
-            logOutBtn.setVisibility(View.GONE);
-            storyTextView.setVisibility(View.GONE);
-            storyVisible = true;
+        if(!is_story_visible){
+            story_RecyclerView.setVisibility(View.VISIBLE);
+            mic_BlurImage.setVisibility(View.VISIBLE);
+            profile_link_BlurImage.setVisibility(View.VISIBLE);
+            mic_ImageButton.setVisibility(View.GONE);
+            profile_link_ImageButton.setVisibility(View.GONE);
+            xp_points_TextView.setVisibility(View.GONE);
+            log_out_Button.setVisibility(View.GONE);
+            story_TextView.setVisibility(View.GONE);
+            is_story_visible = true;
         }
-        else if (storyVisible == true){
-            blurMicImage.setVisibility(View.GONE);
-            blurProfileLinkImage.setVisibility(View.GONE);
-            storyRecyclerView.setVisibility(View.GONE);
-            micImageButton.setVisibility(View.VISIBLE);
-            profileLinkImageButton.setVisibility(View.VISIBLE);
-            xpPoints.setVisibility(View.VISIBLE);
-            logOutBtn.setVisibility(View.VISIBLE);
-            storyTextView.setVisibility(View.VISIBLE);
-            storyVisible = false;
+        else if (is_story_visible == true){
+            mic_BlurImage.setVisibility(View.GONE);
+            profile_link_BlurImage.setVisibility(View.GONE);
+            story_RecyclerView.setVisibility(View.GONE);
+            mic_ImageButton.setVisibility(View.VISIBLE);
+            profile_link_ImageButton.setVisibility(View.VISIBLE);
+            xp_points_TextView.setVisibility(View.VISIBLE);
+            log_out_Button.setVisibility(View.VISIBLE);
+            story_TextView.setVisibility(View.VISIBLE);
+            is_story_visible = false;
         }
     }
 
@@ -209,14 +208,6 @@ public class HomePageActivity extends AppCompatActivity {
         mAuth.signOut();
         Intent HomePageIntent = new Intent(HomePageActivity.this, LoginActivity.class);
         startActivity(HomePageIntent);
-    }
-
-    private void closeKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
     }
 }
 

@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/narrow_singup_headline_image" />
+        app:srcCompat="@drawable/narrow_signup_headline_image" />
 
     <View
         android:id="@+id/right_horizontal_line_sign_up"

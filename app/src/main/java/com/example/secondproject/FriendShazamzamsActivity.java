@@ -24,10 +24,10 @@ public class FriendShazamzamsActivity extends AppCompatActivity {
     private static final String TAG = "FriendShazamzamsActivit";
     private String current_friend_name;
     private int current_friend_xp;
-    private GridLayoutManager friendHumLayoutManager;
-    private RecyclerView friendHumsRecyclerView;
-    private ArrayList<Hum> tempFriendHums;
-    private DatabaseReference dbFriendHumsReference;
+    private GridLayoutManager friend_hum_layoutManager;
+    private RecyclerView friend_hums_recyclerView;
+    private ArrayList<Hum> temp_friend_hums;
+    private DatabaseReference friend_hums_dbReference;
     private HumRecyclerAdapter humAdapter;
 
     @Override
@@ -43,27 +43,27 @@ public class FriendShazamzamsActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: friend name:" + current_friend_name);
         Log.d(TAG, "onCreate: friend xp:" + current_friend_xp);
 
-        friendHumLayoutManager = new GridLayoutManager(this, 1);
-        friendHumsRecyclerView = findViewById(R.id.friends_shazamzams_recyclerView);
-        friendHumsRecyclerView.setHasFixedSize(true);
-        friendHumsRecyclerView.setLayoutManager(friendHumLayoutManager);
+        friend_hum_layoutManager = new GridLayoutManager(this, 1);
+        friend_hums_recyclerView = findViewById(R.id.friends_shazamzams_recyclerView);
+        friend_hums_recyclerView.setHasFixedSize(true);
+        friend_hums_recyclerView.setLayoutManager(friend_hum_layoutManager);
 
-        tempFriendHums = new ArrayList<Hum>();
+        temp_friend_hums = new ArrayList<Hum>();
 
-        dbFriendHumsReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
-        dbFriendHumsReference.addValueEventListener(new ValueEventListener() {
+        friend_hums_dbReference = FirebaseDatabase.getInstance().getReference().child("db2").child("hums_db");
+        friend_hums_dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tempFriendHums.clear();
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                temp_friend_hums.clear();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Hum hum = dataSnapshot1.getValue(Hum.class);
-                    if(hum.owner.equals(current_friend_name) == true){
+                    if (hum.owner.equals(current_friend_name) == true) {
                         hum.hum_answer = dataSnapshot1.child("hum_answer").getValue(String.class);
-                        tempFriendHums.add(hum);
+                        temp_friend_hums.add(hum);
                     }
                 }
-                humAdapter = new HumRecyclerAdapter(FriendShazamzamsActivity.this, tempFriendHums);
-                friendHumsRecyclerView.setAdapter(humAdapter);
+                humAdapter = new HumRecyclerAdapter(FriendShazamzamsActivity.this, temp_friend_hums);
+                friend_hums_recyclerView.setAdapter(humAdapter);
             }
 
             @Override

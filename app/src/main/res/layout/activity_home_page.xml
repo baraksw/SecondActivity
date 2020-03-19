@@ -52,7 +52,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_link_image_2" />
+        app:srcCompat="@drawable/profile_link_image_" />
 
     <Button
         android:id="@+id/logOutBtn"
@@ -127,7 +127,7 @@
         android:layout_marginEnd="@dimen/side_margin"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile_link_image_2"
+        android:src="@drawable/profile_link_image_"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

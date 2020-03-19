@@ -31,16 +31,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private ImageButton mLoginBtn;
-    private SignInButton mGoogleBtn;
+    private EditText email_EditText;
+    private EditText password_EditText;
+    private ImageButton login_Button;
+    private SignInButton googleSignInButton;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     public static final String UserNameString = "deafultUserName";
     private String userName = "defaultUserName";
-    private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    UsersMap users_map;
+    private DatabaseReference db_reference = FirebaseDatabase.getInstance().getReference();
     GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 1;
 
@@ -49,18 +48,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        mEmailField = (EditText) findViewById(R.id.email_editText);
-        mPasswordField = (EditText) findViewById(R.id.password_editText);
-        mLoginBtn = (ImageButton) findViewById(R.id.loginBtn);
-        mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
+        email_EditText = (EditText) findViewById(R.id.email_editText);
+        password_EditText = (EditText) findViewById(R.id.password_editText);
+        login_Button = (ImageButton) findViewById(R.id.loginBtn);
+        googleSignInButton = (SignInButton) findViewById(R.id.googleBtn);
 
         onChangeAuthState();
 
         // Configure Google Sign In
-        googleSignInProccess();
+        googleSignInProcess();
 
-        //regular sign in proccess (username + passowrd)
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+        //regular sign in process (username + password)
+        login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRegularSignIn();
@@ -69,13 +68,27 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void googleSignInProccess() {
+    private void onChangeAuthState() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null) {
+                    Intent SignInSuccessfulIntent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    SignInSuccessfulIntent.putExtra(UserNameString, userName);
+                    startActivity(SignInSuccessfulIntent);
+                }
+            }
+        };
+
+    }
+
+    private void googleSignInProcess() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        mGoogleBtn.setOnClickListener(new View.OnClickListener() {
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 googleSignIn();
@@ -83,20 +96,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void onChangeAuthState() {
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-        @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            if (firebaseAuth.getCurrentUser() != null) {
-                Intent SignInSuccessfulIntent = new Intent(LoginActivity.this, HomePageActivity.class);
-                SignInSuccessfulIntent.putExtra(UserNameString, userName);
-                startActivity(SignInSuccessfulIntent);
-            }
-        }
-    };
-
-
-    }
 
     private void googleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -116,14 +115,14 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_SHORT).show();
-            FirebaseGoogleAuth(acc);
+            firebaseGoogleAuth(acc);
         } catch (ApiException e) {
             Toast.makeText(LoginActivity.this, R.string.google_sign_fail_msg, Toast.LENGTH_SHORT).show();
-            FirebaseGoogleAuth(null);
+            firebaseGoogleAuth(null);
         }
     }
 
-    private void FirebaseGoogleAuth(GoogleSignInAccount acct) {
+    private void firebaseGoogleAuth(GoogleSignInAccount acct) {
         AuthCredential authCredential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -157,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void addGoogleUserToDB(final User new_user) {
-        mDataBase.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
+        db_reference.child("DB").child("users_db").child(new_user.getFull_name()).setValue(new_user);
         Toast.makeText(LoginActivity.this, R.string.google_sign_success_msg, Toast.LENGTH_LONG).show();
 
     }
@@ -169,8 +168,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startRegularSignIn() {
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
+        String email = email_EditText.getText().toString();
+        String password = password_EditText.getText().toString();
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty((password))) {
             Toast.makeText(LoginActivity.this, R.string.empty_login_fields_msg, Toast.LENGTH_LONG).show();
         } else {

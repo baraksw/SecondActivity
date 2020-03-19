@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,11 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAdapter.FriendViewHolder> {
-    private ArrayList<User> myFriends;
+    private ArrayList<User> my_friends;
     private Context context;
 
     public FriendRecyclerAdapter( ArrayList<User> myFriends){
-        this.myFriends = myFriends;
+        this.my_friends = myFriends;
     }
 
     @NonNull
@@ -40,10 +39,10 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
 
-        String friend_name = myFriends.get(position).getFull_name();
-        int friend_xp = myFriends.get(position).getXp_cnt();
+        String friend_name = my_friends.get(position).getFull_name();
+        int friend_xp = my_friends.get(position).getXp_cnt();
 
-        holder.friendName.setText(myFriends.get(position).getFull_name());
+        holder.friendName.setText(my_friends.get(position).getFull_name());
         holder.friendName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +53,7 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
             }
         });
 
-        setFriendXPText(holder, myFriends.get(position));
+        setFriendXPText(holder, my_friends.get(position));
     }
 
     private void setFriendXPText(FriendViewHolder holder, User user) {
@@ -74,7 +73,7 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
     @Override
     public int getItemCount() {
-        return myFriends.size();
+        return my_friends.size();
     }
 
     public static class FriendViewHolder extends RecyclerView.ViewHolder {

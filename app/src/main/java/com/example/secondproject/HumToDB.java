@@ -72,19 +72,24 @@ public interface HumToDB {
 
     //Upload answer of hum to DB
     default boolean UploadAnswer(String answer, Hum hum) {
-        DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
-        mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class) + ANSWER_XP);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        if (hum.getHum_answer() != "NULL")
+            return false;
+        else {
+            DatabaseReference db_reference = FirebaseDatabase.getInstance().getReference();
+            db_reference.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
+            db_reference.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    db_reference.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class) + ANSWER_XP);
+                }
 
-            }
-        });
-        return true;
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            return true;
+        }
     }
 
 }
