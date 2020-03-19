@@ -14,8 +14,6 @@
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginLeft="@dimen/global_left_margin"
         android:background="@color/transparent"
-        android:minWidth="14.5dp"
-        android:minHeight="24dp"
         android:onClick="launchHomePage"
         android:scaleType="centerCrop"
         android:src="@drawable/left_arrow_image"
@@ -25,8 +23,8 @@
 
     <ImageButton
         android:id="@+id/my_friend_button"
-        android:layout_width="60dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/my_friend_button_width"
+        android:layout_height="@dimen/my_friend_button_height"
         android:layout_marginRight="@dimen/global_right_margin"
         android:background="@color/transparent"
         android:onClick="launchMyFriendsPage"
@@ -89,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <TextView
-        android:id="@+id/xp_points_textView2"
+        android:id="@+id/friends_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

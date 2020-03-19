@@ -18,15 +18,16 @@
         </activity>
         <activity android:name=".FriendShazamzamsActivity"></activity>
         <activity android:name=".FriendProfileActivity" />
-        <activity android:name=".FriendsPageActivity"/>
-        <activity android:name=".MyProfileActivity" ></activity>
-        <activity android:name=".SignUpActivity"/>
-        <activity android:name=".HumAcceptionActivity" android:noHistory="true" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".FriendsPageActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MyProfileActivity" ></activity>
+        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".HumAcceptionActivity" android:noHistory="true" />
+        <activity android:name=".LoginActivity" >
         </activity>
     </application>
 

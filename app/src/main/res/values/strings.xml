@@ -30,5 +30,16 @@
     <string name="google_sign_fail_msg">Google Sign In Unsuccessful</string>
     <string name="empty_login_fields_msg">Fields are empty.</string>
     <string name="sign_in_fail_msg">Sign In Problem</string>
-    <string name="profile_user_xp">Xp points</string>
+    <string name="_158_text">158</string>
+    <string name="friend_user_name_hint">Enter friend\'s user name here...</string>
+    <string name="add_friend_text">add friend</string>
+    <string name="log_out_text">Log Out</string>
+    <string name="record_length_text">0:03</string>
+    <string name="please_confirm_your_hum_text">Please confirm your hum</string>
+    <string name="full_name_hint">Full Name...</string>
+    <string name="tuval_ben_ami_text">Tuval Ben Ami</string>
+    <string name="_168_xp_text">168 xp</string>
+    <string name="answer_hint">Please answer here...</string>
+    <string name="time_record_text">00:12</string>
+    <string name="answer_text">Answer</string>
 </resources>

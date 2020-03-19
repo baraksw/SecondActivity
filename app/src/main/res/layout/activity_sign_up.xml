@@ -9,7 +9,7 @@
     tools:context=".SignUpActivity">
 
     <ImageButton
-        android:id="@+id/previos_imageButton"
+        android:id="@+id/previous_imageButton"
         android:layout_width="@android:dimen/app_icon_size"
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_marginStart="@dimen/global_left_margin"
@@ -72,9 +72,9 @@
         android:layout_margin="@dimen/global_side_margin"
         android:layout_marginTop="@dimen/global_top_margin"
         android:ems="10"
-        android:hint="Full Name..."
+        android:hint="@string/full_name_hint"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintBottom_toTopOf="@+id/register_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_editText" />
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email_editText" />
 
     <ImageButton
-        android:id="@+id/registerBtn"
+        android:id="@+id/register_btn"
         android:layout_width="@dimen/letsgo_button_width"
         android:layout_height="@dimen/letsgo_button_height"
         android:layout_marginBottom="@dimen/letsgo_bottom_margin_type2"
@@ -129,18 +129,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/decorations_button" />
-
-    <Button
-        android:id="@+id/restartDB_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Restart DB"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/decoration_background"
-        app:layout_constraintTop_toTopOf="@+id/decoration_background"
-        android:background="@drawable/custom_button"
-        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

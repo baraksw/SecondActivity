@@ -42,10 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/friend_profile_name_textView"
         app:view_borderColor="@color/gunmetal"
         app:view_borderWidth="@dimen/profile_pic_border_width"
-        app:view_shadowColor="@color/gunmetal"
-        app:view_shadowDx="10dp"
-        app:view_shadowDy="0dp"
-        app:view_shadowRadius="4dp" />
+        app:view_shadowColor="@color/gunmetal" />
 
     <ImageView
         android:id="@+id/xp_star_icon"
@@ -68,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/xp_star_icon" />
 
     <TextView
-        android:id="@+id/shazamzams_button_textView"
+        android:id="@+id/shazamzams_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/shazamzams_textView_bottom_margin"
@@ -86,9 +83,8 @@
         android:onClick="launchFriendShazamzamsActivity"
         android:scaleType="fitCenter"
         android:src="@drawable/speaker_circled_icon"
-        app:layout_constraintBottom_toTopOf="@+id/shazamzams_button_textView"
+        app:layout_constraintBottom_toTopOf="@+id/shazamzams_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

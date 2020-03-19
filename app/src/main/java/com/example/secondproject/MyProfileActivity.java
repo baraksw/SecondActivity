@@ -21,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class MyProfileActivity extends AppCompatActivity {
 
     final static String LOG_TAG = "My profile log";
