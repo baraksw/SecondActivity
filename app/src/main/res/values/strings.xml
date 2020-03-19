@@ -41,4 +41,5 @@
     <string name="answer_hint">Please answer here...</string>
     <string name="time_record_text">00:00</string>
     <string name="answer_text">Answer</string>
+    <string name="friend_added_successfully_text">Friend added successfully!!</string>
 </resources>

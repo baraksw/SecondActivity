@@ -71,7 +71,7 @@ public class FriendsPageActivity extends AppCompatActivity {
             }
         });
 
-        //Does this every time the user is adding a friend
+        //Activates every time the user is adding a friend
         users_db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -86,7 +86,7 @@ public class FriendsPageActivity extends AppCompatActivity {
                         if (friends_list.get(i).equals(temp_user_name)) {
                             User local_user = new User(temp_full_name, temp_user_name, temp_xp);
                             users_list.add(local_user);
-                            Toast.makeText(FriendsPageActivity.this, "Friend added successfully!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(FriendsPageActivity.this, R.string.friend_added_successfully_text, Toast.LENGTH_LONG).show();
 
                         }
                     }
