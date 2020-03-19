@@ -60,9 +60,10 @@ public class FriendsPageActivity extends AppCompatActivity {
         users_list = new ArrayList<User>();
         friends_list = new ArrayList<String>();
 
-        friends_db_reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        friends_db_reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                friends_list.clear();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     String temp_friend = dataSnapshot1.getValue(String.class);
                     friends_list.add(temp_friend);
