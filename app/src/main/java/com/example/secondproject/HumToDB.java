@@ -60,8 +60,9 @@ public interface HumToDB {
         mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //Uploading hum decreases the XP value in 1
-                mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class) + UPLOAD_XP );
+                mDataBase.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").setValue(dataSnapshot.getValue(Integer.class) + UPLOAD_XP);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w("logFail", "did not upload object");
@@ -72,9 +73,6 @@ public interface HumToDB {
 
     //Upload answer of hum to DB
     default boolean UploadAnswer(String answer, Hum hum) {
-        if (hum.getHum_answer() != "NULL")
-            return false;
-        else {
             DatabaseReference db_reference = FirebaseDatabase.getInstance().getReference();
             db_reference.child("db2").child("hums_db").child(hum.getHum_id()).child("hum_answer").setValue(answer);
             db_reference.child("DB").child("users_db").child(String.valueOf(mAuth.getCurrentUser().getDisplayName())).child("xp_cnt").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -92,7 +90,7 @@ public interface HumToDB {
         }
     }
 
-}
+
 
 
 

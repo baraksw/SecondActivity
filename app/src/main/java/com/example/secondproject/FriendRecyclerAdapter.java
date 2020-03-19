@@ -23,8 +23,8 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     private ArrayList<User> my_friends;
     private Context context;
 
-    public FriendRecyclerAdapter( ArrayList<User> myFriends){
-        this.my_friends = myFriends;
+    public FriendRecyclerAdapter( ArrayList<User> my_friends){
+        this.my_friends = my_friends;
     }
 
     @NonNull
@@ -42,8 +42,8 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
         String friend_name = my_friends.get(position).getFull_name();
         int friend_xp = my_friends.get(position).getXp_cnt();
 
-        holder.friendName.setText(my_friends.get(position).getFull_name());
-        holder.friendName.setOnClickListener(new View.OnClickListener() {
+        holder.friend_name.setText(my_friends.get(position).getFull_name());
+        holder.friend_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent friendProfileIntent = new Intent(context, FriendProfileActivity.class);
@@ -57,11 +57,11 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
     }
 
     private void setFriendXPText(FriendViewHolder holder, User user) {
-        DatabaseReference mProfileDb = FirebaseDatabase.getInstance().getReference();
-        mProfileDb.child("DB").child("users_db").child(user.getFull_name()).addValueEventListener(new ValueEventListener() {
+        DatabaseReference db_Reference = FirebaseDatabase.getInstance().getReference();
+        db_Reference.child("DB").child("users_db").child(user.getFull_name()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                holder.xpTextView.setText(String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)) + " XP");
+                holder.friend_xp.setText(String.valueOf(dataSnapshot.child("xp_cnt").getValue(Integer.class)) + " XP");
             }
 
             @Override
@@ -78,13 +78,13 @@ public class FriendRecyclerAdapter extends RecyclerView.Adapter<FriendRecyclerAd
 
     public static class FriendViewHolder extends RecyclerView.ViewHolder {
 
-        TextView friendName;
-        TextView xpTextView;
+        TextView friend_name;
+        TextView friend_xp;
 
         public FriendViewHolder(@NonNull View itemView) {
             super(itemView);
-            friendName = itemView.findViewById(R.id.friend_row_full_name);
-            xpTextView = itemView.findViewById(R.id.friend_row_xp_textView);
+            friend_name = itemView.findViewById(R.id.friend_row_full_name);
+            friend_xp = itemView.findViewById(R.id.friend_row_xp_textView);
         }
     }
 
