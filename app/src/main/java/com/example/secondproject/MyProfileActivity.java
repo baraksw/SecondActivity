@@ -39,10 +39,10 @@ public class MyProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "My profile's onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        Log.i(LOG_TAG, "My profile's onCreate");
         mAuth = FirebaseAuth.getInstance();
         currentUser = String.valueOf(mAuth.getCurrentUser().getDisplayName());
         profileName = findViewById(R.id.my_name_textView);

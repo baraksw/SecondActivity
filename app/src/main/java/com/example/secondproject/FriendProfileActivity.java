@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class FriendProfileActivity extends AppCompatActivity {
 
+    private static final String TAG = "FriendProfileActivity";
     private TextView profile_name;
     private String friend_name;
     private TextView profile_xp;
@@ -38,7 +40,16 @@ public class FriendProfileActivity extends AppCompatActivity {
     }
 
     public void launchFriendShazamzamsActivity(View view) {
+
+        Log.d(TAG, "launchFriendShazamzamsActivity: clicked.");
+
         Intent friendsShazamzamsIntent = new Intent(this, FriendShazamzamsActivity.class);
+        friendsShazamzamsIntent.putExtra("friend_name", friend_name);
+        friendsShazamzamsIntent.putExtra("friend_xp", friend_xp);
+
+        Log.d(TAG, "launchFriendShazamzamsActivity: friend name:" + friend_name);
+        Log.d(TAG, "launchFriendShazamzamsActivity: friend xp:" + friend_xp);
+
         startActivity(friendsShazamzamsIntent);
     }
 }
